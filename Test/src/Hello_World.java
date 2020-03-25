@@ -5,7 +5,6 @@ public class Hello_World {
         for (int i = 1; i <= count; i++){
             System.out.println(i + ": " + test);
         }
-        System.out.println("Erfolgreicher durchlauf! \n");
         System.out.println("WTF? Wieso steht da Thorsten? \n");
     }
 }
