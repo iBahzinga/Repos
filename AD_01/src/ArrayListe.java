@@ -27,7 +27,7 @@ public class ArrayListe<T> implements LineareListe {
     public void einfuegen(int position, Object element) throws IllegalArgumentException {
         darfNichtNullSein(element);
         mussGueltigeEinfuegepositionSein(position);
-
+/*HELLO*/
         //DAs muss noch einkommentiert werden
        // _elemente[position] = T;
        // _anzahlElemente++;
