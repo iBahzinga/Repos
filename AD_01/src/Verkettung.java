@@ -16,7 +16,7 @@ public class Verkettung<T> implements LineareListe {
         return _anzahlElemente;
     }
 
-    //Warum Object
+
     @Override
     public void einfuegen(int position, Object element) throws IllegalArgumentException {
         if((position >= 0) && (position <= _anzahlElemente))
