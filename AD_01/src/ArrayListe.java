@@ -1,18 +1,18 @@
 import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 
-public class ArrayListe<T> implements LineareListe {
+public class ArrayListe<T> implements LineareListe <T> {
 
     private T[] _elemente;
     private int _anzahlElemente;
     private static final int ANFANGSKAPAZITAET = 10;
 
-
-    private ArrayListe(){
+    @SuppressWarnings("unchecked")
+    ArrayListe(){
         _anzahlElemente = 0;
         _elemente = (T[]) new Object[ANFANGSKAPAZITAET];
     }
-
+    @SuppressWarnings("unchecked")
     private ArrayListe(int kapazitaet){
         _anzahlElemente = 0;
         _elemente = (T[]) new Object[kapazitaet];
@@ -24,13 +24,17 @@ public class ArrayListe<T> implements LineareListe {
     }
 
     @Override
-    public void einfuegen(int position, Object element) throws IllegalArgumentException {
+    public void einfuegen(int position, T element) throws IllegalArgumentException {
         darfNichtNullSein(element);
         mussGueltigeEinfuegepositionSein(position);
-/*HELLOxy*/
-        //DAs muss noch einkommentiert werden
-       // _elemente[position] = T;
-       // _anzahlElemente++;
+        if (position - 1 < _anzahlElemente) {
+            for (int i = _anzahlElemente -1; i >= position; i--) {
+                int neuePosition = i + 1;
+                _elemente[neuePosition] = _elemente[i];
+            }
+        }
+        _elemente[position] = element;
+       _anzahlElemente++;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class ArrayListe<T> implements LineareListe {
     }
 
     @Override
-    public Object gibElement(int position) throws IllegalArgumentException {
+    public T gibElement(int position) throws IllegalArgumentException {
         return _elemente[position];
     }
 
