@@ -27,10 +27,10 @@ public class ArrayListe<T> implements LineareListe <T> {
     public void einfuegen(int position, T element) throws IllegalArgumentException {
         darfNichtNullSein(element);
         mussGueltigeEinfuegepositionSein(position);
-        if (position -1 < _anzahlElemente) {
-            for (int i = _anzahlElemente -1; i > position; i--) {
+        if (position - 1 < _anzahlElemente) {
+            for (int i = _anzahlElemente -1; i >= position; i--) {
                 int neuePosition = i + 1;
-                _elemente[i] = _elemente[neuePosition];
+                _elemente[neuePosition] = _elemente[i];
             }
         }
         _elemente[position] = element;
