@@ -8,7 +8,7 @@ public class ArrayListe<T> implements LineareListe <T> {
     private static final int ANFANGSKAPAZITAET = 10;
 
     @SuppressWarnings("unchecked")
-    private ArrayListe(){
+    ArrayListe(){
         _anzahlElemente = 0;
         _elemente = (T[]) new Object[ANFANGSKAPAZITAET];
     }
