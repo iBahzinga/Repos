@@ -2,15 +2,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
 class ArrayListeTest {
-
+/* ---------- Instanzvariablen ---------- */
     private ArrayListe _elemente;
 
+/* ---------- Konstruktor ---------- */
     public ArrayListeTest () {
-        //ArrayListe<Integer>
         _elemente = new ArrayListe<Integer>();
     }
 
-
+    /**
+     * Testet die aktuelle Anzahl der Elemente die sich in dem Array befinden.
+     */
     @org.junit.jupiter.api.Test
     void testAnzahlElemente() {
     }
@@ -22,17 +24,15 @@ class ArrayListeTest {
       */
     @org.junit.jupiter.api.Test
     void testEinfuegen() {
-        Integer test1 = randomWert();
-        Integer test2 = randomWert();
-        Integer test3 = 42;
-        Integer test4 = randomWert();
-        Integer test5 = randomWert();
-        _elemente.einfuegen(0, test1);
-        _elemente.einfuegen(0, test2);
-        _elemente.einfuegen(0, test3);
-        _elemente.einfuegen(0, test4);
-        _elemente.einfuegen(0, test5);
-        assertSame(5, _elemente.anzahlElemente());
+        Integer testInteger;
+        for (int i = 1; i <= 5; i++){
+            if (i == 3) {
+                testInteger = 42;
+            } else {
+                testInteger = randomWert();
+            }
+            _elemente.einfuegen(0, testInteger);
+        }
     }
 
 
