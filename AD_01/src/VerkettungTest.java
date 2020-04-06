@@ -36,7 +36,7 @@ class VerkettungTest {
      * Alle Elemente werden an die erste Stelle im Array geschrieben.
      */
     @org.junit.jupiter.api.Test
-    void testEinfuegenErsteStelle() { /**Dieser Test ist noch nicht ganz richtig*/
+    void testEinfuegenErsteStelle() {
         fuelleTestArray();
         LineareListe liste = erzeugeListe();
 
@@ -44,7 +44,7 @@ class VerkettungTest {
             liste.einfuegen(0, testArray[i]);
         }
         assertEquals(100, liste.anzahlElemente());
-        assertEquals(42, liste.gibElement((anzahlStellenArray / 2) - 1));
+        assertEquals(42, liste.gibElement((anzahlStellenArray / 2)));
     }
 
     @org.junit.jupiter.api.Test
@@ -98,7 +98,7 @@ class VerkettungTest {
         for (int i = 0; i <= anzahlStellenArray - 1; i++){ // zum erstellen der Liste
             liste.einfuegen(0, testArray[i]);
         }
-        for (int i = 99; i <= 90; i--) {  //zum löschen von 10 elementen
+        for (int i = 99; i >= 90; i--) {  //zum löschen von 10 elementen
             liste.entfernen(i);
         }
         assertEquals(90, liste.anzahlElemente());
