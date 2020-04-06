@@ -1,4 +1,4 @@
-public class Verkettung<T> implements LineareListe {
+public class Verkettung <T> implements LineareListe <T>{
     private DoppelKnoten _kopf;
     private DoppelKnoten _ende;
     private int _anzahlElemente;    //Kardinalitaet
@@ -19,6 +19,41 @@ public class Verkettung<T> implements LineareListe {
 
     @Override
     public void einfuegen(int position, Object element) throws IllegalArgumentException {
+        darfNichtNullSein(element);
+        mussGueltigeEinfuegepositionSein(position);
+
+        DoppelKnoten neuesKettenglied = new DoppelKnoten();
+        DoppelKnoten aktuelleStelle;
+        neuesKettenglied.setzeElement(element);
+        if (position < _anzahlElemente / 2)
+        {
+            aktuelleStelle = _kopf;
+            int durchlaufen = position + 1;
+            for (int i = 0;i < durchlaufen; i++)
+            {
+                aktuelleStelle = aktuelleStelle.gibNachfolger();
+            }
+        }
+        else
+        {
+            aktuelleStelle = _ende;
+            int durchlaufen = _anzahlElemente - position;
+            for (int i = 0; i < durchlaufen; i++)
+            {
+                aktuelleStelle = aktuelleStelle.gibVorgaenger();
+            }
+        }
+        DoppelKnoten vorgaenger = aktuelleStelle.gibVorgaenger();
+        vorgaenger.setzeNachfolger (neuesKettenglied);
+        neuesKettenglied.setzeVorgaenger(vorgaenger);
+        neuesKettenglied.setzeNachfolger(aktuelleStelle);
+        aktuelleStelle.setzeVorgaenger(neuesKettenglied);
+        _anzahlElemente++;
+
+
+
+
+        /*
         if((position >= 0) && (position <= _anzahlElemente))
         {
             DoppelKnoten rechts = knotenAnPosition(position);
@@ -32,35 +67,47 @@ public class Verkettung<T> implements LineareListe {
         {
             throw new IllegalArgumentException("Ungueltige Position");
         }
+         */
     }
 
     @Override
     public void entfernen(int position) throws IllegalArgumentException {
-        if((position >= 0) && (position <= _anzahlElemente))
+        mussGueltigePositionSein(position);
+        DoppelKnoten aktuelleStelle;
+        if (position < _anzahlElemente / 2)     //#Bestimmt die aktuelle Stelle
         {
-            DoppelKnoten links = knotenAnPosition(position).gibVorgaenger();
-            DoppelKnoten rechts = knotenAnPosition(position).gibNachfolger();
-            links.setzeNachfolger(rechts);
-            rechts.setzeVorgaenger(links);
-            _anzahlElemente--;
+            aktuelleStelle = _kopf;
+            int durchlaufen = position + 1;
+            for (int i = 0;i < durchlaufen; i++)
+            {
+                aktuelleStelle = aktuelleStelle.gibNachfolger();
+            }
         }
         else
         {
-            throw new IllegalArgumentException("Ungueltige Position");
+            aktuelleStelle = _ende;
+            int durchlaufen = _anzahlElemente - position;
+            for (int i = 0; i < durchlaufen; i++)
+            {
+                aktuelleStelle = aktuelleStelle.gibVorgaenger();
+            }
         }
-
+        DoppelKnoten vorgaenger = aktuelleStelle.gibVorgaenger();
+        DoppelKnoten nachfolger = aktuelleStelle.gibNachfolger();
+        vorgaenger.setzeNachfolger(nachfolger);
+        nachfolger.setzeVorgaenger(vorgaenger);
+        _anzahlElemente--;
     }
 
     @Override
-    public Object gibElement(int position) throws IllegalArgumentException {
-        if((position >= 0) && (position <= _anzahlElemente))
+    public T gibElement(int position) throws IllegalArgumentException {
+        mussGueltigePositionSein(position);
+        DoppelKnoten knoten = _kopf;
+        for (int i = 0; i <= position; ++i)
         {
-            return knotenAnPosition(position).gibElement();
+            knoten = knoten.gibNachfolger();
         }
-        else
-        {
-            throw new IllegalArgumentException("Ungueltige Position");
-        }
+        return (T) knoten.gibElement();
     }
 
     @Override
@@ -70,7 +117,7 @@ public class Verkettung<T> implements LineareListe {
         _anzahlElemente = 0;
     }
 
-    // Ueberpruefen
+
     private DoppelKnoten knotenAnPosition(int position)
     {
         DoppelKnoten result;
@@ -103,5 +150,60 @@ public class Verkettung<T> implements LineareListe {
             knoten = knoten.gibVorgaenger();
         }
         return knoten;
+    }
+
+    /* -------------------------------------------------------------------------------------------------------------*/
+
+
+    /**
+     * Liefert true fuer alle gueltigen Positionen innerhalb der Liste.
+     */
+    public boolean istGueltigePosition(int position)
+    {
+        return (position >= 0) && (position < anzahlElemente());
+    }
+
+    /**
+     * Wirft eine IndexOutOfBoundsException, falls es sich um eine ungueltige
+     * Position handelt.
+     */
+    private void mussGueltigePositionSein(int position)
+    {
+        if (!istGueltigePosition(position))
+        {
+            throw new IndexOutOfBoundsException(position + " ist keine gueltige Position");
+        }
+    }
+
+    /**
+     * Liefert true fuer alle gueltigen Einfuegepositionen innerhalb der Liste.
+     */
+    public boolean istGueltigeEinfuegeposition(int position)
+    {
+        return (position >= 0) && (position <= anzahlElemente());
+    }
+
+    /**
+     * Wirft eine IndexOutOfBoundsException, falls es sich um eine ungueltige
+     * Einfuegeposition handelt.
+     */
+    private void mussGueltigeEinfuegepositionSein(int position)
+    {
+        if (!istGueltigeEinfuegeposition(position))
+        {
+            throw new IndexOutOfBoundsException(
+                    position + " ist keine gueltige Einfuegeposition");
+        }
+    }
+
+    /**
+     * Wirft eine IllegalArgumentException, falls die uebergebene Titel-Referenz null ist.
+     */
+    private static void darfNichtNullSein(Object element)
+    {
+        if (element == null)
+        {
+            throw new IllegalArgumentException("Das Element darf nicht Null sein!");
+        }
     }
 }
