@@ -143,62 +143,13 @@ public class Verkettung <T> implements LineareListe <T>{
         _anzahlElemente = 0;
     }
 
-    /**
-     *
-     * @param position
-     * @return
-     */
-    private DoppelKnoten knotenAnPosition(int position)
-    {
-        DoppelKnoten result;
-        if (position < _anzahlElemente / 2)
-        {
-            result = knotenAnPositionAufsteigend(position);
-        }
-        else
-        {
-            result = knotenAnPositionAbsteigend(position);
-        }
-        return result;
-    }
-
-    /**
-     *
-     * @param position
-     * @return
-     */
-    private DoppelKnoten knotenAnPositionAufsteigend(int position)
-    {
-        DoppelKnoten knoten = _kopf;
-        for (int i = 0; i <= position; ++i)
-        {
-            knoten = knoten.gibNachfolger();
-        }
-        return knoten;
-    }
-
-    /**
-     *
-     * @param position
-     * @return
-     */
-    private DoppelKnoten knotenAnPositionAbsteigend(int position)
-    {
-        DoppelKnoten knoten = _ende;
-        for (int i = _anzahlElemente; i > position; --i)
-        {
-            knoten = knoten.gibVorgaenger();
-        }
-        return knoten;
-    }
-
     /* -------------------------------------------------------------------------------------------------------------*/
 
 
     /**
      * Liefert true fuer alle gueltigen Positionen innerhalb der Liste.
      */
-    public boolean istGueltigePosition(int position)
+    private boolean istGueltigePosition(int position)
     {
         return (position >= 0) && (position < anzahlElemente());
     }
@@ -218,7 +169,7 @@ public class Verkettung <T> implements LineareListe <T>{
     /**
      * Liefert true fuer alle gueltigen Einfuegepositionen innerhalb der Liste.
      */
-    public boolean istGueltigeEinfuegeposition(int position)
+    private boolean istGueltigeEinfuegeposition(int position)
     {
         return (position >= 0) && (position <= anzahlElemente());
     }

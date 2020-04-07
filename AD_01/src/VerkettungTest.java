@@ -100,6 +100,7 @@ class VerkettungTest {
             liste.entfernen(0);
         }
         assertEquals(90, liste.anzahlElemente());
+        assertEquals(42, liste.gibElement(40));
     }
 
     /**
@@ -116,6 +117,7 @@ class VerkettungTest {
             liste.entfernen(i);
         }
         assertEquals(90, liste.anzahlElemente());
+        assertEquals(42, liste.gibElement(50));
     }
 
 
