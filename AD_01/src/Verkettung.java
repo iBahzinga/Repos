@@ -1,8 +1,11 @@
 public class Verkettung <T> implements LineareListe <T>{
-    private DoppelKnoten _kopf;
-    private DoppelKnoten _ende;
-    private int _anzahlElemente;    //Kardinalitaet
+    private DoppelKnoten _kopf;     //Wächter für den Listenanfang
+    private DoppelKnoten _ende;     //Wächter für das Listenende
+    private int _anzahlElemente;    //Kardinalitaet der Liste
 
+    /**
+     * Konstruktor der Klasse Verkettung
+     */
     public Verkettung(){
         _anzahlElemente = 0;
         _kopf = new DoppelKnoten();
@@ -11,12 +14,22 @@ public class Verkettung <T> implements LineareListe <T>{
         _ende.setzeVorgaenger(_kopf);
     }
 
+    /**
+     * Liefert die aktuelle Anzahl an Elementen wieder zurück, die sich in der liste befinden.
+     * @return
+     */
     @Override
     public int anzahlElemente() {
         return _anzahlElemente;
     }
 
-
+    /**
+     * Einfügen eines Doppelknotens in die Liste.
+     * Man kann die Stelle Wöhlen, an die das neue Objekt eingefügt werden soll.
+     * @param position
+     * @param element
+     * @throws IllegalArgumentException
+     */
     @Override
     public void einfuegen(int position, Object element) throws IllegalArgumentException {
         darfNichtNullSein(element);
@@ -27,6 +40,10 @@ public class Verkettung <T> implements LineareListe <T>{
         neuesKettenglied.setzeElement(element);
         if (position < _anzahlElemente / 2)
         {
+            /*
+             * Wenn das Element in der ersten Hälfte der Liste eingefügt werden soll,
+             * wird die Liste von dem Anfang durchgegangen.
+             */
             aktuelleStelle = _kopf;
             int durchlaufen = position + 1;
             for (int i = 0;i < durchlaufen; i++)
@@ -36,6 +53,10 @@ public class Verkettung <T> implements LineareListe <T>{
         }
         else
         {
+            /*
+             * Wenn das Element weiter hinten in der Liste eingefügt werden soll,
+             * wird vom Ende aus durchgegangen, um Rechenleistung zu sparen.
+             */
             aktuelleStelle = _ende;
             int durchlaufen = _anzahlElemente - position;
             for (int i = 0; i < durchlaufen; i++)
@@ -49,33 +70,24 @@ public class Verkettung <T> implements LineareListe <T>{
         neuesKettenglied.setzeNachfolger(aktuelleStelle);
         aktuelleStelle.setzeVorgaenger(neuesKettenglied);
         _anzahlElemente++;
-
-
-
-
-        /*
-        if((position >= 0) && (position <= _anzahlElemente))
-        {
-            DoppelKnoten rechts = knotenAnPosition(position);
-            DoppelKnoten links = rechts.gibVorgaenger();
-            DoppelKnoten neu = new DoppelKnoten(links, rechts, element);
-            links.setzeNachfolger(neu);
-            rechts.setzeVorgaenger(neu);
-            _anzahlElemente++;
-        }
-        else
-        {
-            throw new IllegalArgumentException("Ungueltige Position");
-        }
-         */
     }
 
+    /**
+     * Entfernt ein Element aus der Liste und verkettet die Liste wieder richtig.
+     * Die Position des Elementes kann frei gewählt werden.
+     * @param position
+     * @throws IllegalArgumentException
+     */
     @Override
     public void entfernen(int position) throws IllegalArgumentException {
         mussGueltigePositionSein(position);
         DoppelKnoten aktuelleStelle;
         if (position < _anzahlElemente / 2)     //#Bestimmt die aktuelle Stelle
         {
+            /*
+             * Wenn ein Element in der ersten hälfte gelöscht werden soll, dann geht die Liste
+             * von Anfang an alles durch um Rechenleistung zu sparen
+             */
             aktuelleStelle = _kopf;
             int durchlaufen = position + 1;
             for (int i = 0;i < durchlaufen; i++)
@@ -85,6 +97,10 @@ public class Verkettung <T> implements LineareListe <T>{
         }
         else
         {
+            /*
+             * Wenn ein Element in der zweiten hälfte gelöscht werden soll, dann geht die Liste
+             * vom Ende an alles rückwärts durch, um Rechenleistung zu sparen.
+             */
             aktuelleStelle = _ende;
             int durchlaufen = _anzahlElemente - position;
             for (int i = 0; i < durchlaufen; i++)
@@ -99,6 +115,12 @@ public class Verkettung <T> implements LineareListe <T>{
         _anzahlElemente--;
     }
 
+    /**
+     * Liefert das Element an einer bestimmten Position wieder zurück.
+     * @param position
+     * @return
+     * @throws IllegalArgumentException
+     */
     @Override
     public T gibElement(int position) throws IllegalArgumentException {
         mussGueltigePositionSein(position);
@@ -110,6 +132,10 @@ public class Verkettung <T> implements LineareListe <T>{
         return (T) knoten.gibElement();
     }
 
+    /**
+     * Leert die komplette Liste, indem nur die Wächter wieder verbunden werden und der
+     * garbage collector die Elemente entfernt.
+     */
     @Override
     public void leere() {
         _ende.setzeVorgaenger(_kopf);
@@ -117,7 +143,11 @@ public class Verkettung <T> implements LineareListe <T>{
         _anzahlElemente = 0;
     }
 
-
+    /**
+     *
+     * @param position
+     * @return
+     */
     private DoppelKnoten knotenAnPosition(int position)
     {
         DoppelKnoten result;
@@ -132,6 +162,11 @@ public class Verkettung <T> implements LineareListe <T>{
         return result;
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     private DoppelKnoten knotenAnPositionAufsteigend(int position)
     {
         DoppelKnoten knoten = _kopf;
@@ -142,6 +177,11 @@ public class Verkettung <T> implements LineareListe <T>{
         return knoten;
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     private DoppelKnoten knotenAnPositionAbsteigend(int position)
     {
         DoppelKnoten knoten = _ende;

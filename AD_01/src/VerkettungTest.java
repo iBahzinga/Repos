@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.Test;
-
+/**
+ * @author Santa Rudevica
+ * @author Daniel Dichte
+ * @author Pascal Kießler
+ */
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
@@ -47,6 +51,10 @@ class VerkettungTest {
         assertEquals(42, liste.gibElement((anzahlStellenArray / 2)));
     }
 
+
+    /**
+     * Testet ob man irgendwo in der liste einfügen kann
+     */
     @org.junit.jupiter.api.Test
     void testEinfuegenMitte() {
         fuelleTestArray();
@@ -63,6 +71,9 @@ class VerkettungTest {
     }
 
 
+    /**
+     * Testet ob man weiterhin immer am ende in der Liste einfügen kann.
+     */
     @org.junit.jupiter.api.Test
     void testEinfuegenLetzteStelle() {
         fuelleTestArray();
@@ -91,8 +102,11 @@ class VerkettungTest {
         assertEquals(90, liste.anzahlElemente());
     }
 
+    /**
+     * Testet das entfernen eines Elementes am Ende der Schleife.
+     */
     @org.junit.jupiter.api.Test
-    void testEntfernenEnde() {  /** Dieser Test ist noch nicht ganz richtig */
+    void testEntfernenEnde() {
         LineareListe liste = erzeugeListe();
         fuelleTestArray();
         for (int i = 0; i <= anzahlStellenArray - 1; i++){ // zum erstellen der Liste
@@ -147,12 +161,20 @@ class VerkettungTest {
         return rueckgabeInteger;
     }
 
+    /**
+     * Hilfsmethode um einen Zufallswert für
+     * @param stelle
+     * @return
+     */
     Integer randomWertFuerStelle (int stelle) {
         Random intWert = new Random();
         int rueckgabeInteger = intWert.nextInt(1 + stelle);
         return rueckgabeInteger;
     }
 
+    /**
+     * Hilfsmethode um das Testarray zu füllen
+     */
     public void fuelleTestArray () {
         Integer testInteger;
         for (int i = 0; i <= anzahlStellenArray - 1; i++){
@@ -164,6 +186,10 @@ class VerkettungTest {
         }
     }
 
+    /**
+     * Methode um ein Objekt zu erzeugen der Liste.
+     * @return
+     */
     public LineareListe erzeugeListe() {
         return new Verkettung();
     }
