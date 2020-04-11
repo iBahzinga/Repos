@@ -1,3 +1,10 @@
+/**
+ * Klasse der Verketteten Knoten
+ *
+ * @author Daniel Dichte
+ * @author Pascal Kießler
+ * @author Santa Rudevica
+ */
 public class Verkettung <T> implements LineareListe <T>{
     private DoppelKnoten _kopf;     //Wächter für den Listenanfang
     private DoppelKnoten _ende;     //Wächter für das Listenende

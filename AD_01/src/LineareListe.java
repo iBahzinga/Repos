@@ -1,3 +1,11 @@
+/**
+ * Interface der Linearen Listen
+ *
+ * @author Pascal Kießler
+ * @author Santa Rudevica
+ * @author Daniel Dichte
+ * @param <T>
+ */
 public interface LineareListe<T> {
 
     int anzahlElemente();

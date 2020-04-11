@@ -1,12 +1,14 @@
 import org.junit.jupiter.api.Test;
-/**
- * @author Santa Rudevica
- * @author Daniel Dichte
- * @author Pascal Kießler
- */
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
+/**
+ * Test der Verketteten Liste
+ *
+ * @author Daniel Dichte
+ * @author Pascal Kießler
+ * @author Santa Rudevica
+ */
 class VerkettungTest {
     /* ---------- Instanzvariablen ---------- */
     private DoppelKnoten _elemente;
