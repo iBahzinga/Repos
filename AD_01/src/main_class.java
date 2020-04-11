@@ -1,11 +1,17 @@
 import java.util.Random;
 
 /**
- *Mainklasse zum starten der Testdurchläufe und festhalten der Zeiten
+ * Es werden in eine doppeltverkettete Liste oder in eine Arrayliste jeweils Objekte an zufälligen Stellen,
+ * Anfang oder Ende 10_000 Elemente hinzugefügt
+ * und aus einer Liste mit 10_000 Elementen 1000 Elemente an zufälligen Stellen, Annfang und Ende entfernt.
+ * Bei allen Vorgängen wird die Zeit jeweils ermittelt und ausgegeben.
+ * Am Ende wird die gesamte und die durchschnittliche Zeit angegeben.
  *
  * @author Santa Rudevica
  * @author Daniel Dichte
  * @author Pascal Kießler
+ *
+ * @version 1.0
  */
 public class main_class {
 
@@ -36,8 +42,8 @@ public class main_class {
             zeitGesamt = zeitGesamt + zeitNachher - zeitVorher;
         }
         System.out.println("Insgesamt- und Durchschnittszeiten");
-        System.out.println("Die insgesamt benoetigte Zeit für die " + welcheListe(liste) + " beträgt: \t " + zeitGesamt);
-        System.out.println("Die durchschnittliche Zeit für die " + welcheListe(liste) + " beträgt: \t " + (float) zeitGesamt / 10);
+        System.out.println("Die insgesamt benoetigte Zeit für die " + welcheListe(liste) + " beträgt: \t " + zeitGesamt + "  Millisekungen.");
+        System.out.println("Die durchschnittliche Zeit für die " + welcheListe(liste) + " beträgt: \t " + (float) zeitGesamt / 10 + " Millisekunden.");
     }
 
     /**

@@ -1,9 +1,12 @@
 /**
- * Klasse der Verketteten Knoten
+ * Es wird eine verkettete Liste über Knoten erstellt.
+ * Jeder Knoten hält seinen Vorgänger, seinen Nachfolger und das jeweilige Element, das generisch gehalten wird.
  *
  * @author Daniel Dichte
  * @author Pascal Kießler
  * @author Santa Rudevica
+ *
+ * @version 2.0
  */
 public class Verkettung <T> implements LineareListe <T>{
     private DoppelKnoten _kopf;     //Wächter für den Listenanfang
@@ -31,8 +34,9 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Einfügen eines Doppelknotens in die Liste.
-     * Man kann die Stelle Wöhlen, an die das neue Objekt eingefügt werden soll.
+     * Einfügen eines generischen Wertes in die Liste.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @param element
      * @throws IllegalArgumentException
@@ -80,8 +84,9 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Entfernt ein Element aus der Liste und verkettet die Liste wieder richtig.
-     * Die Position des Elementes kann frei gewählt werden.
+     * Entfernen eines Elementes der Liste.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @throws IllegalArgumentException
      */
@@ -123,7 +128,9 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Liefert das Element an einer bestimmten Position wieder zurück.
+     * Rückliefern eines bliebigen Elementes.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @return
      * @throws IllegalArgumentException
@@ -140,8 +147,7 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Leert die komplette Liste, indem nur die Wächter wieder verbunden werden und der
-     * garbage collector die Elemente entfernt.
+     * Leeren der gesamten Liste.
      */
     @Override
     public void leere() {
