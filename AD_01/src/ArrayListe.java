@@ -2,10 +2,16 @@ import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 
 /**
- * Lineare liste
- * Es wird eine generische Arrayliste erstellt.
- * In der Liste können Elemente eingefügt- oder  gelöscht werden. Es können elemente abgefragt werden oder
- * die Anzahl der Elemente kann ausgelesen werden.
+ * Es wird eine Arrayliste erstellt die generisch gehalten wird.
+ * In der Liste können Elemente an beliebigen Stellen eingefügt- oder  gelöscht werden.
+ * Es können elemente abgefragt werden und die Anzahl der Elemente kann ausgelesen werden.
+ *
+ * @author Santa Rudevica
+ * @author Daniel Dichte
+ * @author Pascal Kießler
+ *
+ * @version 1.0
+ *
  * @param <T>
  */
 public class ArrayListe<T> implements LineareListe <T> {
@@ -27,7 +33,8 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Ausgabe zum zurückliefern aller Elemente in der Arrayliste.
+     * Liefert die aktuelle Anzahl an Elementen wieder zurück, die sich in der liste befinden.
+     *
      * @return
      */
     @Override
@@ -36,8 +43,9 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Es wird ein generischer Wert in das Array gespeichert.
-     * Wenn die Position ungültig sein sollte, wird eine Ecxeption geworfen.
+     * Einfügen eines generischen Wertes in die Liste.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @param element
      * @throws IllegalArgumentException
@@ -57,8 +65,9 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Es wird ein Beliebiger Wert in der Arrayliste entfernt.
-     * Die Zeichen nach entfernen des Elementes werden wieder richtig angeordnet.
+     * Entfernen eines Elementes der Liste.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @throws IllegalArgumentException
      */
@@ -75,7 +84,9 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Methode um einen beliebigen Wert an der übergebenen Position zurückliefern.
+     * Rückliefern eines bliebigen Elementes.
+     * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     *
      * @param position
      * @return
      * @throws IllegalArgumentException
@@ -86,8 +97,7 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Methode zum Leeren des kompletten Arrays.
-     * Alle Stellen werden auf Null gesetzt.
+     * Leeren der gesamten Liste.
      */
     @Override
     public void leere() {

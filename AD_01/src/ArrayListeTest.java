@@ -1,6 +1,16 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
+
+/**
+ * Junit Tests der Arrayliste.
+ *
+ * @author Daniel Dichte
+ * @author Santa Rudevica
+ * @author Pascal Kießler
+ *
+ * @version 1.0
+ */
 class ArrayListeTest {
 /* ---------- Instanzvariablen ---------- */
     private ArrayListe _elemente;
