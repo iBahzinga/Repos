@@ -45,6 +45,7 @@ public class ArrayListe<T> implements LineareListe <T> {
     /**
      * Einfügen eines generischen Wertes in die Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
+     * Die Arrayliste wächst automatisch um Faktor 2, sobald die liste mehr als halb gefüllt ist.
      *
      * @param position
      * @param element
@@ -54,6 +55,13 @@ public class ArrayListe<T> implements LineareListe <T> {
     public void einfuegen(int position, T element) throws IllegalArgumentException {
         darfNichtNullSein(element);
         mussGueltigeEinfuegepositionSein(position);
+        if (_anzahlElemente > _elemente.length / 2) {
+            T[] _elementeAktualisieren = (T[]) new Object[_elemente.length * 2];
+            for (int i = 0; i <= _anzahlElemente; i ++){
+                _elementeAktualisieren [i] = _elemente [i];
+            }
+            _elemente = _elementeAktualisieren;
+        }
         if (position - 1 < _anzahlElemente) {
             for (int i = _anzahlElemente -1; i >= position; i--) {
                 int neuePosition = i + 1;
