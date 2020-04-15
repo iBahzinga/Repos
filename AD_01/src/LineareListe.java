@@ -40,7 +40,7 @@ public interface LineareListe<T> {
      * Rückliefern eines bliebigen Elementes.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position Position des Elementes 
+     * @param position Position des Elementes
      * @return
      * @throws IllegalArgumentException
      */

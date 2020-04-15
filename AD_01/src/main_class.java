@@ -126,7 +126,7 @@ public class main_class {
 
     /**
      * Entfernen von 1000 Elementen am Ende der Liste.
-     * @param list aktuelle Liste in der wir das Element entfernen
+     * @param list aktuelle Liste in der wir das Element entfernen.
      * @param anzahlObjekte Gibt an wieviele Elemente entfernt werden sollen
      * @param anzahlDurchlauf Gibt den aktuellen durchlauf als Zahl an
      */
