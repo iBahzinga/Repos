@@ -34,8 +34,7 @@ public class ArrayListe<T> implements LineareListe <T> {
 
     /**
      * Liefert die aktuelle Anzahl an Elementen wieder zurück, die sich in der liste befinden.
-     *
-     * @return
+     * @return anzahl der Elemente in der Liste
      */
     @Override
     public int anzahlElemente() {
@@ -45,11 +44,10 @@ public class ArrayListe<T> implements LineareListe <T> {
     /**
      * Einfügen eines generischen Wertes in die Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
-     * Die Arrayliste wächst automatisch um Faktor 2, sobald die liste mehr als halb gefüllt ist.
      *
-     * @param position
-     * @param element
-     * @throws IllegalArgumentException
+     * @param position Position in der das Element eingesetzt wird
+     * @param element Element das in der Liste eingesetzt wird
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public void einfuegen(int position, T element) throws IllegalArgumentException {
@@ -76,8 +74,8 @@ public class ArrayListe<T> implements LineareListe <T> {
      * Entfernen eines Elementes der Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @throws IllegalArgumentException
+     * @param position Position des Elementes das gelöscht werden soll
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public void entfernen(int position) throws IllegalArgumentException {
@@ -95,9 +93,9 @@ public class ArrayListe<T> implements LineareListe <T> {
      * Rückliefern eines bliebigen Elementes.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @return
-     * @throws IllegalArgumentException
+     * @param position Position des Elementes das gesucht wird.
+     * @return Das Element an der übergebenen Position.
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public T gibElement(int position) throws IllegalArgumentException {
@@ -119,8 +117,8 @@ public class ArrayListe<T> implements LineareListe <T> {
 
     /**
      * Positionsprüfung des Arrays
-     * @param position
-     * @return
+     * @param position Position des Elementes
+     * @return Boolischer Wert, ob Position gültig oder nicht ist.
      */
     public boolean istGueltigePosition(int position) {
         return (position >= 0) && (position < anzahlElemente());
@@ -128,7 +126,7 @@ public class ArrayListe<T> implements LineareListe <T> {
 
     /**
      * Positionsprüfung des Arrays
-     * @param position
+     * @param position Position des Elementes
      */
     private void mussGueltigePositionSein(int position)
     {
@@ -140,8 +138,8 @@ public class ArrayListe<T> implements LineareListe <T> {
 
     /**
      * Positionsprüfung des Arrays
-     * @param position
-     * @return
+     * @param position Position des Elementes
+     * @return Boolischer Wert, ob Position gültig ist
      */
     public boolean istGueltigeEinfuegeposition(int position)
     {
@@ -149,8 +147,8 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Wirft eine IndexOutOfBoundsException, falls es sich um eine ungueltige
-     * Einfuegeposition handelt.
+     * Prüft ob die Position gültig ist.
+     * @param position Position des Elementes
      */
     private void mussGueltigeEinfuegepositionSein(int position)
     {
@@ -162,7 +160,8 @@ public class ArrayListe<T> implements LineareListe <T> {
     }
 
     /**
-     * Wirft eine IllegalArgumentException, falls null übergeben wird
+     * Prüft den Wert des Elementes
+     * @param element Element das geprüft wird.
      */
     private static void darfNichtNullSein(Object element)
     {

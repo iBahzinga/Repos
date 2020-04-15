@@ -23,7 +23,7 @@ public interface LineareListe<T> {
      *
      * @param position Position in der das Element eingesetzt wird
      * @param element Element das in der Liste eingesetzt wird
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     void einfuegen(int position, T element) throws IllegalArgumentException;
 
@@ -32,7 +32,7 @@ public interface LineareListe<T> {
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
      * @param position Position des Elementes das gelöscht werden soll
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     void entfernen(int position) throws IllegalArgumentException;
 
@@ -40,9 +40,9 @@ public interface LineareListe<T> {
      * Rückliefern eines bliebigen Elementes.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position Position des Elementes
-     * @return
-     * @throws IllegalArgumentException
+     * @param position Position des Elementes das gesucht wird.
+     * @return Das Element an der übergebenen Position.
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     T gibElement(int position) throws IllegalArgumentException;
 

@@ -26,7 +26,7 @@ public class Verkettung <T> implements LineareListe <T>{
 
     /**
      * Liefert die aktuelle Anzahl an Elementen wieder zurück, die sich in der liste befinden.
-     * @return
+     * @return anzahl der Elemente in der Liste
      */
     @Override
     public int anzahlElemente() {
@@ -37,9 +37,9 @@ public class Verkettung <T> implements LineareListe <T>{
      * Einfügen eines generischen Wertes in die Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @param element
-     * @throws IllegalArgumentException
+     * @param position Position in der das Element eingesetzt wird
+     * @param element Element das in der Liste eingesetzt wird
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public void einfuegen(int position, Object element) throws IllegalArgumentException {
@@ -87,8 +87,8 @@ public class Verkettung <T> implements LineareListe <T>{
      * Entfernen eines Elementes der Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @throws IllegalArgumentException
+     * @param position Position des Elementes das gelöscht werden soll
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public void entfernen(int position) throws IllegalArgumentException {
@@ -131,9 +131,9 @@ public class Verkettung <T> implements LineareListe <T>{
      * Rückliefern eines bliebigen Elementes.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @return
-     * @throws IllegalArgumentException
+     * @param position Position des Elementes das gesucht wird.
+     * @return Das Element an der übergebenen Position.
+     * @throws IllegalArgumentException wenn eine ungültige Position eingegeben wurde.
      */
     @Override
     public T gibElement(int position) throws IllegalArgumentException {
@@ -161,6 +161,8 @@ public class Verkettung <T> implements LineareListe <T>{
 
     /**
      * Liefert true fuer alle gueltigen Positionen innerhalb der Liste.
+     * @param position Position des Elementes
+     * @return Position gültig oder ungültig
      */
     private boolean istGueltigePosition(int position)
     {
@@ -168,8 +170,8 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Wirft eine IndexOutOfBoundsException, falls es sich um eine ungueltige
-     * Position handelt.
+     * Prüft ob die Position gültig ist.
+     * @param position Position des Elementes
      */
     private void mussGueltigePositionSein(int position)
     {
@@ -180,7 +182,9 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Liefert true fuer alle gueltigen Einfuegepositionen innerhalb der Liste.
+     * Gibt zurück ob die Einfügeposition in Ordnung ist oder nicht.
+     * @param position Position des Elementes
+     * @return gültige oder ungültige Einfügeposition
      */
     private boolean istGueltigeEinfuegeposition(int position)
     {
@@ -188,8 +192,8 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Wirft eine IndexOutOfBoundsException, falls es sich um eine ungueltige
-     * Einfuegeposition handelt.
+     * Prüft die Einfügeposition
+     * @param position Position des Elementes
      */
     private void mussGueltigeEinfuegepositionSein(int position)
     {
@@ -201,7 +205,8 @@ public class Verkettung <T> implements LineareListe <T>{
     }
 
     /**
-     * Wirft eine IllegalArgumentException, falls die uebergebene Titel-Referenz null ist.
+     * Prüft den Wert des Elementes
+     * @param element Element das geprüft wird.
      */
     private static void darfNichtNullSein(Object element)
     {

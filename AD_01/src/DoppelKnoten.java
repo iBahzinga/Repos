@@ -10,7 +10,7 @@
  *
  * @version 1.0
  *
- * @param <T>
+ * @param <T> Generisch gehaltenes Element
  */
 public class DoppelKnoten<T> {
     private DoppelKnoten _vorgaenger;
@@ -20,9 +20,9 @@ public class DoppelKnoten<T> {
     /**
      * Konstruktor der Klasse Doppelknoten
      *
-     * @param vorgaenger
-     * @param nachfolger
-     * @param element
+     * @param vorgaenger An dieser Stelle der vordere Wächter der Liste
+     * @param nachfolger An dieser Stelle der hintere Wächter der Liste
+     * @param element Element des Knotens
      */
     public DoppelKnoten(DoppelKnoten vorgaenger, DoppelKnoten nachfolger, T element){
         _vorgaenger = vorgaenger;
@@ -40,7 +40,7 @@ public class DoppelKnoten<T> {
     /**
      * Setzen eines (neuen) Nachfolgers des Doppelknotens
      *
-     * @param nachfolger
+     * @param nachfolger Den Nachfolger des Knotens
      */
     public void setzeNachfolger(DoppelKnoten nachfolger){
         _nachfolger = nachfolger;
@@ -49,7 +49,7 @@ public class DoppelKnoten<T> {
     /**
      * Setzen eines (neuen) Vorgängers des Doppelknotens
      *
-     * @param vorgaenger
+     * @param vorgaenger Den Vorgänger des Knotens
      */
     public void setzeVorgaenger(DoppelKnoten vorgaenger){
         _vorgaenger = vorgaenger;
@@ -58,7 +58,7 @@ public class DoppelKnoten<T> {
     /**
      * Element in den Doppelknoten setzen
      *
-     * @param element
+     * @param element Übergebenes Element
      */
     public void setzeElement(T element){
         _element = element;
@@ -67,7 +67,7 @@ public class DoppelKnoten<T> {
     /**
      * Liefert den nachfolger des aktuellen Doppelknotens zurück
      *
-     * @return
+     * @return Den Nachfolger des Knotens
      */
     public DoppelKnoten gibNachfolger() {
         return _nachfolger;
@@ -76,7 +76,7 @@ public class DoppelKnoten<T> {
     /**
      * Liefert den Vorgänger des aktuellen Doppelknotens zurück
      *
-     * @return
+     * @return Den Vorgänger des Knotens
      */
     public DoppelKnoten gibVorgaenger() {
         return _vorgaenger;
@@ -85,7 +85,7 @@ public class DoppelKnoten<T> {
     /**
      * Liefert das Element des aktuellen Doppelknotens zurück
      *
-     * @return
+     * @return Das Element des Knotens
      */
     public T gibElement() {
         return _element;

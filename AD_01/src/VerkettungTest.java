@@ -168,8 +168,8 @@ class VerkettungTest {
     }
 
     /**
-     * Hilfsmethode um einen Zufallswert für
-     * @param stelle
+     * Hilfsmethode um einen Zufallswert zu generieren
+     * @param stelle Wert bis den ein zufälliger Wert generiert wird.
      * @return
      */
     Integer randomWertFuerStelle (int stelle) {
@@ -194,7 +194,7 @@ class VerkettungTest {
 
     /**
      * Methode um ein Objekt zu erzeugen der Liste.
-     * @return
+     * @return Ein Listenobjekt
      */
     public LineareListe erzeugeListe() {
         return new Verkettung();
