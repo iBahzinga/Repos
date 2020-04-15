@@ -37,7 +37,9 @@ public class main_class {
         for (int i = 0; i < anzahlDurchlaeufe; i++) {
             long zeitVorherEinfügen = System.currentTimeMillis();
             long zeitEinfuegenAnfang = elementeEinfügenAnfang(liste, anzahlObjekteEinfügen, i + 1);
+            liste.leere();
             long zeitEinfuegenEnde =  elementeEinfügenEnde(liste, anzahlObjekteEinfügen, i + 1);
+            liste.leere();
             long zeitEinfuegenZufall = elementeEinfügenZufall(liste, anzahlObjekteEinfügen, i + 1);
             liste.leere();
             elementeEinfügen(liste, anzahlObjekteEinfügen);
@@ -179,8 +181,13 @@ public class main_class {
      * @return Stelle in der das Element in der Liste eingefügt werden soll.
      */
     private static Integer zufallsPosition(int bisStelle) {
-        Random intWert = new Random();
-        int rueckgabeInteger = intWert.nextInt(bisStelle);
+        int rueckgabeInteger;
+        if (bisStelle == 0) {
+            rueckgabeInteger = 0;
+        } else {
+            Random intWert = new Random();
+            rueckgabeInteger = intWert.nextInt(bisStelle);
+        }
         return rueckgabeInteger;
     }
 
