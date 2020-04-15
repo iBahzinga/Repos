@@ -37,16 +37,11 @@ public class main_class {
         for (int i = 0; i < anzahlDurchlaeufe; i++) {
             long zeitVorherEinfügen = System.currentTimeMillis();
             long zeitEinfuegenAnfang = elementeEinfügenAnfang(liste, anzahlObjekteEinfügen, i + 1);
-            liste.leere();
             long zeitEinfuegenEnde =  elementeEinfügenEnde(liste, anzahlObjekteEinfügen, i + 1);
-            liste.leere();
             long zeitEinfuegenZufall = elementeEinfügenZufall(liste, anzahlObjekteEinfügen, i + 1);
-            liste.leere();
-            elementeEinfügen(liste, anzahlObjekteEinfügen);
             long zeitEntfernenAnfang = elementeEntfernenAnfang(liste, anzahlObjekteEntfernen, i + 1);
             long zeitEntfernenEnde = elementeEntfernenEnde(liste, anzahlObjekteEntfernen, i + 1);
             long zeitEntfernenZufall = elementeEntfernenZufall(liste, anzahlObjekteEntfernen, i + 1);
-            liste.leere();
             long zeitNachher = System.currentTimeMillis();
             ausrechnenZeit(zeitEinfuegenAnfang, zeitEinfuegenEnde, zeitEinfuegenZufall, zeitEntfernenAnfang,
                     zeitEntfernenEnde, zeitEntfernenZufall);
@@ -70,6 +65,7 @@ public class main_class {
         long zeit = zeitNachher - zeitVorher;
         System.out.println(anzahlDurchlauf + ". Durchlauf Einfügen");
         System.out.println("Die Durchlaufszeit für das Einfügen am Anfang bei dem " + anzahlDurchlauf + ". Durchlauf betrug: \t\t\t\t\t\t" + zeit);
+        list.leere();
         return zeit;
     }
 
@@ -87,6 +83,7 @@ public class main_class {
         long zeitNachher = System.currentTimeMillis();
         long zeit = zeitNachher - zeitVorher;
         System.out.println("Die Durchlaufszeit für das Einfügen am Ende bei dem " + anzahlDurchlauf + ". Durchlauf betrug: \t\t\t\t\t\t" + zeit);
+        list.leere();
         return zeit;
     }
 
@@ -105,6 +102,7 @@ public class main_class {
         long zeit = zeitNachher - zeitVorher;
         System.out.println("Die Durchlaufszeit für das Einfügen an einer beliebigen Stelle bei dem " + anzahlDurchlauf + ". Durchlauf betrug: \t" + zeit);
         System.out.println();
+        list.leere();
         return zeit;
     }
 
@@ -115,6 +113,7 @@ public class main_class {
      * @param anzahlDurchlauf Gibt den aktuellen durchlauf als Zahl an
      */
     private static long elementeEntfernenAnfang (LineareListe list, int anzahlObjekte, int anzahlDurchlauf) {
+        elementeEinfügen(list, anzahlObjekteEinfügen);
         long zeitVorher = System.currentTimeMillis();
         for (int i = 0; i < anzahlObjekte; i++) {
             list.entfernen(0);
@@ -123,6 +122,7 @@ public class main_class {
         long zeit = zeitNachher - zeitVorher;
         System.out.println(anzahlDurchlauf + ". Durchlauf Entfernen");
         System.out.println("Die Durchlaufszeit für das Entfernen am Anfang bei dem " + anzahlDurchlauf + ". Durchlauf betrug: \t\t\t\t\t" + zeit);
+        list.leere();
         return zeit;
     }
 
@@ -133,6 +133,7 @@ public class main_class {
      * @param anzahlDurchlauf Gibt den aktuellen durchlauf als Zahl an
      */
     private static long elementeEntfernenEnde (LineareListe list, int anzahlObjekte, int anzahlDurchlauf) {
+        elementeEinfügen(list, anzahlObjekteEinfügen);
         long zeitVorher = System.currentTimeMillis();
         for (int i = 0; i < anzahlObjekte; i++) {
             list.entfernen(list.anzahlElemente()-1);
@@ -140,6 +141,7 @@ public class main_class {
         long zeitNachher = System.currentTimeMillis();
         long zeit = zeitNachher - zeitVorher;
         System.out.println("Die Durchlaufszeit für das Entfernen am Ende bei dem " + anzahlDurchlauf + ". Durchlauf betrug: \t\t\t\t\t\t" + zeit);
+        list.leere();
         return zeit;
     }
 
@@ -150,7 +152,7 @@ public class main_class {
      * @param anzahlDurchlauf Gibt den aktuellen durchlauf als Zahl an
      */
     private static long elementeEntfernenZufall (LineareListe list, int anzahlObjekte, int anzahlDurchlauf) {
-
+        elementeEinfügen(list, anzahlObjekteEinfügen);
         long zeitVorher = System.currentTimeMillis();
         for (int i = 0; i < anzahlObjekte; i++) {
             list.entfernen(zufallsPosition(list.anzahlElemente()));
@@ -161,6 +163,7 @@ public class main_class {
                 ". Durchlauf betrug: \t" + zeit);
         System.out.println();
         System.out.println();
+        list.leere();
         return zeit;
     }
 
