@@ -13,7 +13,7 @@
 public interface LineareListe<T> {
     /**
      * Liefert die aktuelle Anzahl an Elementen wieder zurück, die sich in der liste befinden.
-     * @return
+     * @return anzahl der Elemente in der Liste
      */
     int anzahlElemente();
 
@@ -21,8 +21,8 @@ public interface LineareListe<T> {
      * Einfügen eines generischen Wertes in die Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
-     * @param element
+     * @param position Position in der das Element eingesetzt wird
+     * @param element Element das in der Liste eingesetzt wird
      * @throws IllegalArgumentException
      */
     void einfuegen(int position, T element) throws IllegalArgumentException;
@@ -31,7 +31,7 @@ public interface LineareListe<T> {
      * Entfernen eines Elementes der Liste.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
+     * @param position Position des Elementes das gelöscht werden soll
      * @throws IllegalArgumentException
      */
     void entfernen(int position) throws IllegalArgumentException;
@@ -40,7 +40,7 @@ public interface LineareListe<T> {
      * Rückliefern eines bliebigen Elementes.
      * Bei ungültiger Positionsübergabe wird eine IllegalArgumentException geworfen.
      *
-     * @param position
+     * @param position Position des Elementes 
      * @return
      * @throws IllegalArgumentException
      */
