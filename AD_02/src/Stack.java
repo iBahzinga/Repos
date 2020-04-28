@@ -1,5 +1,3 @@
-package prakt_02_vorgabe;
-
 import java.util.ArrayList;
 import java.util.List;
 
