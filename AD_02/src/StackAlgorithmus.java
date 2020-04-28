@@ -23,25 +23,36 @@ public class StackAlgorithmus {
                 Character operator = _stack.pop().charAt(0);
                 int operand2 = Integer.valueOf(_stack.pop());
                 String dummy = _stack.pop();
-                switch (operator) {
-                    case '+': result = operand1 + operand2;
-                    break;
-                    case '-': result = operand2 - operand1;
-                        break;
-                    case '*': result = operand1 * operand2;
-                        break;
-                    case '/': result = operand2 / operand1;
-                        break;
-                }
+                result = berechnung (operand1, operand2, operator);
                 _stack.push(String.valueOf(result));
             } else {
                 _stack.push(element);
             }
         }
-
-
         return result;
     }
+
+
+
+
+
+    int berechnung (int operand1, int operand2, Character operator){
+        int result = 0;
+        switch (operator) {
+            case '+': result = operand1 + operand2;
+                break;
+            case '-': result = operand2 - operand1;
+                break;
+            case '*': result = operand1 * operand2;
+                break;
+            case '/': result = operand2 / operand1;
+                break;
+        }
+        return result;
+    }
+
+
+
 
 
 }
