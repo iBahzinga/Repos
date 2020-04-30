@@ -8,10 +8,10 @@ public class hanoi_main {
                 return count;
             }
             else {
-                count = hanoi(n - 1, 'A', 'B', 'C', count);
+                count = hanoi(n - 1, start, ablage, ziel , count);
                 count++;
                 System.out.println("Schritt: " + count + " Scheibe: " + n + " von Turm: " + start + " zu Turm: " + ziel);
-                count =  hanoi(n - 1, 'B', 'C', 'A', count);
+                count =  hanoi(n - 1, ablage, ziel, start, count);
                 return count;
             }
         }
@@ -19,7 +19,7 @@ public class hanoi_main {
         public static void main(String args[])
         {
             int count = 0;
-            int n = 2;              //Anzahl von verwendeten Scheiben auf unseren Spielfeld
+            int n = 3;              //Anzahl von verwendeten Scheiben auf unseren Spielfeld
 
             count = hanoi(n, 'A', 'C', 'B', count);
             System.out.println("Benötigte schritte zum Ziel: " + count);
