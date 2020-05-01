@@ -11,12 +11,14 @@
  *
  */
 public class StackAlgorithmus {
+    private final int ZERO;
 
     /**
      * Konstruktor des Algorithmus
      */
     private Stack<String> _stack = new Stack();
     public StackAlgorithmus () {
+        ZERO = 0;
     }
 
     /**
@@ -27,16 +29,16 @@ public class StackAlgorithmus {
     protected int algebraischeBerechnung(String ausdruck) {
         pruefeNull (ausdruck);
         pruefeAnzahlKlammern (ausdruck);
-        int result = 0;
+        int result = ZERO;
         for (int i = 0; i <= ausdruck.length() - 1; i++) {
             String element = "";
-            int counter = 0;
+            int count = ZERO;
             if (istZahl(ausdruck, i)) {
                 do {
-                    element = element + ausdruck.charAt(i + counter);
-                    counter++;
-                } while (istZahl(ausdruck, i + counter));
-                i = i + counter - 1;
+                    element = element + ausdruck.charAt(i + count);
+                    count++;
+                } while (istZahl(ausdruck, i + count));
+                i = i + count - 1;
                 _stack.push(element);
                 element = "";
             } else if (ausdruck.charAt(i) == ')') {
@@ -58,7 +60,7 @@ public class StackAlgorithmus {
         Character operator = _stack.pop().charAt(0);
         int operand2 = Integer.valueOf(_stack.pop());
         _stack.pop();
-        int result = 0;
+        int result = ZERO;
         switch (operator) {
             case '+': result = operand1 + operand2;
                 break;
@@ -69,6 +71,7 @@ public class StackAlgorithmus {
             case '/': result = operand2 / operand1;
                 break;
         }
+        pruefeErgebnis (operand1, operand2, operator, result);
         return result;
     }
 
@@ -97,9 +100,9 @@ public class StackAlgorithmus {
      * Pruefe ob genausoviele öffnende Klammern, wie schliessende Klammern existieren.
      * @param ausdruck Algebraischer Term der ausgerechnet werden soll.
      */
-    void pruefeAnzahlKlammern (String ausdruck) {
-        int anzahlOeffeneKlammern = 0;
-        int anzahlSchliessendeKlammern = 0;
+    private void pruefeAnzahlKlammern (String ausdruck) {
+        int anzahlOeffeneKlammern = ZERO;
+        int anzahlSchliessendeKlammern = ZERO;
         for (int i = 0; i <= ausdruck.length() - 1; i++) {
             if (ausdruck.charAt(i) == '(') {
                 anzahlOeffeneKlammern++;
@@ -112,4 +115,32 @@ public class StackAlgorithmus {
                     "Klammersetzung überprüfen.");
         }
     }
+
+
+    //a = operand1
+    private void pruefeErgebnis (int a, int b, Character z, int r) {
+        switch (z) {
+            case '+': if (a >= ZERO && b >= ZERO && (a > r || b > r)) {
+                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
+            } else if (a >= ZERO && b < ZERO && (a > r || b < r)) {
+                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
+            } else if (a < ZERO && b >= ZERO && (a < r || b > r)) {
+                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
+            } else if (a < ZERO && b < ZERO && (a < r || b < r)) {
+                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
+            }
+                break;
+            case '-':
+                break;
+            case '*':
+                break;
+            case '/':
+                break;
+        }
+
+
+
+    }
+
+
 }

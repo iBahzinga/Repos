@@ -146,13 +146,4 @@ public class StackAlgorithmusTest {
         }
         assertTrue(excYesNo);
     }
-
-
-
-    /**
-     * An dieser Stelle müssen noch 2 Tests implementiert werden.
-     * Der eine Test muss testen das das Ergebnis nicht kleiner werden darf, wenn man über den Maximalen Int Wert hinaus geht
-     * Der andere muss testen dass, das Ergebnis nicht groesser wird, wenn man unter den kleinsten Int Wert hinaus geht.
-     * Ggf. noch einmal absprechen.
-     */
 }
