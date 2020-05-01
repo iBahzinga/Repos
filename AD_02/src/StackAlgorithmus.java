@@ -71,7 +71,6 @@ public class StackAlgorithmus {
             case '/': result = operand2 / operand1;
                 break;
         }
-        pruefeErgebnis (operand1, operand2, operator, result);
         return result;
     }
 
@@ -115,32 +114,4 @@ public class StackAlgorithmus {
                     "Klammersetzung überprüfen.");
         }
     }
-
-
-    //a = operand1
-    private void pruefeErgebnis (int a, int b, Character z, int r) {
-        switch (z) {
-            case '+': if (a >= ZERO && b >= ZERO && (a > r || b > r)) {
-                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
-            } else if (a >= ZERO && b < ZERO && (a > r || b < r)) {
-                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
-            } else if (a < ZERO && b >= ZERO && (a < r || b > r)) {
-                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
-            } else if (a < ZERO && b < ZERO && (a < r || b < r)) {
-                throw new IllegalArgumentException("Der eingegebene Algebraische Ausdruck überschreitet den Maximalen Integer Wert");
-            }
-                break;
-            case '-':
-                break;
-            case '*':
-                break;
-            case '/':
-                break;
-        }
-
-
-
-    }
-
-
 }
