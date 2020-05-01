@@ -16,6 +16,6 @@ public class main {
      */
     public static void main (String [] args) {
         StackAlgorithmus algebraischerAlgorithmus = new StackAlgorithmus();
-        System.out.println(algebraischerAlgorithmus.algebraischeBerechnung("(300+700)"));
+        System.out.println(algebraischerAlgorithmus.algebraischeBerechnung("(10-(5-10))"));
     }
 }
