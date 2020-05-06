@@ -25,8 +25,12 @@ public class StackAlgorithmusTest {
     void testMehrereFunktionen () {
         int testwert1 = testStackalgorithmus.algebraischeBerechnung("((6*(4+2))+(5-1))");
         int testwert2 = testStackalgorithmus.algebraischeBerechnung("(((2*2)+(325-248))*(2+(33-8)))");
+        int testwert3 = testStackalgorithmus.algebraischeBerechnung("((10*(10/5))-(3*3))");
+        int testwert4 = testStackalgorithmus.algebraischeBerechnung("(((54*63)+(9182-44))-(22+(9999/3)))");
         assertEquals (40, testwert1);
         assertEquals (2187, testwert2);
+        assertEquals (11, testwert3);
+        assertEquals (9185, testwert4);
     }
 
     /**

@@ -42,7 +42,7 @@ public class hanoi_main {
         public static void main(String args[])
         {
             int count = 0;
-            int n = 20;              //Anzahl von verwendeten Scheiben auf unseren Spielfeld
+            int n = 5;              //Anzahl von verwendeten Scheiben auf unseren Spielfeld
 
             count = hanoi(n, 'A', 'C', 'B', count);
             System.out.println("Benötigte schritte zum Ziel: " + count);
