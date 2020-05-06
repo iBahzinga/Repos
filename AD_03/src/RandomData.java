@@ -7,11 +7,14 @@ import java.util.Random;
 public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> {
 
     private final int ZERO;
+    private final int MANUELLSORTIEREN;
+
     /**
      * Konstruktor der Klasse Randomdata
      */
     RandomData() {
         ZERO = 0;
+        MANUELLSORTIEREN = 30;
     }
 
     /**
@@ -32,18 +35,19 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
      * @param linkeSeite Linke hälfte des Pivotelementes
      * @param rechteSeite rechte hälfte des Pivotslementes
      */
-    protected void sortiere (T array [], int linkeSeite, int rechteSeite) {
-        if (rechteSeite > linkeSeite){
+    public void sortiereQS (T array [], int linkeSeite, int rechteSeite) {
+        if (array.length <= MANUELLSORTIEREN) {
+            sortiereIS(array);
+        } else if (rechteSeite > linkeSeite){
             int i = linkeSeite;
             int j = rechteSeite - 1;
-            T pivot = getPivotelement(array);
+            T pivot = array[rechteSeite];
+            //T pivot = getPivotelement(array);
             while (true) {
-                T pivotI = array[i];
-                T pivotJ = array[j];
-                while (pivotI.compareTo(pivot) < ZERO) {
+                while (array[i].compareTo(pivot) < ZERO) {
                     i++;
                 }
-                while (pivotJ.compareTo(pivot) >= ZERO && j > ZERO) {
+                while (array[j].compareTo(pivot) >= ZERO && j > ZERO) {
                     j--;
                 }
                 if (i >= j) {
@@ -55,8 +59,8 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
             }
             // Pivotelement in der Mitte tauschen
             swap(array, i, j);
-            sortiere(array, linkeSeite, i - 1);
-            sortiere(array, i + 1, rechteSeite);
+            sortiereQS(array, linkeSeite, i - 1);
+            sortiereQS(array, i + 1, rechteSeite);
         }
     }
 
@@ -73,11 +77,21 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
     }
 
 
-
-
-
-
-
+    /**
+     * Sortiert nach der Insertion Sort Variante, sobald das Array 30 oder weniger elemente hat
+     * @param array Generisches Array, das es zu sortieren gilt.
+     */
+    private void sortiereIS (T array []) {
+        for (int i = 1; i < array.length; i++){
+            int j = i;
+            T element = array[i];
+            while (j >= 1 && array[j - i].compareTo(element) > ZERO){
+                array[j] = array[j - 1];
+                j = j - 1;
+            }
+            array[j] = element;
+        }
+    }
 
     /**
      * Hilfsmethode um einen zufällig gewähltes Pivotelement zu bestimmen.
