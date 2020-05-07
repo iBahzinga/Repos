@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -31,23 +32,25 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
     /**
      * Sortiert die Arrays und findet für jeden weiteren Aufruf ein neues Pivotelement.
      * Ruft sich rekursiv auf
-     * @param array Generisches Array, das es zu sortieren gilt.
-     * @param linkeSeite Linke hälfte des Pivotelementes
-     * @param rechteSeite rechte hälfte des Pivotslementes
+     * @param a Generisches Array, das es zu sortieren gilt.
+     * @param iLinks Linke hälfte des Pivotelementes
+     * @param iRechts rechte hälfte des Pivotslementes
      */
-    public void sortiereQS (T array [], int linkeSeite, int rechteSeite) {
-        if (array.length <= MANUELLSORTIEREN) {
-            sortiereIS(array);
-        } else if (rechteSeite > linkeSeite){
-            int i = linkeSeite;
-            int j = rechteSeite - 1;
-            T pivot = array[rechteSeite];
-            //T pivot = getPivotelement(array);
+    public void sortiereQS (T a [], int iLinks, int iRechts) {
+        if ((iRechts - iLinks) <= MANUELLSORTIEREN) {
+            sortiereIS(a);
+        } else if (iRechts > iLinks) {
+            int i = iLinks;
+            int j = iRechts - 1;
+           // T pivot = a[iRechts];
+            T pivot = getPivotelement(a);
             while (true) {
-                while (array[i].compareTo(pivot) < ZERO) {
+                while (a[i].compareTo(pivot) < ZERO) {
+                    T thorsten = a[i];
                     i++;
                 }
-                while (array[j].compareTo(pivot) >= ZERO && j > ZERO) {
+                while (a[j].compareTo(pivot) >= ZERO && j > ZERO) {
+                    T thorsten = a[j];
                     j--;
                 }
                 if (i >= j) {
@@ -55,12 +58,12 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
                     break;
                 }
                 // Vertauschen
-                swap(array, i, j);
+                swap(a, i, j);
             }
             // Pivotelement in der Mitte tauschen
-            swap(array, i, j);
-            sortiereQS(array, linkeSeite, i - 1);
-            sortiereQS(array, i + 1, rechteSeite);
+            swap(a, i, iRechts);
+            sortiereQS(a, iLinks, i - 1);
+            sortiereQS(a, i + 1, iRechts);
         }
     }
 
