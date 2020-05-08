@@ -24,8 +24,8 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
      * @return Rückgabe des Pivotelememtes
      */
     @Override
-    public T getPivotelement (T array []) {
-    return array[zufallsPivotelement(array)];
+    public T getPivotelement (T array [], int stelle) {
+    return array[stelle];
 }
 
 
@@ -41,9 +41,10 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
             sortiereIS(a);
         } else if (iRechts > iLinks) {
             int i = iLinks;
-            int j = iRechts - 1;
-           // T pivot = a[iRechts];
-            T pivot = getPivotelement(a);
+            int j = iRechts;
+            //T pivot = a[iRechts];
+            int stelle = zufallsPivotelement(i, j);
+            T pivot = getPivotelement(a, stelle);
             while (true) {
                 while (a[i].compareTo(pivot) < ZERO) {
                     T thorsten = a[i];
@@ -88,7 +89,7 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
         for (int i = 1; i < array.length; i++){
             int j = i;
             T element = array[i];
-            while (j >= 1 && array[j - i].compareTo(element) > ZERO){
+            while (j >= 1 && array[j - 1].compareTo(element) > ZERO){
                 array[j] = array[j - 1];
                 j = j - 1;
             }
@@ -100,9 +101,10 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
      * Hilfsmethode um einen zufällig gewähltes Pivotelement zu bestimmen.
      * @return Stelle in dem Array
      */
-    private int zufallsPivotelement(T array []) {
+    private int zufallsPivotelement(int i, int j) {
         Random zufaelligesElement = new Random();
-        int pivotelement = zufaelligesElement.nextInt(array.length - 1);
+        int range = j - i + 1;
+        int pivotelement = zufaelligesElement.nextInt(range)+ i +1;
         return pivotelement;
     }
 }

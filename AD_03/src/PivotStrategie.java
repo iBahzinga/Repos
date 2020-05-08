@@ -8,7 +8,7 @@ public interface PivotStrategie <T> {
      * @param array Array der Elemente die zu sortieren sind
      * @return Rückgabe des Pivotelememtes
      */
-    T getPivotelement (T array []);
+    T getPivotelement (T array [], int stelle);
 
     /**
      * Sortiert die Arrays und findet für jeden weiteren Aufruf ein neues Pivotelement.
