@@ -4,7 +4,7 @@ import java.util.Random;
  *
  */
 public class mainMethode {
-    final static int elemente = 50;
+    final static int elemente = 5000;
     final static int ZERO = 0;
 
 
@@ -15,7 +15,8 @@ public class mainMethode {
             Integer j = zufall();
             array[x] = j;
         }
-        test.sortiereQS(array, 0, 49);
+
+        test.sortiereQS(array, ZERO, elemente - 1);
         for (int i = 0; i <= array.length - 1; i++) {
             System.out.println(array[i]);
         }
@@ -29,7 +30,7 @@ public class mainMethode {
      */
     private static int zufall () {
         Random zufaelligesElement = new Random();
-        int pivotelement = zufaelligesElement.nextInt(1000);
+        int pivotelement = zufaelligesElement.nextInt(1000000);
         return pivotelement;
     }
 
