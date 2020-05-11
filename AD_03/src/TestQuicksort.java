@@ -1,11 +1,9 @@
-import org.junit.jupiter.api.DynamicTest;
-
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestRandom {
-    final static int elemente = 5000;
+public class TestQuicksort {
+    final static int elemente = 2500;
     final static int ZERO = 0;
 
     /**
@@ -14,13 +12,20 @@ public class TestRandom {
      */
     @org.junit.jupiter.api.Test
     public void testReihenfolge () {
-        PivotStrategie randomStrategie = new RandomData();
+        PivotStrategie zufaelligesPivotelement = new ZufallPivot();
+        PivotStrategie groessterKey = new GroessterKey();
+        PivotStrategie kleinsterKey = new KleinsterKey();
         Integer zufallsElemente [] = new Integer[elemente];
         for (int i = ZERO; i <= zufallsElemente.length - 1; i++) {
             zufallsElemente[i] = zufall();
         }
-        randomStrategie.sortiereQS(zufallsElemente, ZERO, elemente - 1);
+        Integer zufallsElemente2 [] = zufallsElemente;
+        Integer zufallsElemente3 [] = zufallsElemente;
+        zufaelligesPivotelement.sortiereQS(zufallsElemente, ZERO, elemente - 1);
+        groessterKey.sortiereQS(zufallsElemente2, ZERO, elemente - 1);
+        kleinsterKey.sortiereQS(zufallsElemente3, ZERO, elemente - 1);
         assertTrue(richtigeReihenfolge(zufallsElemente));
+        assertTrue(richtigeReihenfolge(zufallsElemente2));
     }
 
     @org.junit.jupiter.api.Test
@@ -61,5 +66,4 @@ public class TestRandom {
         int pivotelement = zufaelligesElement.nextInt(1000000);
         return pivotelement;
     }
-
 }

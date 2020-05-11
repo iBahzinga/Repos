@@ -5,7 +5,7 @@ import java.util.Random;
  * Zufällige Pivot Strategie
  * wir ziehen uns ein beliebiges Element aus dem Array, welches im weiteren unser Pivotelement darstellt.
  */
-public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> {
+public class ZufallPivot<T extends Comparable<T>> implements PivotStrategie <T> {
 
     private final int ZERO;
     private final int MANUELLSORTIEREN;
@@ -13,7 +13,7 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
     /**
      * Konstruktor der Klasse Randomdata
      */
-    RandomData() {
+    ZufallPivot() {
         ZERO = 0;
         MANUELLSORTIEREN = 30;
     }
@@ -42,26 +42,20 @@ public class RandomData <T extends Comparable<T>> implements PivotStrategie <T> 
         } else if (iRechts > iLinks) {
             int i = iLinks;
             int j = iRechts;
-            //T pivot = a[iRechts];
             int stelle = zufallsPivotelement(i, j);
             T pivot = getPivotelement(a, stelle);
             while (true) {
                 while (a[i].compareTo(pivot) < ZERO) {
-                    T thorsten = a[i];
                     i++;
                 }
                 while (a[j].compareTo(pivot) >= ZERO && j > ZERO) {
-                    T thorsten = a[j];
                     j--;
                 }
                 if (i >= j) {
-                    // In der Mitte getroffen
                     break;
                 }
-                // Vertauschen
                 swap(a, i, j);
             }
-            // Pivotelement in der Mitte tauschen
             swap(a, i, iRechts);
             sortiereQS(a, iLinks, i - 1);
             sortiereQS(a, i + 1, iRechts);

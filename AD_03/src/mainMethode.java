@@ -9,7 +9,7 @@ public class mainMethode {
 
 
     public static void main (String [] args){
-        PivotStrategie test = new RandomData();
+        PivotStrategie test = new ZufallPivot();
         Integer array [] = new Integer[elemente];
         for (int i = elemente, x = 0; i > ZERO; i--, x++) {
             Integer j = zufall();
