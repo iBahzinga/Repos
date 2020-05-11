@@ -1,38 +1,29 @@
-import java.util.Random;
-
 /**
  *
  */
 public class mainMethode {
-    final static int elemente = 5000;
+    final static int ELEMENTE = 5000;
     final static int ZERO = 0;
 
 
     public static void main (String [] args){
         PivotStrategie test = new ZufallPivot();
-        Integer array [] = new Integer[elemente];
-        for (int i = elemente, x = 0; i > ZERO; i--, x++) {
-            Integer j = zufall();
-            array[x] = j;
+        Integer array [] = new Integer[ELEMENTE];
+        for (int i = ZERO; i <= ELEMENTE - 1; i++) {
+            array[i] = i + 100;
+        }
+        BinaereSuche suche = new BinaereSuche();
+        Integer result = suche.findElement(array, 46465, ZERO, ELEMENTE - 1);
+        if (result != null){
+            System.out.println("Das gesuchte Element wurde gefunden.");
+        } else {
+            System.out.println("Das gesuchte Element wurde in der Liste nicht gefunden.");
         }
 
-        test.sortiereQS(array, ZERO, elemente - 1);
-        for (int i = 0; i <= array.length - 1; i++) {
-            System.out.println(array[i]);
-        }
     }
 
 
 
-    /**
-     * Hilfsmethode um einen zufällig gewähltes Pivotelement zu bestimmen.
-     * @return Stelle in dem Array
-     */
-    private static int zufall () {
-        Random zufaelligesElement = new Random();
-        int pivotelement = zufaelligesElement.nextInt(1000000);
-        return pivotelement;
-    }
 
 
 
