@@ -1,33 +1,34 @@
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  *
  */
 public class mainMethode {
-    final static int ELEMENTE = 5000;
+    final static int ELEMENTE = 1000000;
     final static int ZERO = 0;
 
 
     public static void main (String [] args){
-        PivotStrategie test = new ZufallPivot();
-        Integer array [] = new Integer[ELEMENTE];
-        for (int i = ZERO; i <= ELEMENTE - 1; i++) {
-            array[i] = i + 100;
+        PivotStrategie zufaelligesPivotelement = new ZufallPivot();
+        PivotStrategie groessterKey = new GroessterKey();
+        PivotStrategie kleinsterKey = new KleinsterKey();
+        Integer zufallsElemente [] = new Integer[ELEMENTE];
+        for (int i = ZERO; i <= zufallsElemente.length - 1; i++) {
+            zufallsElemente[i] = zufall();
         }
-        BinaereSuche suche = new BinaereSuche();
-        Integer result = suche.findElement(array, 100, ZERO, ELEMENTE - 1);
-        if (result != null){
-            System.out.println("Das gesuchte Element wurde gefunden.");
-        } else {
-            System.out.println("Das gesuchte Element wurde in der Liste nicht gefunden.");
-        }
-
+        long zeitVorher = System.currentTimeMillis();
+        zufaelligesPivotelement.sortiereQS(zufallsElemente, ZERO, ELEMENTE - 1);
+        long zeitNachher = System.currentTimeMillis();
+        double zeitGesamt = (double)(zeitNachher - zeitVorher) / 1000;
+        System.out.printf("Die Zeit für %d Element hat insgesamt %.3f Millisekunden betragen.", ELEMENTE, zeitGesamt);
     }
 
-
-
-
-
-
-
-
-
+    private static int zufall () {
+        Random zufaelligesElement = new Random();
+        int pivotelement = zufaelligesElement.nextInt(1000000);
+        return pivotelement;
+    }
 }
+
