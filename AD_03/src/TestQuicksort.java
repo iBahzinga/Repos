@@ -26,6 +26,7 @@ public class TestQuicksort {
         kleinsterKey.sortiereQS(zufallsElemente3, ZERO, elemente - 1);
         assertTrue(richtigeReihenfolge(zufallsElemente));
         assertTrue(richtigeReihenfolge(zufallsElemente2));
+        assertTrue(richtigeReihenfolge(zufallsElemente3));
     }
 
     @org.junit.jupiter.api.Test
