@@ -22,7 +22,7 @@ public class BinaereSuche {
             if (sortedArray[mitte].equals(zuFindendesElement)) {
                 ergebnis = sortedArray[mitte];
             } else {
-                ergebnis = NICHTGEFUNDEN;
+                ergebnis = null;
             }
         } else if (sortedArray [mitte].equals(zuFindendesElement)) {
             ergebnis = sortedArray [mitte];

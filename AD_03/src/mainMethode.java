@@ -13,7 +13,7 @@ public class mainMethode {
             array[i] = i + 100;
         }
         BinaereSuche suche = new BinaereSuche();
-        Integer result = suche.findElement(array, 46465, ZERO, ELEMENTE - 1);
+        Integer result = suche.findElement(array, 100, ZERO, ELEMENTE - 1);
         if (result != null){
             System.out.println("Das gesuchte Element wurde gefunden.");
         } else {
