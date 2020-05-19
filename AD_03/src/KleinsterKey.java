@@ -1,3 +1,13 @@
+/**
+ * Sortierverfahren um ein Array bestehend aus Zahlen zu sortieren.
+ *
+ * @author Santa Rudevica
+ * @author Daniel Dichte
+ * @author Pascal Kießler
+ *
+ * @version 1.0
+ * @version 19.05.2020
+ */
 public class KleinsterKey <T extends Comparable<T>> implements PivotStrategie <T> {
     private final int ZERO;
     private final int MANUELLSORTIEREN;
