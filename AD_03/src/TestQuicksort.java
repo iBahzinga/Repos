@@ -10,7 +10,7 @@ public class TestQuicksort {
      * Testet Die Strategie ein zufälliges Element als Pivotelement auszuwählen.
      * Prüft die Reihenfolge des Arrays.
      */
-    @org.junit.jupiter.api.Test
+/*@org.junit.jupiter.api.Test
     public void testReihenfolge () {
         PivotStrategie zufaelligesPivotelement = new ZufallPivot();
         PivotStrategie groessterKey = new GroessterKey();
@@ -33,7 +33,7 @@ public class TestQuicksort {
     public void testRandomKeineZahlen (){
     }
 
-
+*/
 
 
     /**
