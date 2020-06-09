@@ -1,9 +1,9 @@
-public interface Search_ {
+public interface Search_ <T> {
 
     /**
      *
      */
-    public void addKnot();
+    public Knot addKnot(T data);
 
     /**
      *
