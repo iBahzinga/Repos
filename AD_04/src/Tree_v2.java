@@ -1,8 +1,30 @@
+/**
+ * Darstellung eines Baumes.
+ * Der Baum besitzt eine Wurzel und es können weitere Wurzeln eingefügt werden.
+ * Sollte eine Wurzel eingefügt werden, wird automatisch erkannt an welcher Position diese eingefügt werden muss.
+ *
+ * Desweiteren erlaubt diese Funktion das ausgeben des Baumes.
+ * Man kann den Baum Symmetrisch, in Hauptreihenfolge sowie in der Nebenreihenfolge ausgeben.
+ *
+ *
+ * @author Daniel Dichte
+ * @author Santa Rudevica
+ * @author Pascal Kießler
+ *
+ * @version 1.1
+ * @version 09.06.2020
+ *
+ * @param <T>
+ */
 public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     private Knot root;
     private Knot knot;
     private final int ZERO;
 
+    /**
+     * Konstruktor der Klasse Tree_v2
+     * @param root Wurzel des Baumes
+     */
     public Tree_v2 (Knot  root) {
         this.root = root;
         ZERO = 0;
@@ -10,11 +32,13 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     }
 
 
-
-
-
+    /**
+     * Hinzufügen eines weiteren Knotens.
+     * Ein weiterer Knoten wird automatisch an der richtigen Stelle hinzugefügt. (Es wird erkannt wo er eingefügt werden muss)
+     * @param data Vergleichbarer Wert der in den Knoten eingefügt wird.  Der Knoten wiederrum wird in den Baum eingefügt.
+     */
     @Override
-    public Knot addKnot(Object data) {
+    public void addKnot(Object data) {
         Knot newKnot;
         int test = root.getData().compareTo(data);
         if (root.getData().compareTo(data) > ZERO ) {           //linke Seite der Wurzel
@@ -71,11 +95,28 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
                 }
             }
         }
-        return null;
     }
 
+
+    /**
+     * Ausgabe der gewöhlten Methode.
+     * Man kann zwischen der Hauptreihenfolge, der Nebenreihenfolge sowie der Symmetrischen Reihenfolge auswählen.
+     *
+     * @param method Methode die erkennt in welcher Methode der Baum ausgegeben werden soll.
+     *               1 -> Hauptreihenfolge
+     *               2 -> Nebenreihenfolge
+     *               3 -> Symmetrisch
+     */
     @Override
-    public void printKnot() {
+    public void output(int method) {
+    if (method == 0) {
+        //--> Hauptreihenfolge ausgeben
+    } else if (method == 1) {
+        //--> Nebenreihenfolge ausgeben
+    } else {
+        //--> Symmetrische ausgabe
+    }
+
 
     }
 }
