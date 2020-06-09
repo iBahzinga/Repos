@@ -46,7 +46,7 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
                 newKnot = new Knot ((Comparable) data, root);                //Verbindungen des Knotens setzen
                 root.setChildLeft(newKnot);                     //Verbindung der Wurzel setzen
             } else {
-                knot = root.getChildLeft();                 //linken Knoten geben
+                knot = root.getChildLeft();                     //linken Knoten geben
                 while (true){
                     if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
                         if (knot.getChildLeft() == null) {      //sollte noch klein Knoten da sein, hier einen neuen einfügen
