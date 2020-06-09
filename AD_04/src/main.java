@@ -8,16 +8,31 @@ public class main {
         Knot root = new Knot (50, null);
 
         Tree_v2 tree = new Tree_v2(root);
+        int b = 0;
+        int c = 0;
+        for (int i = 0, x = 100, y = 0, z = 49, a = 51; i < TESTWERTE; i++) {
 
-        for (int i = 0, x = 100, y = 0; i < TESTWERTE; i++) {
-            Integer validateAdd;
+
+            Integer validateAdd = null;
 
             if (i % 2 == 0) {
-                validateAdd = x;
-                x--;
+                if (b % 2 == 0) {
+                    validateAdd = x;
+                    x++;
+                } else {
+                    validateAdd = a;
+                    a++;
+                }
+                b++;
             } else {
-                validateAdd = y;
-                y++;
+                if (c % 2 == 0) {
+                    validateAdd = y;
+                    y++;
+                } else {
+                    validateAdd = z;
+                    z--;
+                }
+                c++;
             }
             tree.addKnot(validateAdd);
         }
