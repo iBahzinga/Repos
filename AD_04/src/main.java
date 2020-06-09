@@ -10,16 +10,16 @@ public class main {
         Tree_v2 tree = new Tree_v2(root);
 
         for (int i = 0, x = 100, y = 0; i < TESTWERTE; i++) {
-            Integer testwerte;
+            Integer validateAdd;
 
             if (i % 2 == 0) {
-                testwerte = x;
+                validateAdd = x;
                 x--;
             } else {
-                testwerte = y;
+                validateAdd = y;
                 y++;
             }
-            tree.addKnot(testwerte);
+            tree.addKnot(validateAdd);
         }
     }
 
