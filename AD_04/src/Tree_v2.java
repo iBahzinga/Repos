@@ -119,4 +119,23 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
 
 
     }
+
+
+
+
+
+    public void symmetrisch () {
+        T result = null;
+        Knot knoten = root;
+        if (knoten.getChildLeft() != null) {
+            
+        } else {
+            result = (T) knoten.getData();
+        }
+        //relursiv links
+        //get wert
+        //rekursiv rechts
+
+
+    }
 }
