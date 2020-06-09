@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  */
 public class mainMethode {
-    final static int ELEMENTE = 2000;
+    final static int ELEMENTE = 3000;
     final static int ZERO = 0;
 
 

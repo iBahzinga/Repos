@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestQuicksort {
@@ -30,10 +31,23 @@ public class TestQuicksort {
     }
 
     @org.junit.jupiter.api.Test
-    public void testRandomKeineZahlen (){
+    public void testBinarySearch () {
+        Integer zuFindendesElement = 62;
+        PivotStrategie zufaelligesPivotelement = new ZufallPivot();
+        BinaereSuche findeElement = new BinaereSuche();
+        Integer Elemente[] = new Integer[1000];
+        for (int i = 1000, j = 0; i != 0; i--, j++) {
+            Elemente[j] = i;
+        }
+        zufaelligesPivotelement.sortiereQS(Elemente, ZERO, 999);
+
+        Integer result = findeElement.findElement(Elemente, zuFindendesElement, 0, 999);
+        assertEquals(result, zuFindendesElement);
     }
 
 */
+
+
 
 
     /**
@@ -55,7 +69,6 @@ public class TestQuicksort {
         }
         return sorted;
     }
-
 
 
     /**
