@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 /**
  * Darstellung eines Baumes.
  * Der Baum besitzt eine Wurzel und es können weitere Wurzeln eingefügt werden.
@@ -20,6 +22,9 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     private Knot root;
     private Knot knot;
     private final int ZERO;
+    private final int ARRAYSIZE;
+    private final T arr [];
+
 
     /**
      * Konstruktor der Klasse Tree_v2
@@ -28,6 +33,9 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     public Tree_v2 (Knot  root) {
         this.root = root;
         ZERO = 0;
+        ARRAYSIZE = 100;
+        arr = (T[]) new Object[ARRAYSIZE];
+
         // man kann hier auch nur die Daten eingeben und dann kann man den rest der Wurzel erzeugen, anstatt direkt die ganze Wurzel zu übergeben.
     }
 
@@ -114,7 +122,8 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     } else if (method == 1) {
         //--> Nebenreihenfolge ausgeben
     } else {
-        //--> Symmetrische ausgabe
+        int counter = 0;
+        symmetrisch(root, counter);
     }
 
 
@@ -124,18 +133,22 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
 
 
 
-    public void symmetrisch () {
-        T result = null;
-        Knot knoten = root;
+    public int symmetrisch (Knot knoten, int counter) {
         if (knoten.getChildLeft() != null) {
-            
+            arr[counter] = (T) knoten.getData();
+            return counter++;
+
+
+
+
+
+
         } else {
-            result = (T) knoten.getData();
+            counter = counter + symmetrisch(knoten.getChildLeft(), counter);
         }
         //relursiv links
         //get wert
         //rekursiv rechts
-
-
+        return 0;
     }
 }
