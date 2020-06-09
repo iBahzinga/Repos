@@ -16,14 +16,15 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     @Override
     public Knot addKnot(Object data) {
         Knot newKnot;
-        if (root.getData().compareTo(data) < ZERO ) {           //linke Seite der Wurzel
+        int test = root.getData().compareTo(data);
+        if (root.getData().compareTo(data) > ZERO ) {           //linke Seite der Wurzel
             if (root.getChildLeft() == null){                   //wenn noch kein Kind auf der linken seite vorhanden ist neuen Knoten einfügen
                 newKnot = new Knot ((Comparable) data, root);                //Verbindungen des Knotens setzen
                 root.setChildLeft(newKnot);                     //Verbindung der Wurzel setzen
             } else {
                 knot = root.getChildLeft();                 //linken Knoten geben
                 while (true){
-                    if (knot.getData().compareTo(data) < ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
+                    if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
                         if (knot.getChildLeft() == null) {      //sollte noch klein Knoten da sein, hier einen neuen einfügen
                             newKnot = new Knot((Comparable) data, knot);     //Verbindingen des Knotens setzen
                             knot.setChildLeft(newKnot);         //Verbindungen des alten Knotens setzen
@@ -43,14 +44,14 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
                 }
             }
         }
-        if (root.getData().compareTo(data) >= ZERO ) {          //rechte Seite der Wurzel
+        if (root.getData().compareTo(data) <= ZERO ) {          //rechte Seite der Wurzel
             if (root.getChildRight() == null){                  //wenn noch kein Kind auf der rechten seite vorhanden ist neuen Knoten einfügen
                 newKnot = new Knot ((Comparable) data, root);                //Verbindungen des Knotens setzen
                 root.setChildRight(newKnot);                    //Verbindung der Wurzel setzen
             } else {
                 knot = root.getChildRight();                //rechten Knoten geben
                 while (true){
-                    if (knot.getData().compareTo(data) < ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
+                    if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
                         if (knot.getChildLeft() == null) {      //sollte noch kein Knoten da sein, hier einen neuen einfügen
                             newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
                             knot.setChildLeft(newKnot);         //Verbindungen des alten Knotens setzen
