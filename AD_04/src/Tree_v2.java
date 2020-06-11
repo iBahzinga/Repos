@@ -23,8 +23,8 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
     private Knot knot;
     private final int ZERO;
     private final int ARRAYSIZE;
-    private final T arr [];
-
+  //  private final T arr [];
+    private int counterSym;
 
     /**
      * Konstruktor der Klasse Tree_v2
@@ -34,7 +34,8 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
         this.root = root;
         ZERO = 0;
         ARRAYSIZE = 100;
-        arr = (T[]) new Object[ARRAYSIZE];
+    //    arr = (T[]) new Object[ARRAYSIZE];
+        counterSym = 0;
 
         // man kann hier auch nur die Daten eingeben und dann kann man den rest der Wurzel erzeugen, anstatt direkt die ganze Wurzel zu übergeben.
     }
@@ -55,25 +56,7 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
                 root.setChildLeft(newKnot);                     //Verbindung der Wurzel setzen
             } else {
                 knot = root.getChildLeft();                     //linken Knoten geben
-                while (true){
-                    if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
-                        if (knot.getChildLeft() == null) {      //sollte noch klein Knoten da sein, hier einen neuen einfügen
-                            newKnot = new Knot((Comparable) data, knot);     //Verbindingen des Knotens setzen
-                            knot.setChildLeft(newKnot);         //Verbindungen des alten Knotens setzen
-                            break;  //ggf. muss hier ein return hin
-                        } else {                                //wenn hier schon ein Knoten ist, hole mir den neuen knoten und gehe erneut durch die Schleife.
-                            knot = knot.getChildLeft();
-                        }
-                    } else { //evtl. hier else if (knot.getData().compareTo(data) >= ZERO)      //Wenn das Kind auf die Rechte seite muss, geh hier rein
-                        if (knot.getChildRight() == null) {     //Wenn auf der rechten Seite des Knotens noch kein weiterer Knoten ist, fuege ihn hier ein
-                            newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
-                            knot.setChildRight(newKnot);        //Verbindungen des alten Knotens setzen
-                            break; //ggf. sollte hier noch ein return hin.
-                        } else {                                //wenn auf der rechten Steite schon ein Knoten ist, dann hole den neuen Knoten und gehe erneut durch die schleife
-                            knot = knot.getChildRight();
-                        }
-                    }
-                }
+                add (data);                                     //Einfuegeposition wird bestimmt
             }
         }
         if (root.getData().compareTo(data) <= ZERO ) {          //rechte Seite der Wurzel
@@ -81,29 +64,14 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
                 newKnot = new Knot ((Comparable) data, root);                //Verbindungen des Knotens setzen
                 root.setChildRight(newKnot);                    //Verbindung der Wurzel setzen
             } else {
-                knot = root.getChildRight();                //rechten Knoten geben
-                while (true){
-                    if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
-                        if (knot.getChildLeft() == null) {      //sollte noch kein Knoten da sein, hier einen neuen einfügen
-                            newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
-                            knot.setChildLeft(newKnot);         //Verbindungen des alten Knotens setzen
-                            break;  //ggf. muss hier ein return hin
-                        } else {                                //wenn hier schon ein Knoten ist, hole mir den neuen knoten und gehe erneut durch die Schleife.
-                            knot = knot.getChildLeft();
-                        }
-                    } else { //evtl. hier else if (knot.getData().compareTo(data) >= ZERO)          //Wenn das Kind auf die Rechte seite muss, geh hier rein
-                        if (knot.getChildRight() == null) {     //Wenn auf der rechten Seite des Knotens noch kein weiterer Knoten ist, fuege ihn hier ein
-                            newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
-                            knot.setChildRight(newKnot);        //Verbindungen des alten Knotens setzen
-                            break;
-                        } else {                                //wenn hier schon ein Knoten ist, hole mir den neuen knoten und gehe erneut durch die Schleife.
-                            knot = knot.getChildRight();
-                        }
-                    }
-                }
+                knot = root.getChildRight();                    //rechten Knoten geben
+                add (data);                                     //Einfuegeposition wird bestimmt
             }
         }
     }
+
+
+
 
 
     /**
@@ -123,7 +91,7 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
         //--> Nebenreihenfolge ausgeben
     } else {
         int counter = 0;
-        symmetrisch(root, counter);
+  //      symmetrisch(root);
     }
 
 
@@ -131,24 +99,62 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
 
 
 
-
-
-    public int symmetrisch (Knot knoten, int counter) {
-        if (knoten.getChildLeft() != null) {
-            arr[counter] = (T) knoten.getData();
-            return counter++;
-
-
-
-
-
-
-        } else {
-            counter = counter + symmetrisch(knoten.getChildLeft(), counter);
-        }
+/*
+    public void symmetrisch (Knot knoten) {
         //relursiv links
+        if (knoten.getChildLeft() == null) {            //wenn keine linke Seite, hole daten hier raus.
+            arr[counterSym] = (T) knoten.getData();     //get wert
+            counterSym++;
+        } else {                                        //wenn es eine linke Seite gibt, gehe hier rein. am ende auch hier die Datan auslesen.
+            symmetrisch(knoten.getChildLeft());
+            arr[counterSym] = (T) knoten.getData();
+            counterSym++;
+        }
         //get wert
+        //arr[counterSym] = (T) root.getData();
         //rekursiv rechts
-        return 0;
+        if (knoten.getChildRight() != null) {
+            symmetrisch(knoten);
+            arr[counterSym] = (T) knoten.getData();
+            counterSym++;
+        }
+    }
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private void add (Object data) {
+        Knot newKnot;
+        while (true){
+            if (knot.getData().compareTo(data) > ZERO) {//sollten die Daten kleiner sein als die des aktuellen Knotens -> links einfügen
+                if (knot.getChildLeft() == null) {      //sollte noch kein Knoten da sein, hier einen neuen einfügen
+                    newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
+                    knot.setChildLeft(newKnot);         //Verbindungen des alten Knotens setzen
+                    break;  //ggf. muss hier ein return hin
+                } else {                                //wenn hier schon ein Knoten ist, hole mir den neuen knoten und gehe erneut durch die Schleife.
+                    knot = knot.getChildLeft();
+                }
+            } else { //evtl. hier else if (knot.getData().compareTo(data) >= ZERO)          //Wenn das Kind auf die Rechte seite muss, geh hier rein
+                if (knot.getChildRight() == null) {     //Wenn auf der rechten Seite des Knotens noch kein weiterer Knoten ist, fuege ihn hier ein
+                    newKnot = new Knot((Comparable) data, knot);     //Verbindung des keien Knotens setzen
+                    knot.setChildRight(newKnot);        //Verbindungen des alten Knotens setzen
+                    break;
+                } else {                                //wenn hier schon ein Knoten ist, hole mir den neuen knoten und gehe erneut durch die Schleife.
+                    knot = knot.getChildRight();
+                }
+            }
+        }
     }
 }

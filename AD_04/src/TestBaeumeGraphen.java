@@ -32,8 +32,20 @@ public class TestBaeumeGraphen {
         Knot root = new Knot(ROOTVALUE, null);
         Tree_v2 tree = new Tree_v2(root);
         tree = setTree(tree);
+        int a = 1+1;
     }
 
+
+/*
+    @org.junit.jupiter.api.Test
+    public void testeSymmetrisch () {
+        Knot root = new Knot(ROOTVALUE, null);
+        Tree_v2 tree = new Tree_v2(root);
+        tree = setTree(tree);
+        tree.symmetrisch(root);
+        int a = 1+1;
+    }
+*/
 
     private Tree_v2 setTree(Tree_v2 tree) {
         tree.addKnot(TESTWERT1);
