@@ -35,23 +35,29 @@ public class TestBaeumeGraphen {
         int a = 1+1;
     }
 
+    @org.junit.jupiter.api.Test
+    public void testePreorder () {
+        Knot root = new Knot(ROOTVALUE, null);
+        Tree_v2 tree = new Tree_v2(root);
+        tree = setTree(tree);
+        tree.output(1);
+    }
 
+
+    @org.junit.jupiter.api.Test
+    public void testePostorder () {
+        Knot root = new Knot(ROOTVALUE, null);
+        Tree_v2 tree = new Tree_v2(root);
+        tree = setTree(tree);
+        tree.output(2);
+    }
 
     @org.junit.jupiter.api.Test
     public void testeSymmetrisch () {
         Knot root = new Knot(ROOTVALUE, null);
         Tree_v2 tree = new Tree_v2(root);
         tree = setTree(tree);
-        tree.output(3/*symmetrisch*/);
-    }
-
-
-    @org.junit.jupiter.api.Test
-    public void testePreorder () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
-        tree = setTree(tree);
-        tree.output(1/*symmetrisch*/);
+        tree.output(3);
     }
 
 
