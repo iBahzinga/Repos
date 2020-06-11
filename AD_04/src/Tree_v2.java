@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-
 /**
  * Darstellung eines Baumes.
  * Der Baum besitzt eine Wurzel und es können weitere Wurzeln eingefügt werden.
@@ -77,10 +75,6 @@ public class Tree_v2 <T> implements Search_ {
         }
     }
 
-
-
-
-
     /**
      * Ausgabe der gewöhlten Methode.
      * Man kann zwischen der Hauptreihenfolge, der Nebenreihenfolge sowie der Symmetrischen Reihenfolge auswählen.
@@ -92,39 +86,52 @@ public class Tree_v2 <T> implements Search_ {
      */
     @Override
     public void output(int method) {
-        if (method == PREORDER) {
+        if (method == PREORDER) {       //Hauptreihenfolge ausgeben
             clearArray();
-            //--> Hauptreihenfolge ausgeben
-
+            counterSym = 0;
+            preorder(root);
             arrayOutput(PREORDER);
-        } else if (method == POSTORDER) {
+        } else if (method == POSTORDER) { // Nebenreihenfolge ausgeben
             clearArray();
-            //--> Nebenreihenfolge ausgeben
+
 
             arrayOutput(POSTORDER);
-        } else {
+        } else {                            // Symmetrie
             clearArray();
-            symmetrisch(root);
+            counterSym = ZERO;
+            inorder(root);
             arrayOutput(INORDER);
         }
     }
-
 
     /**
      * Schreiben der Symmetrischen Reihenfolge in ein Array.
      * @param knoten Knoten den wir uns anschauen
      */
-    private void symmetrisch (Knot knoten) {
+    private void inorder(Knot knoten) {
         if (knoten.getChildLeft() == null) {            //wenn keine linke Seite, hole daten hier raus.
             arr[counterSym] = (T) knoten.getData();     //get wert
             counterSym++;
         } else {                                        //wenn es eine linke Seite gibt, gehe hier rein. am ende auch hier die Datan auslesen.
-            symmetrisch(knoten.getChildLeft());
+            inorder(knoten.getChildLeft());
             arr[counterSym] = (T) knoten.getData();
             counterSym++;
         }
         if (knoten.getChildRight() != null) {
-            symmetrisch(knoten.getChildRight());
+            inorder(knoten.getChildRight());
+        }
+    }
+
+
+
+    private void preorder (Knot knoten) {
+        arr[counterSym] = (T) knoten.getData();
+        counterSym++;
+        if (knoten.getChildLeft() != null) {
+            preorder(knoten.getChildLeft());
+        }
+        if (knoten.getChildLeft() != null){
+            preorder(knoten.getChildRight());
         }
     }
 
@@ -134,7 +141,6 @@ public class Tree_v2 <T> implements Search_ {
      * @param order Methode die ausgegeben wird. (Preorder, Postoder, symmetrisch)
      */
     private void arrayOutput(int order) {
-        int counter = 0;
         String method = "";
         switch (order){
             case 3:   method = "symmetrischen Methode";
@@ -146,7 +152,7 @@ public class Tree_v2 <T> implements Search_ {
         }
         for (int i = 0; i < arr.length - 1; i++){
             if (arr[i] != null) {
-                System.out.printf("Die %d Stelle der %s hat den Wert \t%d.\n", counter, method, arr[i]);
+                System.out.printf("Die %d Stelle der %s hat den Wert \t%d.\n", i, method, arr[i]);
             } else {
                 break;
             }
@@ -162,7 +168,10 @@ public class Tree_v2 <T> implements Search_ {
         }
     }
 
-
+    /**
+     * Hinzufuegen eines weiteren Knotens mit Daten in dem Baum.
+     * @param data Daten die in einen Knoten sollen in dem Baum.
+     */
     private void add (Object data) {
         Knot newKnot;
         while (true){

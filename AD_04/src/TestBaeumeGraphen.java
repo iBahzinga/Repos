@@ -46,6 +46,15 @@ public class TestBaeumeGraphen {
     }
 
 
+    @org.junit.jupiter.api.Test
+    public void testePreorder () {
+        Knot root = new Knot(ROOTVALUE, null);
+        Tree_v2 tree = new Tree_v2(root);
+        tree = setTree(tree);
+        tree.output(1/*symmetrisch*/);
+    }
+
+
     private Tree_v2 setTree(Tree_v2 tree) {
         tree.addKnot(TESTWERT1);
         tree.addKnot(TESTWERT2);
