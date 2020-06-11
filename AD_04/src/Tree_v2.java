@@ -93,10 +93,10 @@ public class Tree_v2 <T> implements Search_ {
             arrayOutput(PREORDER);
         } else if (method == POSTORDER) { // Nebenreihenfolge ausgeben
             clearArray();
-
-
+            counterSym = 0;
+            postorder(root);
             arrayOutput(POSTORDER);
-        } else {                            // Symmetrie
+        } else if (method == INORDER) {                   // Symmetrie
             clearArray();
             counterSym = ZERO;
             inorder(root);
@@ -123,16 +123,35 @@ public class Tree_v2 <T> implements Search_ {
     }
 
 
-
+    /**
+     * Schreiben der Preorder Reihenfolge (Hauptreihenfolge) in ein Array.
+     * @param knoten Knoten den wir uns anschauen
+     */
     private void preorder (Knot knoten) {
         arr[counterSym] = (T) knoten.getData();
         counterSym++;
         if (knoten.getChildLeft() != null) {
             preorder(knoten.getChildLeft());
         }
-        if (knoten.getChildLeft() != null){
+        if (knoten.getChildRight() != null){
             preorder(knoten.getChildRight());
         }
+    }
+
+
+    /**
+     * Schreiben der Postorder Reihenfolge (Nebenreihenfolge) in ein Array.
+     * @param knoten Knoten den wir uns anschauen
+     */
+    private void postorder (Knot knoten) {
+        if (knoten.getChildLeft() != null) {
+            postorder(knoten.getChildLeft());
+        }
+        if (knoten.getChildRight() != null){
+            postorder(knoten.getChildRight());
+        }
+        arr[counterSym] = (T) knoten.getData();
+        counterSym++;
     }
 
 
@@ -152,7 +171,7 @@ public class Tree_v2 <T> implements Search_ {
         }
         for (int i = 0; i < arr.length - 1; i++){
             if (arr[i] != null) {
-                System.out.printf("Die %d Stelle der %s hat den Wert \t%d.\n", i, method, arr[i]);
+                System.out.printf("Die %d Stelle der %s hat den Wert %d.\n", i, method, arr[i]);
             } else {
                 break;
             }
