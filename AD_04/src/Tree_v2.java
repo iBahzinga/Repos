@@ -18,13 +18,17 @@ import java.lang.reflect.Array;
  *
  * @param <T>
  */
-public class Tree_v2 <T extends Comparable<T>> implements Search_ {
+public class Tree_v2 <T> implements Search_ {
     private Knot root;
     private Knot knot;
     private final int ZERO;
     private final int ARRAYSIZE;
-  //  private final T arr [];
+    private final int INORDER;
+    private final int POSTORDER;
+    private final int PREORDER;
+    private final T[] arr;
     private int counterSym;
+
 
     /**
      * Konstruktor der Klasse Tree_v2
@@ -34,8 +38,11 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
         this.root = root;
         ZERO = 0;
         ARRAYSIZE = 100;
-    //    arr = (T[]) new Object[ARRAYSIZE];
+        arr = (T[]) new Object[ARRAYSIZE];
         counterSym = 0;
+        INORDER = 3;
+        POSTORDER = 2;
+        PREORDER = 1;
 
         // man kann hier auch nur die Daten eingeben und dann kann man den rest der Wurzel erzeugen, anstatt direkt die ganze Wurzel zu übergeben.
     }
@@ -85,23 +92,29 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
      */
     @Override
     public void output(int method) {
-    if (method == 0) {
-        //--> Hauptreihenfolge ausgeben
-    } else if (method == 1) {
-        //--> Nebenreihenfolge ausgeben
-    } else {
-        int counter = 0;
-  //      symmetrisch(root);
+        if (method == PREORDER) {
+            clearArray();
+            //--> Hauptreihenfolge ausgeben
+
+            arrayOutput(PREORDER);
+        } else if (method == POSTORDER) {
+            clearArray();
+            //--> Nebenreihenfolge ausgeben
+
+            arrayOutput(POSTORDER);
+        } else {
+            clearArray();
+            symmetrisch(root);
+            arrayOutput(INORDER);
+        }
     }
 
 
-    }
-
-
-
-/*
-    public void symmetrisch (Knot knoten) {
-        //relursiv links
+    /**
+     * Schreiben der Symmetrischen Reihenfolge in ein Array.
+     * @param knoten Knoten den wir uns anschauen
+     */
+    private void symmetrisch (Knot knoten) {
         if (knoten.getChildLeft() == null) {            //wenn keine linke Seite, hole daten hier raus.
             arr[counterSym] = (T) knoten.getData();     //get wert
             counterSym++;
@@ -110,29 +123,44 @@ public class Tree_v2 <T extends Comparable<T>> implements Search_ {
             arr[counterSym] = (T) knoten.getData();
             counterSym++;
         }
-        //get wert
-        //arr[counterSym] = (T) root.getData();
-        //rekursiv rechts
         if (knoten.getChildRight() != null) {
-            symmetrisch(knoten);
-            arr[counterSym] = (T) knoten.getData();
-            counterSym++;
+            symmetrisch(knoten.getChildRight());
         }
     }
 
- */
 
+    /**
+     * Ausgabe der im Array befindlichen Daten auf dem Bildschirm
+     * @param order Methode die ausgegeben wird. (Preorder, Postoder, symmetrisch)
+     */
+    private void arrayOutput(int order) {
+        int counter = 0;
+        String method = "";
+        switch (order){
+            case 3:   method = "symmetrischen Methode";
+            break;
+            case 1:  method = "Hauptreihenfolge";
+            break;
+            case 2:method = "Nebenreihenfolge";
+            break;
+        }
+        for (int i = 0; i < arr.length - 1; i++){
+            if (arr[i] != null) {
+                System.out.printf("Die %d Stelle der %s hat den Wert \t%d.\n", counter, method, arr[i]);
+            } else {
+                break;
+            }
+        }
+}
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * löscht alle vorhandenen Daten aus dem Array
+     */
+    private void clearArray () {
+        for (int i = 0; i < arr.length - 1; i++){
+            arr[i] = null;
+        }
+    }
 
 
     private void add (Object data) {
