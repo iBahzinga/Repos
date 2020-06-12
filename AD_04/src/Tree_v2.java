@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Darstellung eines Baumes.
  * Der Baum besitzt eine Wurzel und es können weitere Wurzeln eingefügt werden.
@@ -30,9 +32,10 @@ public class Tree_v2 <T> implements Search_ {
 
     /**
      * Konstruktor der Klasse Tree_v2
-     * @param root Wurzel des Baumes
+     * @param data Daten die die Wurzel hat
      */
-    public Tree_v2 (Knot  root) {
+    public Tree_v2 (Object data) {
+        Knot root = new Knot((Comparable) data, null);
         this.root = root;
         ZERO = 0;
         ARRAYSIZE = 100;
@@ -108,7 +111,7 @@ public class Tree_v2 <T> implements Search_ {
      * Schreiben der Symmetrischen Reihenfolge in ein Array.
      * @param knoten Knoten den wir uns anschauen
      */
-    private void inorder(Knot knoten) {
+    private void inorder(@NotNull Knot knoten) {
         if (knoten.getChildLeft() == null) {            //wenn keine linke Seite, hole daten hier raus.
             arr[counterSym] = (T) knoten.getData();     //get wert
             counterSym++;
@@ -127,7 +130,7 @@ public class Tree_v2 <T> implements Search_ {
      * Schreiben der Preorder Reihenfolge (Hauptreihenfolge) in ein Array.
      * @param knoten Knoten den wir uns anschauen
      */
-    private void preorder (Knot knoten) {
+    private void preorder (@NotNull Knot knoten) {
         arr[counterSym] = (T) knoten.getData();
         counterSym++;
         if (knoten.getChildLeft() != null) {
@@ -143,7 +146,7 @@ public class Tree_v2 <T> implements Search_ {
      * Schreiben der Postorder Reihenfolge (Nebenreihenfolge) in ein Array.
      * @param knoten Knoten den wir uns anschauen
      */
-    private void postorder (Knot knoten) {
+    private void postorder (@NotNull Knot knoten) {
         if (knoten.getChildLeft() != null) {
             postorder(knoten.getChildLeft());
         }
@@ -176,7 +179,7 @@ public class Tree_v2 <T> implements Search_ {
                 break;
             }
         }
-}
+    }
 
     /**
      * löscht alle vorhandenen Daten aus dem Array

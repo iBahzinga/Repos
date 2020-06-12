@@ -32,13 +32,12 @@ public class TestBaeumeGraphen {
         Knot root = new Knot(ROOTVALUE, null);
         Tree_v2 tree = new Tree_v2(root);
         tree = setTree(tree);
-        int a = 1+1;
     }
 
     @org.junit.jupiter.api.Test
     public void testePreorder () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(1);
     }
@@ -46,18 +45,41 @@ public class TestBaeumeGraphen {
 
     @org.junit.jupiter.api.Test
     public void testePostorder () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(2);
     }
 
     @org.junit.jupiter.api.Test
     public void testeSymmetrisch () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(3);
+    }
+
+
+
+    @org.junit.jupiter.api.Test
+    public void testArr () {
+        Integer test = ROOTVALUE;
+        Tree_array gleis = new Tree_array(test);
+        gleis.addKnot(TESTWERT1);
+        gleis.addKnot(TESTWERT2);
+        gleis.addKnot(TESTWERT3);
+        gleis.addKnot(TESTWERT4);
+        gleis.addKnot(TESTWERT5);
+        gleis.addKnot(TESTWERT6);
+        gleis.addKnot(TESTWERT7);
+        gleis.addKnot(TESTWERT8);
+        gleis.addKnot(TESTWERT9);
+        gleis.addKnot(TESTWERT10);
+        gleis.addKnot(TESTWERT11);
+        gleis.addKnot(TESTWERT12);
+        gleis.addKnot(TESTWERT13);
+        gleis.addKnot(TESTWERT14);
+        int a = 1+1;
     }
 
 
