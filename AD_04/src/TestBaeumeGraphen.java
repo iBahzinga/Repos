@@ -32,13 +32,12 @@ public class TestBaeumeGraphen {
         Knot root = new Knot(ROOTVALUE, null);
         Tree_v2 tree = new Tree_v2(root);
         tree = setTree(tree);
-        int a = 1+1;
     }
 
     @org.junit.jupiter.api.Test
     public void testePreorder () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(1);
     }
@@ -46,18 +45,71 @@ public class TestBaeumeGraphen {
 
     @org.junit.jupiter.api.Test
     public void testePostorder () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(2);
     }
 
     @org.junit.jupiter.api.Test
     public void testeSymmetrisch () {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
+        Integer test = ROOTVALUE;
+        Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(3);
+    }
+
+
+
+    @org.junit.jupiter.api.Test
+    public void testArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testeInorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(3);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void testePostorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(2);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void testePreorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(1);
+    }
+
+
+
+
+    private Tree_array setArray(Tree_array arr) {
+        arr.addKnot(ROOTVALUE);
+        arr.addKnot(TESTWERT1);
+        arr.addKnot(TESTWERT2);
+        arr.addKnot(TESTWERT3);
+        arr.addKnot(TESTWERT4);
+        arr.addKnot(TESTWERT5);
+        arr.addKnot(TESTWERT6);
+        arr.addKnot(TESTWERT7);
+        arr.addKnot(TESTWERT8);
+        arr.addKnot(TESTWERT9);
+        arr.addKnot(TESTWERT10);
+        arr.addKnot(TESTWERT11);
+        arr.addKnot(TESTWERT12);
+        arr.addKnot(TESTWERT13);
+        arr.addKnot(TESTWERT14);
+        return arr;
     }
 
 
