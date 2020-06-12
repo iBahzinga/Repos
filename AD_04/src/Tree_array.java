@@ -1,12 +1,13 @@
 public class Tree_array<T extends  Comparable <T>> implements Search_ {
 
+    private int outputNumber;
     private final int ROOT;
     private final int ARRAYSIZE;
-    private T[] treeArray;
     private final int INORDER;
     private final int POSTORDER;
     private final int PREORDER;
-    private int outputNumber;
+    private final int ZERO;
+    private T[] treeArray;
 
     /**
      * Konstruktor der Klasse Tree_array
@@ -21,8 +22,13 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         POSTORDER = 2;
         PREORDER = 1;
         outputNumber = 0;
+        ZERO = 0;
     }
 
+    /**
+     * Konstruktor der Klasse Tree_array
+     * Mit diesem Konstruktor wird keine Wurzel initialisiert.
+     */
     public Tree_array() {
         ARRAYSIZE = 1000;
         ROOT = 1;
@@ -31,6 +37,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         POSTORDER = 2;
         PREORDER = 1;
         outputNumber = 0;
+        ZERO = 0;
     }
 
 
@@ -45,7 +52,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         if (treeArray[index] == null) {                      //Sollte Faelschlicherweise noch keine Wurzel erstellt worden sein, wird eine neue erstellt.
             treeArray[index] = (T) data;
         } else {
-            if (treeArray[index].compareTo((T) data) > 0) {      //Sollten die bekommenen Daten kleiner sein als der Wert der Wurzel Index = 2, sonst Index = 3
+            if (treeArray[index].compareTo((T) data) > ZERO) {      //Sollten die bekommenen Daten kleiner sein als der Wert der Wurzel Index = 2, sonst Index = 3
                 index = 2;
             } else {
                 index = 3;
@@ -55,7 +62,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
                     treeArray[index] = (T) data;
                     break;                                      //Abbrechen des eternal loop
                 }
-                if (treeArray[index].compareTo((T) data) > 0) {  //Wenn Daten kleiner als der Wert der aktuellen Stelle im Array = index * 2, ansonsten (index * 2) + 1
+                if (treeArray[index].compareTo((T) data) > ZERO) {  //Wenn Daten kleiner als der Wert der aktuellen Stelle im Array = index * 2, ansonsten (index * 2) + 1
                     index = index * 2;
                 } else {
                     index = index * 2 + 1;
@@ -63,8 +70,6 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
             } while (true);
         }
     }
-
-
 
     /**
      * Ausgabe der gewöhlten Methode.
@@ -78,14 +83,14 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
     @Override
     public void output(int method) {
         if (method == PREORDER) {       //Hauptreihenfolge ausgeben
-            outputNumber = 0;
-            preorder (ROOT, 1);
+            outputNumber = ZERO;
+            preorder (ROOT, PREORDER);
         } else if (method == POSTORDER) { // Nebenreihenfolge ausgeben
-            outputNumber = 0;
-            postorder (ROOT, 2);
+            outputNumber = ZERO;
+            postorder (ROOT, POSTORDER);
         } else if (method == INORDER) {   // Symmetrie
-            outputNumber = 0;
-            inorder(ROOT, 1);
+            outputNumber = ZERO;
+            inorder(ROOT, INORDER);
         }
     }
 
@@ -95,8 +100,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
      * @param order Methode die angewendet wurde
      */
     private void preorder (int root, int order) {
-        String method = setOrder(order);
-        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, method, treeArray[root]);
+        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
         outputNumber++;
         if (treeArray[root * 2] != null) {
             preorder(root * 2, order);
@@ -106,28 +110,21 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         }
     }
 
-
-
-
     /**
      * Ausgabe der Postorder Methode nach rekursivem Verfahren
      * @param root Wurzel des aktuellen aufrufes
      * @param order Methode die angewendet wurde
      */
     private void postorder (int root, int order) {
-        String method = setOrder(order);
         if (treeArray[root * 2] != null) {
             postorder(root * 2, order);
         }
         if (treeArray[root * 2 + 1] != null) {
             postorder(root * 2 + 1, order);
         }
-        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, method, treeArray[root]);
+        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
         outputNumber++;
     }
-
-
-
 
     /**
      * Ausgabe der Inorder Methode nach rekursivem Verfahren
@@ -135,12 +132,10 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
      * @param order Methode die angewendet wurde
      */
     private void inorder(int root, int order) {
-        String method = setOrder(order);
-        //Wurzel
         if (treeArray[root * 2] != null) {
             inorder(root * 2, order);
         }
-        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, method, treeArray[root]);
+        System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
         outputNumber++;
 
         if (treeArray[root * 2 + 1] != null){
