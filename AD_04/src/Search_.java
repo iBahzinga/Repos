@@ -15,7 +15,7 @@ public interface Search_ <T> {
     /**
      * Hinzufügen eines weiteren Knotens.
      * Ein weiterer Knoten wird automatisch an der richtigen Stelle hinzugefügt. (Es wird erkannt wo er eingefügt werden muss)
-     * @param data Vergleichbarer Wert der in den Knoten eingefügt wird.  Der Knoten wiederrum wird in den Baum eingefügt.
+     * @param data Vergleichbarer Wert der in den Knoten eingefügt wird.  Der Knoten wiederrum wird in den Baum oder Array eingefügt.
      */
     public void addKnot(T data);
 

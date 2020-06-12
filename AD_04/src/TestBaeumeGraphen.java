@@ -63,23 +63,53 @@ public class TestBaeumeGraphen {
 
     @org.junit.jupiter.api.Test
     public void testArr () {
-        Integer test = ROOTVALUE;
-        Tree_array gleis = new Tree_array(test);
-        gleis.addKnot(TESTWERT1);
-        gleis.addKnot(TESTWERT2);
-        gleis.addKnot(TESTWERT3);
-        gleis.addKnot(TESTWERT4);
-        gleis.addKnot(TESTWERT5);
-        gleis.addKnot(TESTWERT6);
-        gleis.addKnot(TESTWERT7);
-        gleis.addKnot(TESTWERT8);
-        gleis.addKnot(TESTWERT9);
-        gleis.addKnot(TESTWERT10);
-        gleis.addKnot(TESTWERT11);
-        gleis.addKnot(TESTWERT12);
-        gleis.addKnot(TESTWERT13);
-        gleis.addKnot(TESTWERT14);
-        int a = 1+1;
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testeInorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(3);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void testePostorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(2);
+    }
+
+
+    @org.junit.jupiter.api.Test
+    public void testePreorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(1);
+    }
+
+
+
+
+    private Tree_array setArray(Tree_array arr) {
+        arr.addKnot(ROOTVALUE);
+        arr.addKnot(TESTWERT1);
+        arr.addKnot(TESTWERT2);
+        arr.addKnot(TESTWERT3);
+        arr.addKnot(TESTWERT4);
+        arr.addKnot(TESTWERT5);
+        arr.addKnot(TESTWERT6);
+        arr.addKnot(TESTWERT7);
+        arr.addKnot(TESTWERT8);
+        arr.addKnot(TESTWERT9);
+        arr.addKnot(TESTWERT10);
+        arr.addKnot(TESTWERT11);
+        arr.addKnot(TESTWERT12);
+        arr.addKnot(TESTWERT13);
+        arr.addKnot(TESTWERT14);
+        return arr;
     }
 
 
