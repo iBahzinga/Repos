@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Testklasse fuer die Baeume und die Graphen
  *
@@ -9,7 +11,7 @@
  * @version 09.06.2020
  *
  */
-public class TestBaeumeGraphen {
+public class TestBaeumeGraphen <T> {
     private final int ROOTVALUE = 100;
     private final int TESTWERT1 = 50;
     private final int TESTWERT2 = 200;
@@ -32,39 +34,60 @@ public class TestBaeumeGraphen {
         Knot root = new Knot(ROOTVALUE, null);
         Tree_v2 tree = new Tree_v2(root);
         tree = setTree(tree);
+
+
+
     }
 
+    /**
+     * Testet die Funktionalitaet der Preorder Reihenfolge (Baum)
+     */
     @org.junit.jupiter.api.Test
     public void testePreorder () {
         Integer test = ROOTVALUE;
         Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(1);
+        Integer result [] = new Integer[100];
+        result = setArrayForTest(result, 1);
+        for (int i = 0; i < tree.getArray().length; i++){
+            T [] testArray = (T[]) tree.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
     }
 
-
+    /**
+     * Testet die Funktionalitaet der Postorder Reihenfolge (Baum)
+     */
     @org.junit.jupiter.api.Test
     public void testePostorder () {
         Integer test = ROOTVALUE;
         Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(2);
+        Integer result [] = new Integer[100];
+        result = setArrayForTest(result, 2);
+        for (int i = 0; i < tree.getArray().length; i++){
+            T [] testArray = (T[]) tree.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
     }
 
+    /**
+     * Testet die Funktionalitaet der Inorder Reihenfolge (Baum)
+     */
     @org.junit.jupiter.api.Test
-    public void testeSymmetrisch () {
+    public void testeInorder() {
         Integer test = ROOTVALUE;
         Tree_v2 tree = new Tree_v2(test);
         tree = setTree(tree);
         tree.output(3);
-    }
-
-
-
-    @org.junit.jupiter.api.Test
-    public void testArr () {
-        Tree_array arr = new Tree_array();
-        arr = setArray(arr);
+        Integer result [] = new Integer[100];
+        result = setArrayForTest(result, 3);
+        for (int i = 0; i < tree.getArray().length; i++){
+            T [] testArray = (T[]) tree.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
     }
 
     @org.junit.jupiter.api.Test
@@ -91,8 +114,11 @@ public class TestBaeumeGraphen {
     }
 
 
-
-
+    /**
+     * Legt das Array mit Werten an
+     * @param arr gefuelltes Array mit Knotenvalues
+     * @return gefuelltes Array
+     */
     private Tree_array setArray(Tree_array arr) {
         arr.addKnot(ROOTVALUE);
         arr.addKnot(TESTWERT1);
@@ -112,7 +138,11 @@ public class TestBaeumeGraphen {
         return arr;
     }
 
-
+    /**
+     * Legt den Binaeren Baum an
+     * @param tree Binaerer Baum
+     * @return Binaerer Baum
+     */
     private Tree_v2 setTree(Tree_v2 tree) {
         tree.addKnot(TESTWERT1);
         tree.addKnot(TESTWERT2);
@@ -129,5 +159,68 @@ public class TestBaeumeGraphen {
         tree.addKnot(TESTWERT13);
         tree.addKnot(TESTWERT14);
         return tree;
+    }
+
+    /**
+     * Legt ein Testarray an, mit dem Verglichen werden kann ob die Ausgabe werte in Ordnung sind.
+     * @param arr Leeres Array das gefuellt werden muss
+     * @param method Festlegungswert der Inorder, Preorder oder Postorder Reihenfolge
+     * @return Mit Testwerden gefuelltes Array in Richtiger Reihenfolge
+     */
+    private Integer [] setArrayForTest (Integer [] arr, int method) {
+        switch (method) {
+            case 1:
+                arr[0] = ROOTVALUE;
+                arr[1] = TESTWERT1;
+                arr[2] = TESTWERT3;
+                arr[3] = TESTWERT7;
+                arr[4] = TESTWERT8;
+                arr[5] = TESTWERT4;
+                arr[6] = TESTWERT9;
+                arr[7] = TESTWERT10;
+                arr[8] = TESTWERT2;
+                arr[9] = TESTWERT5;
+                arr[10] = TESTWERT11;
+                arr[11] = TESTWERT12;
+                arr[12] = TESTWERT6;
+                arr[13] = TESTWERT13;
+                arr[14] = TESTWERT14;
+                break;
+            case 2:
+                arr[0] = TESTWERT7;
+                arr[1] = TESTWERT8;
+                arr[2] = TESTWERT3;
+                arr[3] = TESTWERT9;
+                arr[4] = TESTWERT10;
+                arr[5] = TESTWERT4;
+                arr[6] = TESTWERT1;
+                arr[7] = TESTWERT11;
+                arr[8] = TESTWERT12;
+                arr[9] = TESTWERT5;
+                arr[10] = TESTWERT13;
+                arr[11] = TESTWERT14;
+                arr[12] = TESTWERT6;
+                arr[13] = TESTWERT2;
+                arr[14] = ROOTVALUE;
+                break;
+            case 3:
+                arr[0] = TESTWERT7;
+                arr[1] = TESTWERT3;
+                arr[2] = TESTWERT8;
+                arr[3] = TESTWERT1;
+                arr[4] = TESTWERT9;
+                arr[5] = TESTWERT4;
+                arr[6] = TESTWERT10;
+                arr[7] = ROOTVALUE;
+                arr[8] = TESTWERT11;
+                arr[9] = TESTWERT5;
+                arr[10] = TESTWERT12;
+                arr[11] = TESTWERT2;
+                arr[12] = TESTWERT13;
+                arr[13] = TESTWERT6;
+                arr[14] = TESTWERT14;
+                break;
+        }
+        return arr;
     }
 }

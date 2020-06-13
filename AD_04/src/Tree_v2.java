@@ -216,4 +216,12 @@ public class Tree_v2 <T> implements Search_ {
             }
         }
     }
+
+    /**
+     * Rueckgabe des Arrays zum auswerten der Daten
+     * @return Array der Methode
+     */
+    protected T[] getArray () {
+        return arr;
+    }
 }
