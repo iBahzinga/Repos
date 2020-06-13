@@ -8,6 +8,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
     private final int PREORDER;
     private final int ZERO;
     private T[] treeArray;
+    private T[] buffer;
 
     /**
      * Konstruktor der Klasse Tree_array
@@ -23,6 +24,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         PREORDER = 1;
         outputNumber = 0;
         ZERO = 0;
+        buffer = (T[]) new Comparable [ARRAYSIZE];
     }
 
     /**
@@ -38,6 +40,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
         PREORDER = 1;
         outputNumber = 0;
         ZERO = 0;
+        buffer = (T[]) new Comparable [ARRAYSIZE];
     }
 
 
@@ -101,6 +104,7 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
      */
     private void preorder (int root, int order) {
         System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
+        buffer[outputNumber] = treeArray[root];
         outputNumber++;
         if (treeArray[root * 2] != null) {
             preorder(root * 2, order);
@@ -123,7 +127,9 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
             postorder(root * 2 + 1, order);
         }
         System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
+        buffer[outputNumber] = treeArray[root];
         outputNumber++;
+
     }
 
     /**
@@ -136,7 +142,9 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
             inorder(root * 2, order);
         }
         System.out.printf("Die %d Stelle der %s hat den Wert: %d\n", outputNumber, setOrder(order), treeArray[root]);
+        buffer[outputNumber] = treeArray[root];
         outputNumber++;
+
 
         if (treeArray[root * 2 + 1] != null){
             inorder(root * 2 + 1, order);
@@ -159,5 +167,13 @@ public class Tree_array<T extends  Comparable <T>> implements Search_ {
                 break;
         }
         return result;
+    }
+
+    /**
+     * Rueckgabe des Arrays zum auswerten der Daten
+     * @return Array der Methode
+     */
+    protected T[] getArray () {
+        return buffer;
     }
 }

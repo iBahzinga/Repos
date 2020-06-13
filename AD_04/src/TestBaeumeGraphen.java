@@ -28,16 +28,7 @@ public class TestBaeumeGraphen <T> {
     private final int TESTWERT13 = 400;
     private final int TESTWERT14 = 1000;
 
-
-    @org.junit.jupiter.api.Test
-    public void testReihenfolge() {
-        Knot root = new Knot(ROOTVALUE, null);
-        Tree_v2 tree = new Tree_v2(root);
-        tree = setTree(tree);
-
-
-
-    }
+    /** -------------------------------------------------------Baum------------------------------------------------------------ */
 
     /**
      * Testet die Funktionalitaet der Preorder Reihenfolge (Baum)
@@ -90,29 +81,58 @@ public class TestBaeumeGraphen <T> {
         }
     }
 
-    @org.junit.jupiter.api.Test
-    public void testeInorderArr () {
-        Tree_array arr = new Tree_array();
-        arr = setArray(arr);
-        arr.output(3);
-    }
+    /** -------------------------------------------------------Array----------------------------------------------------------- */
 
-
-    @org.junit.jupiter.api.Test
-    public void testePostorderArr () {
-        Tree_array arr = new Tree_array();
-        arr = setArray(arr);
-        arr.output(2);
-    }
-
-
+    /**
+     * Testet die Funktionalitaet der Preorder Reihenfolge (Array)
+     */
     @org.junit.jupiter.api.Test
     public void testePreorderArr () {
         Tree_array arr = new Tree_array();
         arr = setArray(arr);
         arr.output(1);
+        Integer result [] = new Integer[1000];
+        result = setArrayForTest(result, 1);
+        for (int i = 0; i < arr.getArray().length; i++){
+            T [] testArray = (T[]) arr.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
     }
 
+    /**
+     * Testet die Funktionalitaet der Postorder Reihenfolge (Array)
+     */
+    @org.junit.jupiter.api.Test
+    public void testePostorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(2);
+        Integer result [] = new Integer[1000];
+        result = setArrayForTest(result, 2);
+        for (int i = 0; i < arr.getArray().length; i++){
+            T [] testArray = (T[]) arr.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
+    }
+
+    /**
+     * Testet die Funktionalitaet der Inorder Reihenfolge (Array)
+     */
+    @org.junit.jupiter.api.Test
+    public void testeInorderArr () {
+        Tree_array arr = new Tree_array();
+        arr = setArray(arr);
+        arr.output(3);
+        Integer result [] = new Integer[1000];
+        result = setArrayForTest(result, 3);
+        for (int i = 0; i < arr.getArray().length; i++){
+            T [] testArray = (T[]) arr.getArray();
+            assertEquals(result[i], testArray[i]);
+        }
+    }
+
+
+    /** ------------------------------------------------------ Hilfsmethoden --------------------------------------------------- */
 
     /**
      * Legt das Array mit Werten an
@@ -169,7 +189,7 @@ public class TestBaeumeGraphen <T> {
      */
     private Integer [] setArrayForTest (Integer [] arr, int method) {
         switch (method) {
-            case 1:
+            case 1:                 //Spiegelt Preorder Reihenfolge wieder
                 arr[0] = ROOTVALUE;
                 arr[1] = TESTWERT1;
                 arr[2] = TESTWERT3;
@@ -186,7 +206,7 @@ public class TestBaeumeGraphen <T> {
                 arr[13] = TESTWERT13;
                 arr[14] = TESTWERT14;
                 break;
-            case 2:
+            case 2:                 //Spiegelt Postorder Reihenfolge wieder
                 arr[0] = TESTWERT7;
                 arr[1] = TESTWERT8;
                 arr[2] = TESTWERT3;
@@ -203,7 +223,7 @@ public class TestBaeumeGraphen <T> {
                 arr[13] = TESTWERT2;
                 arr[14] = ROOTVALUE;
                 break;
-            case 3:
+            case 3:                 //Spiegelt Inorder Reigenfolge wieder
                 arr[0] = TESTWERT7;
                 arr[1] = TESTWERT3;
                 arr[2] = TESTWERT8;
