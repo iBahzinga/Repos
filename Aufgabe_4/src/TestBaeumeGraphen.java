@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Assertions;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -43,7 +45,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 1);
         for (int i = 0; i < tree.getArray().length; i++){
             T [] testArray = (T[]) tree.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
@@ -60,7 +62,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 2);
         for (int i = 0; i < tree.getArray().length; i++){
             T [] testArray = (T[]) tree.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
@@ -77,7 +79,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 3);
         for (int i = 0; i < tree.getArray().length; i++){
             T [] testArray = (T[]) tree.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
@@ -95,7 +97,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 1);
         for (int i = 0; i < arr.getArray().length; i++){
             T [] testArray = (T[]) arr.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
@@ -111,7 +113,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 2);
         for (int i = 0; i < arr.getArray().length; i++){
             T [] testArray = (T[]) arr.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
@@ -127,7 +129,7 @@ public class TestBaeumeGraphen <T> {
         result = setArrayForTest(result, 3);
         for (int i = 0; i < arr.getArray().length; i++){
             T [] testArray = (T[]) arr.getArray();
-            assertEquals(result[i], testArray[i]);
+            Assertions.assertEquals(result[i], testArray[i]);
         }
     }
 
