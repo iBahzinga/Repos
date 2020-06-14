@@ -34,11 +34,6 @@ public class Adjazenzliste <T> implements Graph {
     }
 
     @Override
-    public LinkedList gibKnoten(int knoten) {
-        return adjazenzlist[knoten];
-    }
-
-    @Override
     public void gewichtTraversieren(int knoten1) {
         System.out.print("Knoten: " +knoten1+ " ist verbunden mit: ");
         for (int j = 0; j < adjazenzlist[knoten1].size(); j++){
