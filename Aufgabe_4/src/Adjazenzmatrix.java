@@ -78,22 +78,6 @@ public class Adjazenzmatrix <T> implements Graph {
         }
     }
 
-
-    /**
-     * Finden eines gesuchten Knotens.
-     * Sollte Kein Knoten gefunden werden, wird eine IllegalArgumentException geworfen.
-     * @param knoten Stelle in der Matrix an dem der Knoten geholt werden soll
-     * @return Der gewünschte Knoten
-     */
-    @Override
-    public KnotenGraph gibKnoten(int knoten) {
-        if (knotenVorhanden(knoten)) {
-            return (KnotenGraph) knotenarray[knoten];
-        } else {
-            throw new IllegalArgumentException ("Knoten existiert nicht");
-        }
-    }
-
     /**
      * Ausgabe des Inhaltes eines Knotens
      * @param knoten Knoten dessen Inhalt ausgegeben werden soll.
@@ -183,6 +167,21 @@ public class Adjazenzmatrix <T> implements Graph {
             }
         }
     }
+
+    /**
+     * Finden eines gesuchten Knotens.
+     * Sollte Kein Knoten gefunden werden, wird eine IllegalArgumentException geworfen.
+     * @param knoten Stelle in der Matrix an dem der Knoten geholt werden soll
+     * @return Der gewünschte Knoten
+     */
+    private KnotenGraph gibKnoten(int knoten) {
+        if (knotenVorhanden(knoten)) {
+            return (KnotenGraph) knotenarray[knoten];
+        } else {
+            throw new IllegalArgumentException ("Knoten existiert nicht");
+        }
+    }
+
 
     /**
      * Prueft ob der gesuchte Knoten vorhanden ist.
