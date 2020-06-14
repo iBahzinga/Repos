@@ -134,6 +134,38 @@ public class TestBaeumeGraphen <T> {
     }
 
 
+    /** ------------------------------------------------------ Adjazenzmatrix --------------------------------------------------- */
+
+
+    @org.junit.jupiter.api.Test
+    public void testeMatrix () {
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        matrix = knotenEinfuegenMatrix(matrix);
+        matrix = kanteEinfuegenMatrix(matrix);
+        int trav0 = matrix.traversieren(0);
+        int trav1 = matrix.traversieren(1);
+        int trav2 = matrix.traversieren(2);
+        int trav3 = matrix.traversieren(3);
+        matrix.knotenAusgabe(0);
+        matrix.knotenAusgabe(1);
+        matrix.knotenAusgabe(2);
+        matrix.knotenAusgabe(3);
+        matrix.knotenAusgabe(4);
+        matrix.gewichtTraversieren(0);
+        matrix.allesAusgeben();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     /** ------------------------------------------------------ Hilfsmethoden --------------------------------------------------- */
 
     /**
@@ -245,4 +277,41 @@ public class TestBaeumeGraphen <T> {
         }
         return arr;
     }
+
+
+
+
+
+
+
+    private Adjazenzmatrix knotenEinfuegenMatrix (Adjazenzmatrix m) {
+        m.knotenEinfuegen(5);
+        m.knotenEinfuegen(1);
+        m.knotenEinfuegen(4);
+        m.knotenEinfuegen(2);
+        m.knotenEinfuegen(3);
+        return m;
+    }
+
+
+    private Adjazenzmatrix kanteEinfuegenMatrix (Adjazenzmatrix m) {
+        m.kanteEinfuegen(0,2);
+        m.kanteEinfuegen(0,3);
+        m.kanteEinfuegen(1,4);
+        m.kanteEinfuegen(3,3);
+        return m;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

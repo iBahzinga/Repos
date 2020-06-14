@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 public interface Graph {
 
     /**
@@ -20,7 +18,6 @@ public interface Graph {
     /**
      *
      * @param knoten1
-
      * @return
      */
     public int traversieren(int knoten1);
@@ -37,23 +34,20 @@ public interface Graph {
      * @param knoten
      * @return
      */
-    public LinkedList gibKnoten (int knoten);
+    public KnotenGraph gibKnoten (int knoten);
 
     /**
      *
      * @param knoten1
-
      */
     public void gewichtTraversieren(int knoten1);
 
     /**
      *
      */
-    public void knotenAusgabe(int konten);
+    public void knotenAusgabe(int knoten);
 
-    /**
-     *
-     */
+
     public void allesAusgeben ();
 
 }
