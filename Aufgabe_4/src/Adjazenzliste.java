@@ -44,7 +44,7 @@ public class Adjazenzliste <T> implements Graph {
 
     @Override
     public void knotenAusgabe(int knoten) {
-        System.out.println("Knoten: " +knoten);
+        System.out.println("Knoten: " + adjazenzlist[knoten]);
     }
 
     public void allesAusgeben (){
@@ -53,5 +53,9 @@ public class Adjazenzliste <T> implements Graph {
                 gewichtTraversieren(i);
             }
         }
+    }
+
+    protected int getAnzahlKnoten(){
+        return anzahlKnoten;
     }
 }
