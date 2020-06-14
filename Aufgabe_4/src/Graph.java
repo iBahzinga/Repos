@@ -31,13 +31,6 @@ public interface Graph {
 
     /**
      *
-     * @param knoten
-     * @return
-     */
-    public KnotenGraph gibKnoten (int knoten);
-
-    /**
-     *
      * @param knoten1
      */
     public void gewichtTraversieren(int knoten1);
