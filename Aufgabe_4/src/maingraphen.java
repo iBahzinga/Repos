@@ -14,6 +14,7 @@ public class maingraphen {
         matrix.knotenAusgabe(2);
         matrix.knotenAusgabe(3);
         matrix.knotenAusgabe(4);
+        matrix.gewichtTraversieren(0);
         matrix.allesAusgeben();
     }
 

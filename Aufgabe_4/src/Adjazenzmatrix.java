@@ -76,6 +76,7 @@ public class Adjazenzmatrix <T> implements Graph {
         return result;
     }
 
+
     @Override
     public void debugTraversieren(KnotenGraph knoten1, KnotenGraph knoten2) {
         /**
@@ -86,10 +87,13 @@ public class Adjazenzmatrix <T> implements Graph {
 
 
     @Override
-    public void gewichtTraversieren(KnotenGraph knoten1, KnotenGraph knoten2) {
+    public void gewichtTraversieren(int knoten1) {
         /**
          * DAs könnte schon das sein was die Methode allesAusgeben macht.
          */
+        for (int i = 0; i < anzahlKnoten; i++){
+            System.out.println( i + ". Knoten: " + adjazenzmatrix[knoten1][i]);
+        }
     }
 
 

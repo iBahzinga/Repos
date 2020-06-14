@@ -39,9 +39,8 @@ public interface Graph {
     /**
      *
      * @param knoten1
-     * @param knoten2
      */
-    public void gewichtTraversieren(KnotenGraph knoten1, KnotenGraph knoten2);
+    public void gewichtTraversieren(int knoten1);
 
     /**
      *
