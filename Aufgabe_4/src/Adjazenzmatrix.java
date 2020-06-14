@@ -1,3 +1,5 @@
+
+/*
 public class Adjazenzmatrix <T> implements Graph {
 
     private KnotenGraph knoten;
@@ -63,3 +65,4 @@ public class Adjazenzmatrix <T> implements Graph {
 
     }
 }
+*/
