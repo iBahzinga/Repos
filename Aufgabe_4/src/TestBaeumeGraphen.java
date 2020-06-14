@@ -136,7 +136,9 @@ public class TestBaeumeGraphen <T> {
 
     /** ------------------------------------------------------ Adjazenzmatrix --------------------------------------------------- */
 
-
+    /**
+     * 
+     */
     @org.junit.jupiter.api.Test
     public void testeMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -155,7 +157,12 @@ public class TestBaeumeGraphen <T> {
         matrix.allesAusgeben();
     }
 
+    /** ------------------------------------------------------ Adjazenzliste --------------------------------------------------- */
 
+
+    /**
+     *
+     */
     @org.junit.jupiter.api.Test
     public void testListe(){
     Adjazenzliste liste = new Adjazenzliste();
