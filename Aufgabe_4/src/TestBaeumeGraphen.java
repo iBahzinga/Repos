@@ -140,20 +140,40 @@ public class TestBaeumeGraphen <T> {
      * 
      */
     @org.junit.jupiter.api.Test
-    public void testeMatrix () {
+    public void testeEinfuegenMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
-        matrix = knotenEinfuegenMatrix(matrix);
-        matrix = kanteEinfuegenMatrix(matrix);
-        int trav0 = matrix.traversieren(0);
-        int trav1 = matrix.traversieren(1);
-        int trav2 = matrix.traversieren(2);
-        int trav3 = matrix.traversieren(3);
-        matrix.knotenAusgabe(0);
-        matrix.knotenAusgabe(1);
-        matrix.knotenAusgabe(2);
-        matrix.knotenAusgabe(3);
+        knotenEinfuegenMatrix(matrix);
+        Assertions.assertEquals(matrix.getAnzahlKnoten(), 10);
+    }
+
+    /**
+     *
+     */
+    @org.junit.jupiter.api.Test
+    public void testeKantenMatrix () {
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        knotenEinfuegenMatrix(matrix);
+        Assertions.assertEquals(matrix.getAnzahlKnoten(), 10);
+        kanteEinfuegenMatrix(matrix);
+        Assertions.assertEquals( matrix.traversieren(0), 3);
+        Assertions.assertEquals( matrix.traversieren(1), 1);
+        Assertions.assertEquals( matrix.traversieren(2), 1);
+        Assertions.assertEquals( matrix.traversieren(3), 1);
+        Assertions.assertEquals( matrix.traversieren(4), 0);
+        Assertions.assertEquals( matrix.traversieren(5), 1);
+        Assertions.assertEquals( matrix.traversieren(6), 0);
+        Assertions.assertEquals( matrix.traversieren(7), 0);
+        Assertions.assertEquals( matrix.traversieren(8), 0);
+        Assertions.assertEquals( matrix.traversieren(9), 5);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void printMatrix(){
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        knotenEinfuegenMatrix(matrix);
+        kanteEinfuegenMatrix(matrix);
+        matrix.gewichtTraversieren(9);
         matrix.knotenAusgabe(4);
-        matrix.gewichtTraversieren(0);
         matrix.allesAusgeben();
     }
 
@@ -164,23 +184,40 @@ public class TestBaeumeGraphen <T> {
      *
      */
     @org.junit.jupiter.api.Test
-    public void testListe(){
-    Adjazenzliste liste = new Adjazenzliste();
-    liste.knotenEinfuegen(5);
-    liste.knotenEinfuegen(1);
-    liste.knotenEinfuegen(4);
-    liste.knotenEinfuegen(2);
-    liste.knotenEinfuegen(3);
-    liste.kanteEinfuegen(4,3);
-    liste.kanteEinfuegen(4,2);
-    liste.kanteEinfuegen(0,0);
-    liste.kanteEinfuegen(1,2);
-    int a = liste.traversieren(4);
-    liste.gewichtTraversieren( 4);
-    liste.knotenAusgabe(4);
-    liste.allesAusgeben();
+    public void testEinfuegenListe(){
+         Adjazenzliste liste = new Adjazenzliste();
+         knotenEinfuegenListe(liste);
+         Assertions.assertEquals(liste.getAnzahlKnoten(), 10);
+    }
+    /**
+     *
+     */
+    @org.junit.jupiter.api.Test
+    public void testKantenListe(){
+          Adjazenzliste liste = new Adjazenzliste();
+          knotenEinfuegenListe(liste);
+          kanteEinfuegenListe(liste);
+          Assertions.assertEquals( liste.traversieren(0), 3);
+          Assertions.assertEquals( liste.traversieren(1), 1);
+          Assertions.assertEquals( liste.traversieren(2), 1);
+          Assertions.assertEquals( liste.traversieren(3), 1);
+          Assertions.assertEquals( liste.traversieren(4), 0);
+          Assertions.assertEquals( liste.traversieren(5), 1);
+          Assertions.assertEquals( liste.traversieren(6), 0);
+          Assertions.assertEquals( liste.traversieren(7), 0);
+          Assertions.assertEquals( liste.traversieren(8), 0);
+          Assertions.assertEquals( liste.traversieren(9), 5);
     }
 
+    @org.junit.jupiter.api.Test
+    public void printListe(){
+        Adjazenzliste liste = new Adjazenzliste();
+        knotenEinfuegenListe(liste);
+        kanteEinfuegenListe(liste);
+        liste.gewichtTraversieren(9);
+        liste.knotenAusgabe(4);
+        liste.allesAusgeben();
+    }
 
 
     /** ------------------------------------------------------ Hilfsmethoden --------------------------------------------------- */
@@ -307,6 +344,11 @@ public class TestBaeumeGraphen <T> {
         m.knotenEinfuegen(4);
         m.knotenEinfuegen(2);
         m.knotenEinfuegen(3);
+        m.knotenEinfuegen(10);
+        m.knotenEinfuegen(7);
+        m.knotenEinfuegen(6);
+        m.knotenEinfuegen(8);
+        m.knotenEinfuegen(9);
         return m;
     }
 
@@ -316,9 +358,47 @@ public class TestBaeumeGraphen <T> {
         m.kanteEinfuegen(0,3);
         m.kanteEinfuegen(1,4);
         m.kanteEinfuegen(3,3);
+        m.kanteEinfuegen(9,9);
+        m.kanteEinfuegen(9,8);
+        m.kanteEinfuegen(9,7);
+        m.kanteEinfuegen(9,6);
+        m.kanteEinfuegen(0,0);
+        m.kanteEinfuegen(5,4);
+        m.kanteEinfuegen(9,2);
+        m.kanteEinfuegen(2,9);
         return m;
     }
 
+    private Adjazenzliste knotenEinfuegenListe (Adjazenzliste m) {
+        m.knotenEinfuegen(5);
+        m.knotenEinfuegen(1);
+        m.knotenEinfuegen(4);
+        m.knotenEinfuegen(2);
+        m.knotenEinfuegen(3);
+        m.knotenEinfuegen(10);
+        m.knotenEinfuegen(7);
+        m.knotenEinfuegen(6);
+        m.knotenEinfuegen(8);
+        m.knotenEinfuegen(9);
+        return m;
+    }
+
+
+    private Adjazenzliste kanteEinfuegenListe(Adjazenzliste m) {
+        m.kanteEinfuegen(0,2);
+        m.kanteEinfuegen(0,3);
+        m.kanteEinfuegen(1,4);
+        m.kanteEinfuegen(3,3);
+        m.kanteEinfuegen(9,9);
+        m.kanteEinfuegen(9,8);
+        m.kanteEinfuegen(9,7);
+        m.kanteEinfuegen(9,6);
+        m.kanteEinfuegen(0,0);
+        m.kanteEinfuegen(5,4);
+        m.kanteEinfuegen(9,2);
+        m.kanteEinfuegen(2,9);
+        return m;
+    }
 
 
 

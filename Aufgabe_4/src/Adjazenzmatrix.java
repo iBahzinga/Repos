@@ -196,7 +196,7 @@ public class Adjazenzmatrix <T> implements Graph {
      * Rueckgabe der anzahl der Knoten die sich in unserer Adiazenzmatrix befinden
      * @return Anzahl Knoten
      */
-    private int getAnzahlKnoten () {
+    protected int getAnzahlKnoten () {
         return anzahlKnoten;
     }
 
