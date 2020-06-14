@@ -2,10 +2,10 @@ public interface Graph {
 
     /**
      *
-     * @param knoten
+     * @param data
      * @return
      */
-    public boolean knotenEinfuegen (KnotenGraph knoten);
+    public void knotenEinfuegen (Object data);
 
     /**
      *
@@ -13,15 +13,14 @@ public interface Graph {
      * @param knoten2
      * @return
      */
-    public boolean kanteEinfuegen (KnotenGraph knoten1, KnotenGraph knoten2);
+    public void kanteEinfuegen (int knoten1, int knoten2);
 
     /**
      *
      * @param knoten1
-     * @param knoten2
      * @return
      */
-    public boolean traversieren(KnotenGraph knoten1, KnotenGraph knoten2);
+    public int traversieren(int knoten1);
 
     /**
      *
@@ -35,18 +34,20 @@ public interface Graph {
      * @param knoten
      * @return
      */
-    public KnotenGraph gibKnoten (KnotenGraph knoten);
+    public KnotenGraph gibKnoten (int knoten);
 
     /**
      *
      * @param knoten1
-     * @param knoten2
      */
-    public void gewichtTraversieren(KnotenGraph knoten1, KnotenGraph knoten2);
+    public void gewichtTraversieren(int knoten1);
 
     /**
      *
      */
-    public void graphAusgabe();
+    public void knotenAusgabe(int knoten);
+
+
+    public void allesAusgeben ();
 
 }
