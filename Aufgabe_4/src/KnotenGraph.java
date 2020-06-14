@@ -1,28 +1,12 @@
 public class KnotenGraph <T> {
 
     private T daten;
-    private final int ARRAYSIZE;
-    KnotenGraph [] nachbarn;
 
-    public KnotenGraph () {
-        ARRAYSIZE = 10;
-
+    public KnotenGraph (Object data) {
+        this.daten = (T) data;
     }
 
-    public void setDaten () {
-
-    }
-
-    public void setNachbar () {
-
-    }
-
-    public T getDatan () {
+    public T getDaten () {
         return daten;
     }
-
-    public KnotenGraph [] getNachbar () {
-        return nachbarn;
-    }
 }
-
