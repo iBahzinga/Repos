@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Adjazenzliste <T> implements Graph {
@@ -33,6 +32,7 @@ public class Adjazenzliste <T> implements Graph {
 
     }
 
+
     @Override
     public void gewichtTraversieren(int knoten1) {
         System.out.print("Knoten: " +knoten1+ " ist verbunden mit: ");
@@ -57,5 +57,6 @@ public class Adjazenzliste <T> implements Graph {
 
     protected int getAnzahlKnoten(){
         return anzahlKnoten;
-    }
+    };
+
 }
