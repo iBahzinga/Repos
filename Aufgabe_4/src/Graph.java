@@ -2,10 +2,10 @@ public interface Graph {
 
     /**
      *
-     * @param knoten
+     * @param data
      * @return
      */
-    public boolean knotenEinfuegen (KnotenGraph knoten);
+    public void knotenEinfuegen (Object data);
 
     /**
      *
@@ -13,7 +13,7 @@ public interface Graph {
      * @param knoten2
      * @return
      */
-    public boolean kanteEinfuegen (KnotenGraph knoten1, KnotenGraph knoten2);
+    public void kanteEinfuegen (KnotenGraph knoten1, KnotenGraph knoten2);
 
     /**
      *
