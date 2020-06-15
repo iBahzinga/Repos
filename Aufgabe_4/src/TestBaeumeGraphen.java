@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Testklasse fuer die Baeume und die Graphen
@@ -137,23 +139,23 @@ public class TestBaeumeGraphen <T> {
     /** ------------------------------------------------------ Adjazenzmatrix --------------------------------------------------- */
 
     /**
-     * 
+     * Testet das einfuegen von Knoten in die Matrix
      */
     @org.junit.jupiter.api.Test
     public void testeEinfuegenMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
         knotenEinfuegenMatrix(matrix);
-        Assertions.assertEquals(matrix.getAnzahlKnoten(), 10);
+        Assertions.assertEquals(matrix.getAnzahlKnoten(), 20);
     }
 
     /**
-     *
+     * Teste einfuegen der Kanten in die Matrix
      */
     @org.junit.jupiter.api.Test
     public void testeKantenMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
         knotenEinfuegenMatrix(matrix);
-        Assertions.assertEquals(matrix.getAnzahlKnoten(), 10);
+        Assertions.assertEquals(matrix.getAnzahlKnoten(), 20);
         kanteEinfuegenMatrix(matrix);
         Assertions.assertEquals( matrix.traversieren(0), 3);
         Assertions.assertEquals( matrix.traversieren(1), 1);
@@ -167,6 +169,9 @@ public class TestBaeumeGraphen <T> {
         Assertions.assertEquals( matrix.traversieren(9), 5);
     }
 
+    /**
+     * printet die Matrix auf die Console für optische Pruefung
+     */
     @org.junit.jupiter.api.Test
     public void printMatrix(){
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -177,23 +182,83 @@ public class TestBaeumeGraphen <T> {
         matrix.allesAusgeben();
     }
 
+    /**
+     * Testet ob eine Exception geworfen wird wenn der Knoten nicht erreichbar ist  oder nicht existiert.
+     */
+    @org.junit.jupiter.api.Test
+    public void negativtestMatrixKnotenerreichbarkeit(){
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        knotenEinfuegenMatrix(matrix);
+        boolean excYesNo = false;
+        try {
+            matrix.gibKnoten(21);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
+    /**
+     * Testet ob eine Exception geworfen wird wenn der erste Knoten nicht erreichbar ist oder nicht existiert.
+     */
+    @Test
+    public void negativtestMatrixKantenerreichbarkeit1(){
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        knotenEinfuegenMatrix(matrix);
+        boolean excYesNo = false;
+        try {
+            matrix.kanteEinfuegen( 21, 0);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
+    /**
+     * Testet ob eine Exception geworfen wird wenn der zweite Knoten nicht erreichbar ist oder nicht existiert.
+     */
+    @Test
+    public void negativtestMatrixKantenerreichbarkeit2(){
+        Adjazenzmatrix matrix = new Adjazenzmatrix();
+        knotenEinfuegenMatrix(matrix);
+        boolean excYesNo = false;
+        try {
+            matrix.kanteEinfuegen( 0, 21);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
     /** ------------------------------------------------------ Adjazenzliste --------------------------------------------------- */
 
 
     /**
-     *
+     * Testet das einfuegen von Knoten in die Liste
      */
     @org.junit.jupiter.api.Test
     public void testEinfuegenListe(){
          Adjazenzliste liste = new Adjazenzliste();
          knotenEinfuegenListe(liste);
-         Assertions.assertEquals(liste.getAnzahlKnoten(), 10);
+         Assertions.assertEquals(liste.getAnzahlKnoten(), 20);
     }
     /**
-     *
+     * Testet das einfuegen von Kanten in die Liste
      */
     @org.junit.jupiter.api.Test
-    public void testKantenListe(){
+    public void testKantenListe() {
           Adjazenzliste liste = new Adjazenzliste();
           knotenEinfuegenListe(liste);
           kanteEinfuegenListe(liste);
@@ -209,8 +274,12 @@ public class TestBaeumeGraphen <T> {
           Assertions.assertEquals( liste.traversieren(9), 5);
     }
 
+
+    /**
+     * Printet alles aus zur optischen Pruefung
+     */
     @org.junit.jupiter.api.Test
-    public void printListe(){
+    public void printListe() {
         Adjazenzliste liste = new Adjazenzliste();
         knotenEinfuegenListe(liste);
         kanteEinfuegenListe(liste);
@@ -218,6 +287,67 @@ public class TestBaeumeGraphen <T> {
         liste.knotenAusgabe(4);
         liste.allesAusgeben();
     }
+
+    /**
+     * Testet ob eine Exception geworfen wird wenn der Knoten nicht erreichbar ist  oder nicht existiert.
+     */
+    @org.junit.jupiter.api.Test
+    public void negativtestListeKnotenerreichbarkeit(){
+        Adjazenzliste liste = new Adjazenzliste();
+        knotenEinfuegenListe(liste);
+        boolean excYesNo = false;
+        try {
+            liste.gibKnoten(21);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
+    /**
+     * Testet ob eine Exception geworfen wird wenn der erste Knoten nicht erreichbar ist  oder nicht existiert.
+     */
+    @org.junit.jupiter.api.Test
+    public void negativtestListKantenerreichbarkeit1(){
+        Adjazenzliste liste = new Adjazenzliste();
+        knotenEinfuegenListe(liste);
+        boolean excYesNo = false;
+        try {
+            liste.kanteEinfuegen( 21, 0);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
+    /**
+     * Testet ob eine Exception geworfen wird wenn der zweite Knoten nicht erreichbar ist  oder nicht existiert.
+     */
+    @org.junit.jupiter.api.Test
+    public void negativtestListKantenerreichbarkeit2(){
+        Adjazenzliste liste = new Adjazenzliste();
+        knotenEinfuegenListe(liste);
+        boolean excYesNo = false;
+        try {
+            liste.kanteEinfuegen( 0, 21);
+        }
+        catch (IllegalArgumentException e) {
+            excYesNo = true;
+        }
+        finally
+        {
+        }
+        assertTrue(excYesNo);
+    }
+
 
 
     /** ------------------------------------------------------ Hilfsmethoden --------------------------------------------------- */
@@ -333,82 +463,106 @@ public class TestBaeumeGraphen <T> {
     }
 
 
-
-
-
-
-
-    private Adjazenzmatrix knotenEinfuegenMatrix (Adjazenzmatrix m) {
-        m.knotenEinfuegen(5);
-        m.knotenEinfuegen(1);
-        m.knotenEinfuegen(4);
-        m.knotenEinfuegen(2);
-        m.knotenEinfuegen(3);
-        m.knotenEinfuegen(10);
-        m.knotenEinfuegen(7);
-        m.knotenEinfuegen(6);
-        m.knotenEinfuegen(8);
-        m.knotenEinfuegen(9);
-        return m;
+    /**
+     *
+     * Einfuegen von Knoten in die Adjazenzmatrix.
+     * @param adjazenzmatrix Adjazenzmatrix in die die Knoten eingefuegt werden sollen
+     * @return Adjazenxmatrix mit eingefuegten Knoten
+     */
+    private Adjazenzmatrix knotenEinfuegenMatrix (Adjazenzmatrix adjazenzmatrix) {
+        adjazenzmatrix.knotenEinfuegen(5);
+        adjazenzmatrix.knotenEinfuegen(1);
+        adjazenzmatrix.knotenEinfuegen(4);
+        adjazenzmatrix.knotenEinfuegen(2);
+        adjazenzmatrix.knotenEinfuegen(3);
+        adjazenzmatrix.knotenEinfuegen(10);
+        adjazenzmatrix.knotenEinfuegen(7);
+        adjazenzmatrix.knotenEinfuegen(6);
+        adjazenzmatrix.knotenEinfuegen(8);
+        adjazenzmatrix.knotenEinfuegen(9);
+        adjazenzmatrix.knotenEinfuegen(11);
+        adjazenzmatrix.knotenEinfuegen(12);
+        adjazenzmatrix.knotenEinfuegen(600);
+        adjazenzmatrix.knotenEinfuegen(42);
+        adjazenzmatrix.knotenEinfuegen(27);
+        adjazenzmatrix.knotenEinfuegen(666);
+        adjazenzmatrix.knotenEinfuegen(1991);
+        adjazenzmatrix.knotenEinfuegen(182763);
+        adjazenzmatrix.knotenEinfuegen(20);
+        adjazenzmatrix.knotenEinfuegen(40);
+        return adjazenzmatrix;
     }
 
 
-    private Adjazenzmatrix kanteEinfuegenMatrix (Adjazenzmatrix m) {
-        m.kanteEinfuegen(0,2);
-        m.kanteEinfuegen(0,3);
-        m.kanteEinfuegen(1,4);
-        m.kanteEinfuegen(3,3);
-        m.kanteEinfuegen(9,9);
-        m.kanteEinfuegen(9,8);
-        m.kanteEinfuegen(9,7);
-        m.kanteEinfuegen(9,6);
-        m.kanteEinfuegen(0,0);
-        m.kanteEinfuegen(5,4);
-        m.kanteEinfuegen(9,2);
-        m.kanteEinfuegen(2,9);
-        return m;
+    /**
+     * Fuegt Kanten ein in die Adjazenzmatrix
+     * @param adjazenzmatrix Adjazenzmatrix in die die Kanten eingefuegt werden sollen
+     * @return
+     */
+    private Adjazenzmatrix kanteEinfuegenMatrix (Adjazenzmatrix adjazenzmatrix) {
+        adjazenzmatrix.kanteEinfuegen(0,2);
+        adjazenzmatrix.kanteEinfuegen(0,3);
+        adjazenzmatrix.kanteEinfuegen(1,4);
+        adjazenzmatrix.kanteEinfuegen(3,3);
+        adjazenzmatrix.kanteEinfuegen(9,9);
+        adjazenzmatrix.kanteEinfuegen(9,8);
+        adjazenzmatrix.kanteEinfuegen(9,7);
+        adjazenzmatrix.kanteEinfuegen(9,6);
+        adjazenzmatrix.kanteEinfuegen(0,0);
+        adjazenzmatrix.kanteEinfuegen(5,4);
+        adjazenzmatrix.kanteEinfuegen(9,2);
+        adjazenzmatrix.kanteEinfuegen(2,9);
+        return adjazenzmatrix;
     }
 
-    private Adjazenzliste knotenEinfuegenListe (Adjazenzliste m) {
-        m.knotenEinfuegen(5);
-        m.knotenEinfuegen(1);
-        m.knotenEinfuegen(4);
-        m.knotenEinfuegen(2);
-        m.knotenEinfuegen(3);
-        m.knotenEinfuegen(10);
-        m.knotenEinfuegen(7);
-        m.knotenEinfuegen(6);
-        m.knotenEinfuegen(8);
-        m.knotenEinfuegen(9);
-        return m;
+    /**
+     * Einfuegen von Knoten in der Adjyzenzliste
+     * @param adjazenzliste adjazenzliste in die die Knoten eingefuegt werden sollen
+     * @return die Adjazenzliste in der die Knoten eingefuegt wurden.
+     */
+    private Adjazenzliste knotenEinfuegenListe (Adjazenzliste adjazenzliste) {
+        adjazenzliste.knotenEinfuegen(5);
+        adjazenzliste.knotenEinfuegen(1);
+        adjazenzliste.knotenEinfuegen(4);
+        adjazenzliste.knotenEinfuegen(2);
+        adjazenzliste.knotenEinfuegen(3);
+        adjazenzliste.knotenEinfuegen(10);
+        adjazenzliste.knotenEinfuegen(7);
+        adjazenzliste.knotenEinfuegen(6);
+        adjazenzliste.knotenEinfuegen(8);
+        adjazenzliste.knotenEinfuegen(9);
+        adjazenzliste.knotenEinfuegen(11);
+        adjazenzliste.knotenEinfuegen(12);
+        adjazenzliste.knotenEinfuegen(600);
+        adjazenzliste.knotenEinfuegen(42);
+        adjazenzliste.knotenEinfuegen(27);
+        adjazenzliste.knotenEinfuegen(666);
+        adjazenzliste.knotenEinfuegen(1991);
+        adjazenzliste.knotenEinfuegen(182763);
+        adjazenzliste.knotenEinfuegen(20);
+        adjazenzliste.knotenEinfuegen(40);
+        return adjazenzliste;
     }
 
-
-    private Adjazenzliste kanteEinfuegenListe(Adjazenzliste m) {
-        m.kanteEinfuegen(0,2);
-        m.kanteEinfuegen(0,3);
-        m.kanteEinfuegen(1,4);
-        m.kanteEinfuegen(3,3);
-        m.kanteEinfuegen(9,9);
-        m.kanteEinfuegen(9,8);
-        m.kanteEinfuegen(9,7);
-        m.kanteEinfuegen(9,6);
-        m.kanteEinfuegen(0,0);
-        m.kanteEinfuegen(5,4);
-        m.kanteEinfuegen(9,2);
-        m.kanteEinfuegen(2,9);
-        return m;
+    /**
+     * Fuegt Kanten zwischen den Knoten ein in der Adjazenzliste.
+     * @param adjazenzliste Adjazenzliste in der die Kanten eingefuegt wurden.
+     * @return Adjazenzliste in der die Kanten eingefuegt wurden
+     */
+    private Adjazenzliste kanteEinfuegenListe(Adjazenzliste adjazenzliste) {
+        adjazenzliste.kanteEinfuegen(0,2);
+        adjazenzliste.kanteEinfuegen(0,3);
+        adjazenzliste.kanteEinfuegen(1,4);
+        adjazenzliste.kanteEinfuegen(3,3);
+        adjazenzliste.kanteEinfuegen(9,9);
+        adjazenzliste.kanteEinfuegen(9,8);
+        adjazenzliste.kanteEinfuegen(9,7);
+        adjazenzliste.kanteEinfuegen(9,6);
+        adjazenzliste.kanteEinfuegen(0,0);
+        adjazenzliste.kanteEinfuegen(5,4);
+        adjazenzliste.kanteEinfuegen(9,2);
+        adjazenzliste.kanteEinfuegen(2,9);
+        return adjazenzliste;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
