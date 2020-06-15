@@ -48,6 +48,7 @@ public class Adjazenzmatrix <T> implements Graph {
      */
     @Override
     public void knotenEinfuegen(Object data) {
+        arrayErweitern();
         if(anzahlKnoten < knotenarray.length) { //sorgt dafür, dass keine Fehlermeldung erscheint, wenn zu viele Knoten erzeugt werden
             KnotenGraph neuerKnoten = new KnotenGraph (data);
             knotenarray[anzahlKnoten] = neuerKnoten; //fügt den Knoten an das einfache Feld der Knoten an
@@ -67,11 +68,11 @@ public class Adjazenzmatrix <T> implements Graph {
     public void kanteEinfuegen(int knoten1, int knoten2) {
         if (!knotenVorhanden(knoten1)) //kontrolliert mit der Methode KnotenNummer, ob der Startknoten der Kante vorhanden ist
         {
-            System.out.println("Der Startknoten existiert nicht.");
+            throw new IllegalArgumentException ("Knoten1 existiert nicht");
         } else {
             if (!knotenVorhanden(knoten2)) //kontrolliert mit der Methode KnotenNummer, ob der Endknoten der Kante voranden ist
             {
-                System.out.println("Der Endknoten existiert nicht.");
+                throw new IllegalArgumentException ("Knoten2 existiert nicht");
             } else {
                 adjazenzmatrix[knoten1][knoten2] = true; //setzt in die entsprechende Zelle die Gewichtung ein
             }
@@ -174,7 +175,7 @@ public class Adjazenzmatrix <T> implements Graph {
      * @param knoten Stelle in der Matrix an dem der Knoten geholt werden soll
      * @return Der gewünschte Knoten
      */
-    private KnotenGraph gibKnoten(int knoten) {
+    protected KnotenGraph gibKnoten(int knoten) {
         if (knotenVorhanden(knoten)) {
             return (KnotenGraph) knotenarray[knoten];
         } else {
@@ -189,7 +190,7 @@ public class Adjazenzmatrix <T> implements Graph {
      * @return Knoten vorhanden ->true, Knoten nicht vorhanden -> false
      */
     private boolean knotenVorhanden (int knoten) {
-        return knotenarray.length >= knoten;
+        return anzahlKnoten >= knoten;
     }
 
     /**
@@ -200,4 +201,20 @@ public class Adjazenzmatrix <T> implements Graph {
         return anzahlKnoten;
     }
 
+    private void arrayErweitern(){
+        if (knotenarray.length/2 <= anzahlKnoten){
+            KnotenGraph neuesKnotenArray[] = new KnotenGraph[knotenarray.length*2];
+            for (int i = 0; i <= anzahlKnoten; i++){
+                neuesKnotenArray[i] = knotenarray [i];
+            }
+            knotenarray = neuesKnotenArray;
+            boolean neueAdjazenzmatrix[][] = new boolean[knotenarray.length*2][knotenarray.length*2];
+            for (int i = 0; i <= anzahlKnoten; i++){
+                for (int j = 0; j <= anzahlKnoten; j++){
+                    neueAdjazenzmatrix[i][j] = adjazenzmatrix [i][j];
+                }
+            }
+            adjazenzmatrix = neueAdjazenzmatrix;
+        }
+    }
 }
