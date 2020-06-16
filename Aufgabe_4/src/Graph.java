@@ -19,7 +19,7 @@ public interface Graph {
      * @param startKnoten
      * @return
      */
-    public int traversieren(Knoten startKnoten);
+    public void traversieren (Knoten startKnoten);
 
     /**
      *
@@ -38,7 +38,7 @@ public interface Graph {
      * @param quelle
      * @param ziel
      */
-    public void gewichtTraversieren(Knoten quelle, Knoten ziel);
+    public int gewichtAuslesen(Knoten quelle, Knoten ziel);
 
     /**
      *

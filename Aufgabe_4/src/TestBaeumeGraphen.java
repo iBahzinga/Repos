@@ -177,7 +177,7 @@ public class TestBaeumeGraphen <T> {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
         knotenEinfuegenMatrix(matrix);
         kanteEinfuegenMatrix(matrix);
-        matrix.gewichtTraversieren(9);
+        matrix.gewichtAuslesen(9);
         matrix.knotenAusgabe(4);
         matrix.allesAusgeben();
     }

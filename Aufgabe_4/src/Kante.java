@@ -35,7 +35,7 @@ public class Kante
      * Gibt das Ziel der Kante wieder.
      * @return Ziel der Kante.
      */
-    public Knoten gibZiel() {
+    public Knoten getZiel() {
         return zielKnoten;
     }
 
@@ -43,7 +43,7 @@ public class Kante
      * Gibt die Quelle der Kante wieder.
      * @return Quelle der Kante
      */
-    public Knoten gibQuelle() {
+    public Knoten getQuelle() {
         return startKnoten;
     }
 
@@ -51,7 +51,7 @@ public class Kante
      * Gibt die Gewichtung der Kante wieder.
      * @return
      */
-    public int gibGewicht() {
+    public int getGewicht() {
         return gewicht;
     }
 }
