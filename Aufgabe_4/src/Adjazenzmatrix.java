@@ -25,11 +25,11 @@
  */
 public class Adjazenzmatrix <T> implements Graph {
 
-    private KnotenGraph knoten;
+    private Knoten knoten;
     private boolean [][] adjazenzmatrix;
     private final int ARRAYSIZE;
     private int anzahlKnoten;
-    private KnotenGraph [] knotenarray;
+    private Knoten[] knotenarray;
 
     /**
      * Konstruktor der Klasse Adjazenzmatrix
@@ -38,7 +38,7 @@ public class Adjazenzmatrix <T> implements Graph {
         ARRAYSIZE = 10;
         adjazenzmatrix = new boolean [ARRAYSIZE][ARRAYSIZE];
         anzahlKnoten = 0;
-        knotenarray = new KnotenGraph[ARRAYSIZE];
+        knotenarray = new Knoten[ARRAYSIZE];
     }
 
 
@@ -50,7 +50,7 @@ public class Adjazenzmatrix <T> implements Graph {
     public void knotenEinfuegen(Object data) {
         arrayErweitern();
         if(anzahlKnoten < knotenarray.length) { //sorgt dafür, dass keine Fehlermeldung erscheint, wenn zu viele Knoten erzeugt werden
-            KnotenGraph neuerKnoten = new KnotenGraph (data);
+            Knoten neuerKnoten = new Knoten(data);
             knotenarray[anzahlKnoten] = neuerKnoten; //fügt den Knoten an das einfache Feld der Knoten an
             adjazenzmatrix[anzahlKnoten][anzahlKnoten] = false; //fügt in der Matrix -1 ein, da hier keine Kante entstehen kann
             anzahlKnoten++;
@@ -112,7 +112,7 @@ public class Adjazenzmatrix <T> implements Graph {
      * @param knoten2
      */
     @Override
-    public void debugTraversieren(KnotenGraph knoten1, KnotenGraph knoten2) {
+    public void debugTraversieren(Knoten knoten1, Knoten knoten2) {
     }
 
 
@@ -123,7 +123,7 @@ public class Adjazenzmatrix <T> implements Graph {
     @Override
     public void gewichtTraversieren(int knoten1) {
         for (int i = 0; i < anzahlKnoten; i++){
-            System.out.println( i + ". Knoten: " + adjazenzmatrix[knoten1][i]);
+            System.out.println( i + ". Knoten: " + /*adjazenzmatrix[knoten1][i]*/ knotenarray[i].getDaten());
         }
     }
 
@@ -134,14 +134,14 @@ public class Adjazenzmatrix <T> implements Graph {
         System.out.print("\t\t");
         for(int y = 0; y < anzahlKnoten; y++) //druckt die erste Zeile (alle Knoten in deren Reihenfolge)
         {
-            System.out.print(gibKnoten(y).getDaten());
+            System.out.print(/*gibKnoten(y).getDaten()*/ y);
             System.out.print(" | \t");
         }
         for(int i = 0; i < anzahlKnoten; i++) //druckt die übrigen Zeilen untereinander
         {
             System.out.println(" ");
 
-            System.out.print(gibKnoten(i).getDaten());
+            System.out.print(/*gibKnoten(i).getDaten()*/ i);
             System.out.print(" | ");
             for(int z = 0; z < anzahlKnoten; z++) //druckt die entsprechende Teile die die Gewichtungen von Knoten[i] anzeigt
             {
@@ -149,7 +149,7 @@ public class Adjazenzmatrix <T> implements Graph {
                 {
                     if(adjazenzmatrix[i][z] == true) //erstetzt alle Zellen in denen 0 steht durch " "
                     {
-                        System.out.print(" true ");
+                        System.out.print(" false ");
                         System.out.print(" | ");
                     }
                     else
@@ -175,9 +175,9 @@ public class Adjazenzmatrix <T> implements Graph {
      * @param knoten Stelle in der Matrix an dem der Knoten geholt werden soll
      * @return Der gewünschte Knoten
      */
-    protected KnotenGraph gibKnoten(int knoten) {
+    protected Knoten gibKnoten(int knoten) {
         if (knotenVorhanden(knoten)) {
-            return (KnotenGraph) knotenarray[knoten];
+            return (Knoten) knotenarray[knoten];
         } else {
             throw new IllegalArgumentException ("Knoten existiert nicht");
         }
@@ -203,7 +203,7 @@ public class Adjazenzmatrix <T> implements Graph {
 
     private void arrayErweitern(){
         if (knotenarray.length/2 <= anzahlKnoten){
-            KnotenGraph neuesKnotenArray[] = new KnotenGraph[knotenarray.length*2];
+            Knoten neuesKnotenArray[] = new Knoten[knotenarray.length*2];
             for (int i = 0; i <= anzahlKnoten; i++){
                 neuesKnotenArray[i] = knotenarray [i];
             }

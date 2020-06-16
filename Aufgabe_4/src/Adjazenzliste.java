@@ -30,13 +30,13 @@ public class Adjazenzliste <T> implements Graph {
 
     private int anzahlKnoten;
     private LinkedList<Integer> adjazenzlist[];
-    private KnotenGraph[] knoten_G;
+    private Knoten[] knoten_G;
 
     /**
      * Konstruktor der Klasse Adjazenzliste
      */
     public Adjazenzliste () {
-        knoten_G = new KnotenGraph[10];
+        knoten_G = new Knoten[10];
         adjazenzlist = new LinkedList[10];
         anzahlKnoten = 0;
     }
@@ -48,7 +48,7 @@ public class Adjazenzliste <T> implements Graph {
     @Override
     public void knotenEinfuegen(Object data) {
         arrayErweitern();
-        knoten_G[anzahlKnoten] = new KnotenGraph(data);
+        knoten_G[anzahlKnoten] = new Knoten(data);
         adjazenzlist[anzahlKnoten] = new LinkedList<Integer>();
         anzahlKnoten++;
     }
@@ -88,7 +88,7 @@ public class Adjazenzliste <T> implements Graph {
      * @return anzahl der Nachbarn (Zeiger auf andere Knoten)
      */
     @Override
-    public void debugTraversieren(KnotenGraph knoten1, KnotenGraph knoten2) {
+    public void debugTraversieren(Knoten knoten1, Knoten knoten2) {
 
     }
 
@@ -134,7 +134,7 @@ public class Adjazenzliste <T> implements Graph {
      * Gibt den angefragten Knoten aus der Liste zurück.
      * @param knoten
      */
-    protected KnotenGraph gibKnoten(int knoten){
+    protected Knoten gibKnoten(int knoten){
         if (knotenVorhanden(knoten)) {
             return knoten_G[knoten];
         }
@@ -154,7 +154,7 @@ public class Adjazenzliste <T> implements Graph {
 
     private void arrayErweitern() {
         if (knoten_G.length / 2 <= anzahlKnoten) {
-            KnotenGraph neuesKnotenArray[] = new KnotenGraph[knoten_G.length * 2];
+            Knoten neuesKnotenArray[] = new Knoten[knoten_G.length * 2];
             for (int i = 0; i <= anzahlKnoten; i++) {
                 neuesKnotenArray[i] = knoten_G[i];
             }

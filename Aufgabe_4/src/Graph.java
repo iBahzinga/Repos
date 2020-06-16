@@ -24,7 +24,7 @@ public interface Graph {
      * @param knoten1 Knoten von dem die Nachbarn gesucht werden und die anzahl der Referenzen ausgegeben werden sollen.
      * @return anzahl der Nachbarn (Zeiger auf andere Knoten)
      */
-    public void debugTraversieren (KnotenGraph knoten1, KnotenGraph knoten2);
+    public void debugTraversieren (Knoten knoten1, Knoten knoten2);
 
     /**
      * Unverstndlich was hier passieren soll.
