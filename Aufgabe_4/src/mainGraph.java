@@ -31,6 +31,11 @@ public class mainGraph {
         m.kanteEinfuegen(newKnot1, newKnot7, 6);
         //m.allesAusgeben();
         m.traversieren(newKnot);
+        System.out.println("\n");
+        System.out.println(m.gewichtAuslesen(newKnot,newKnot1));
+        System.out.println(m.gewichtAuslesen(newKnot3,newKnot7));
+        System.out.println(m.gewichtAuslesen(newKnot1,newKnot5));
+        System.out.println(m.gewichtAuslesen(newKnot7,newKnot1));
 
     }
 }
