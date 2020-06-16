@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestGraphen {
 
@@ -91,12 +90,20 @@ public class TestGraphen {
         assertEquals(true, exc);
     }
 
-
+    /**
+     * Erstellung einer Adjazenzmatrix
+     * @return erstellte Adjazenzmatrix
+     */
     private Adjazenzmatrix adjazenzmatrixErstellen () {
         Knoten_Graph neuerKnotenMatrix = new Knoten_Graph(0);
         return new Adjazenzmatrix(neuerKnotenMatrix);
     }
 
+    /**
+     * Einfuegen von Knoten in die Adhazenzmatrix
+     * @param adjazenzmatrix Adjazenzmatrix in die Knoten eingefuegt werden sollen
+     * @return adjazenzmatrix
+     */
     private Adjazenzmatrix fuegeKnotenEinInMatrix(Adjazenzmatrix adjazenzmatrix) {
         Knoten_Graph neuerKnotenMatrix1 = new Knoten_Graph(1);
         Knoten_Graph neuerKnotenMatrix2 = new Knoten_Graph(2);
@@ -118,6 +125,11 @@ public class TestGraphen {
         return adjazenzmatrix;
     }
 
+    /**
+     * Einfuegen von Kanten in die Adjazenzmatrix
+     * @param adjazenzmatrix Adjazenzmatrix in der die Kanten eingefuegt werden sollen
+     * @return Adjazenzmatrix in die die Kanten eingefuegt wurden
+     */
     private Adjazenzmatrix fuegeKanteEinInMatrix (Adjazenzmatrix adjazenzmatrix) {
         Knoten_Graph [] knoten = adjazenzmatrix.getKnotenGraphArray();
         adjazenzmatrix.kanteEinfuegen(adjazenzmatrix.gibStartKnoten(), adjazenzmatrix.gibEndKnoten(), 3);
@@ -150,6 +162,10 @@ public class TestGraphen {
         return adjazenzmatrix;
     }
 
+    /**
+     * Matrix nach einfuegen von Kanten pruefen.
+     * @param matrix Adjazenzmatrix in die die Kanten eingefuegt wurden.
+     */
     private void pruefeMatrix (Kante [][] matrix) {
         assertEquals(true, matrix [0][8] != null);
         assertEquals(true, matrix [0][0] != null);
