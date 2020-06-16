@@ -1,4 +1,4 @@
-public class Knoten {
+public class Knoten_Graph {
 
     private int distanz;
     private int position;      //position des Knotens
@@ -9,7 +9,7 @@ public class Knoten {
      * Konstruktor der Klasse Knoten
      * @param position Position des Knotens
      */
-    public Knoten(int position) {
+    public Knoten_Graph(int position) {
         this.position = position;
         knotenVerbunden = false;
         distanz = (Integer.MAX_VALUE);

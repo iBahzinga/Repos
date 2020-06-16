@@ -13,21 +13,21 @@
 public class Kante
 {
     //Ursprung der Kante.
-    private Knoten startKnoten;
+    private Knoten_Graph startKnotenGraph;
     //Ziel der Kante.
-    private Knoten zielKnoten;
+    private Knoten_Graph zielKnotenGraph;
     //Gewichtung der Kante
     private int gewicht;
 
     /**
      * Initialisiert eine neue Kante und bindet sie zwischen zwei Knoten
-     * @param startKnoten Ursprung der Kante
-     * @param zielKnoten Ziel der Kante
+     * @param startKnotenGraph Ursprung der Kante
+     * @param zielKnotenGraph Ziel der Kante
      * @param gewicht Gewichtung der Kante
      */
-    public Kante(Knoten startKnoten, Knoten zielKnoten, int gewicht) {
-        this.startKnoten = startKnoten;
-        this.zielKnoten = zielKnoten;
+    public Kante(Knoten_Graph startKnotenGraph, Knoten_Graph zielKnotenGraph, int gewicht) {
+        this.startKnotenGraph = startKnotenGraph;
+        this.zielKnotenGraph = zielKnotenGraph;
         this.gewicht = gewicht;
     }
 
@@ -35,16 +35,16 @@ public class Kante
      * Gibt das Ziel der Kante wieder.
      * @return Ziel der Kante.
      */
-    public Knoten getZiel() {
-        return zielKnoten;
+    public Knoten_Graph getZiel() {
+        return zielKnotenGraph;
     }
 
     /**
      * Gibt die Quelle der Kante wieder.
      * @return Quelle der Kante
      */
-    public Knoten getQuelle() {
-        return startKnoten;
+    public Knoten_Graph getQuelle() {
+        return startKnotenGraph;
     }
 
     /**

@@ -1,23 +1,23 @@
 import java.util.*;
 
-public class Liste_V2 implements Graph{
+public class Adjazenzliste implements Graph{
 
-    private ArrayList<Knoten> _knoten;
+    private ArrayList<Knoten_Graph> _knotenGraph;
     private int anzahlKanten;
     private int anzahlKnoten;
-    private Map<Knoten, List<Kante>> _adjListe;
+    private Map<Knoten_Graph, List<Kante>> _adjListe;
 
     /**
      * Initialisiert einen Graphen mit einer Adjazenzliste mit einer vorgegebenen Anzahl an Knoten.
      *
      * @param anzahl Die Anzahl der Knoten.
      */
-    public Liste_V2(int anzahl)
+    public Adjazenzliste(int anzahl)
     {
         anzahlKnoten = 0;
         anzahlKanten = 0;
-        _adjListe = new HashMap<Knoten, List<Kante>>();
-        _knoten = new ArrayList<Knoten>();
+        _adjListe = new HashMap<Knoten_Graph, List<Kante>>();
+        _knotenGraph = new ArrayList<Knoten_Graph>();
         //befuelleGraphZufaellig(anzahl);
         resetVisited();
         //graphMalen();
@@ -27,29 +27,29 @@ public class Liste_V2 implements Graph{
      *
      * @param start Der StartKnoten für den Graphen.
      */
-    public Liste_V2(Knoten start)
+    public Adjazenzliste(Knoten_Graph start)
     {
         pruefeNull(start);
-        _knoten = new ArrayList<Knoten>();
-        _knoten.add(0, start);
-        _adjListe = new HashMap<Knoten, List<Kante>>();
+        _knotenGraph = new ArrayList<Knoten_Graph>();
+        _knotenGraph.add(0, start);
+        _adjListe = new HashMap<Knoten_Graph, List<Kante>>();
         _adjListe.put(start, new LinkedList<Kante>());
         anzahlKnoten = 1;
         anzahlKanten = 0;
     }
 
     @Override
-    public void knotenEinfuegen(Knoten knoten) {
-        pruefeNull(knoten);
-        knotenBereitsEingefuegt(knoten);
+    public void knotenEinfuegen(Knoten_Graph knotenGraph) {
+        pruefeNull(knotenGraph);
+        knotenBereitsEingefuegt(knotenGraph);
 
-        _knoten.add(knoten.getPosition(),knoten);
-        _adjListe.put(knoten, new LinkedList<Kante>());
+        _knotenGraph.add(knotenGraph.getPosition(), knotenGraph);
+        _adjListe.put(knotenGraph, new LinkedList<Kante>());
         ++anzahlKnoten;
     }
 
     @Override
-    public void kanteEinfuegen(Knoten start, Knoten ziel, int gewichtung) {
+    public void kanteEinfuegen(Knoten_Graph start, Knoten_Graph ziel, int gewichtung) {
         pruefeNull(start);
         pruefeNull(ziel);
         pruefeAufGueltigkeit(gewichtung);
@@ -69,7 +69,7 @@ public class Liste_V2 implements Graph{
      * @param ziel Zielknoten
      * @param gewichtung Gewicht der Kante
      */
-    private void kanteVor(Knoten quelle, Knoten ziel, int gewichtung)
+    private void kanteVor(Knoten_Graph quelle, Knoten_Graph ziel, int gewichtung)
     {
         Kante neueKante = new Kante(quelle, ziel, gewichtung);
         List<Kante> kantenListe = _adjListe.get(quelle);
@@ -94,7 +94,7 @@ public class Liste_V2 implements Graph{
      * @param ziel Zielknoten
      * @param gewichtung Gewicht der Kante
      */
-    private void kantezurueck(Knoten ziel, Knoten quelle, int gewichtung)
+    private void kantezurueck(Knoten_Graph ziel, Knoten_Graph quelle, int gewichtung)
     {
         Kante neueKante = new Kante(ziel, quelle, gewichtung);
         List<Kante> kantenListe = _adjListe.get(ziel);
@@ -113,7 +113,7 @@ public class Liste_V2 implements Graph{
     }
 
     @Override
-    public int gewichtAuslesen(Knoten quelle, Knoten ziel) {
+    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel) {
         pruefeNull(quelle);
         pruefeNull(ziel);
 
@@ -128,15 +128,15 @@ public class Liste_V2 implements Graph{
     }
 
     @Override
-    public void traversieren(Knoten startKnoten) {
-        pruefeNull(startKnoten);
-        if (!startKnoten.getBereitsBesucht()) {
-            startKnoten.setBereitsBesucht(true);
-            for (Kante k : _adjListe.get(startKnoten))
+    public void traversieren(Knoten_Graph startKnotenGraph) {
+        pruefeNull(startKnotenGraph);
+        if (!startKnotenGraph.getBereitsBesucht()) {
+            startKnotenGraph.setBereitsBesucht(true);
+            for (Kante k : _adjListe.get(startKnotenGraph))
             {
                 traversieren(k.getZiel());
             }
-            System.out.println(startKnoten.getPosition());
+            System.out.println(startKnotenGraph.getPosition());
         }
     }
 
@@ -151,19 +151,19 @@ public class Liste_V2 implements Graph{
     }
 
     @Override
-    public Knoten gibStartKnoten() {
-        return _knoten.get(0);
+    public Knoten_Graph gibStartKnoten() {
+        return _knotenGraph.get(0);
     }
 
     @Override
-    public Knoten gibEndKnoten() {
-        return _knoten.get(anzahlKnoten -1);
+    public Knoten_Graph gibEndKnoten() {
+        return _knotenGraph.get(anzahlKnoten -1);
     }
 
     @Override
     public void allesAusgeben() {
         ArrayList<Kante> kanten = new ArrayList<Kante>();
-        for(Knoten k : _knoten)
+        for(Knoten_Graph k : _knotenGraph)
         {
             System.out.println("Knoten -> " + k.getPosition());
             if (k.getVerbunden())
@@ -176,10 +176,10 @@ public class Liste_V2 implements Graph{
         }
     }
 
-    public ArrayList<Knoten> gibAlleKnoten()
+    public ArrayList<Knoten_Graph> gibAlleKnoten()
     {
-        ArrayList<Knoten> result = new ArrayList<Knoten>();
-        for(Knoten k : _knoten)
+        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
+        for(Knoten_Graph k : _knotenGraph)
         {
             result.add(k);
         }
@@ -189,12 +189,12 @@ public class Liste_V2 implements Graph{
 
     /**
      * Prüft den übergebenen Knoten auf Null.
-     * @param knoten Der übergebene Knoten
+     * @param knotenGraph Der übergebene Knoten
      *  @throws IllegalArgumentException, wenn Knoten null
      */
-    private void pruefeNull(Knoten knoten)
+    private void pruefeNull(Knoten_Graph knotenGraph)
     {
-        if (knoten == null) {
+        if (knotenGraph == null) {
             throw new IllegalArgumentException("Gültigen Knoten übergeben!");
         }
     }
@@ -213,14 +213,14 @@ public class Liste_V2 implements Graph{
 
     /**
      * Überprüft, ob ein Knoten bereits eingefügt wurde.
-     * @param knoten
+     * @param knotenGraph
      *  @throws IllegalArgumentException, wenn Knoten bereits eingefügt.
      */
-    private void knotenBereitsEingefuegt(Knoten knoten)
+    private void knotenBereitsEingefuegt(Knoten_Graph knotenGraph)
     {
-        for (Knoten k : _knoten)
+        for (Knoten_Graph k : _knotenGraph)
         {
-            if (knoten.equals(k))
+            if (knotenGraph.equals(k))
             {
                 throw new IllegalArgumentException("Knoten ist bereits eingefügt!"); //Duplikate nicht erlaubt
             }
@@ -232,7 +232,7 @@ public class Liste_V2 implements Graph{
      */
     private void resetVisited()
     {
-        for(Knoten k : _knoten)
+        for(Knoten_Graph k : _knotenGraph)
         {
             if(k != null)
             {
@@ -245,7 +245,7 @@ public class Liste_V2 implements Graph{
     public ArrayList<Kante> gibAlleKanten()
     {
         ArrayList<Kante> kanten = new ArrayList<Kante>();
-        for(Knoten k : _knoten)
+        for(Knoten_Graph k : _knotenGraph)
         {
             if (k.getVerbunden())
             {
