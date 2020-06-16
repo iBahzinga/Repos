@@ -1,42 +1,58 @@
 public interface Graph {
 
     /**
-     * Hinzufügen eines neuen Knoten in die Adiazanzmatrix/liste
-     * @param data Daten die in dem Knoten stehen sollen.
+     *
+     * @param knoten
      */
-    public void knotenEinfuegen (Object data);
+    public void knotenEinfuegen(Knoten knoten);
 
     /**
-     * Einfügen einer Kante zwischen 2 Graphen
-     * @param knoten1 Position des ersten Graphen im Array
-     * @param knoten2 Position des zweiten Graphen im Array
+     *
+     * @param quelle
+     * @param ziel
+     * @param gewichtung
      */
-    public void kanteEinfuegen (int knoten1, int knoten2) throws IllegalAccessException;
+    public void kanteEinfuegen(Knoten quelle, Knoten ziel, int gewichtung);
 
     /**
-     * Ausgabe des Inhaltes eines Knotens
-     * @param knoten1 Knoten dessen Inhalt ausgegeben werden soll.
+     *
+     * @param startKnoten
+     * @return
      */
-    public int traversieren(int knoten1);
+    public void traversieren (Knoten startKnoten);
 
     /**
-     * Traversiert das gesamte Array, um herauszufinden wieviele Referenzen auf andere Knoten wir haben.
-     * @param knoten1 Knoten von dem die Nachbarn gesucht werden und die anzahl der Referenzen ausgegeben werden sollen.
-     * @return anzahl der Nachbarn (Zeiger auf andere Knoten)
+     *
+     * @return
      */
-    public void debugTraversieren (KnotenGraph knoten1, KnotenGraph knoten2);
+    public int gibAnzahlKanten();
 
     /**
-     * Unverstndlich was hier passieren soll.
-     * @param knoten1
+     *
+     * @return
      */
-    public void gewichtTraversieren(int knoten1);
+    public int gibAnzahlKnoten();
 
     /**
-     * Ausgabe der Gewichte/Inhalte aller knoten mit Referenz auf Knoten1
-     * @param knoten Knoten von dem die Nachbarn gesucht werden und die Gewichte ausgegeben werden sollen.
+     *
+     * @param quelle
+     * @param ziel
      */
-    public void knotenAusgabe(int knoten);
+    public int gewichtAuslesen(Knoten quelle, Knoten ziel);
+
+    /**
+     *
+     * @return
+     */
+    public Knoten gibStartKnoten();
+
+
+    /**
+     *
+     * @return
+     */
+    public Knoten gibEndKnoten();
+
 
     /**
      * Ausgabe der Adiazenzmatrix/liste auf der Konsole
