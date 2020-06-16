@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface Graph {
 
     /**
@@ -59,4 +61,9 @@ public interface Graph {
      */
     public void allesAusgeben ();
 
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Kante> gibAlleKanten();
 }

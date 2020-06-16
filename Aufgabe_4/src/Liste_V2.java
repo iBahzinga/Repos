@@ -241,4 +241,21 @@ public class Liste_V2 implements Graph{
         }
     }
 
+    @Override
+    public ArrayList<Kante> gibAlleKanten()
+    {
+        ArrayList<Kante> kanten = new ArrayList<Kante>();
+        for(Knoten k : _knoten)
+        {
+            if (k.getVerbunden())
+            {
+                for(Kante kante : _adjListe.get(k))
+                {
+                    kanten.add(kante);
+                }
+            }
+        }
+        return kanten;
+    }
+
 }
