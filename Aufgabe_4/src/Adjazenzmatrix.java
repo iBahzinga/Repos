@@ -140,6 +140,46 @@ public class Adjazenzmatrix implements Graph {
      */
     @Override
     public void allesAusgeben() {
+        System.out.print("\t\t");
+        for(int y = 0; y < anzahlKnoten; y++) //druckt die erste Zeile (alle Knoten in deren Reihenfolge)
+        {
+            System.out.print(knotenArray[y].getPosition());
+            System.out.print(" | \t");
+        }
+        for(int i = 0; i < anzahlKnoten; i++) //druckt die übrigen Zeilen untereinander
+        {
+            System.out.println(" ");
+
+            System.out.print(knotenArray[i].getPosition());
+            System.out.print(" | ");
+            for(int z = 0; z < anzahlKnoten; z++) //druckt die entsprechende Teile die die Gewichtungen von Knoten[i] anzeigt
+            {
+                if(adjazenzmatrix[i][z] != null) //kontrolliert, dass keine Kanten erzeugt werden, wo keine erzeugt werden können
+                {
+                    if(adjazenzmatrix[i][z] == null) //erstetzt alle Zellen in denen 0 steht durch " "
+                    {
+                        System.out.print(" false ");
+                        System.out.print(" | ");
+                    }
+                    else
+                    {
+                        System.out.print(" ");
+                        System.out.print(" " + adjazenzmatrix[i][z] + " ");
+                        System.out.print(" | ");
+                    }
+                }
+                else
+                {
+                    System.out.print(" " + adjazenzmatrix[i][z] + " ");
+
+                    System.out.print("|");
+                }
+            }
+        }
+
+
+
+
 
     }
 
