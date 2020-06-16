@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Darstellung eines Graphen als Adjazenzschreibweise.
  *
@@ -174,6 +175,14 @@ public class Adjazenzmatrix implements Graph {
                 }
             }
         }
+    }
+
+    public ArrayList<Kante> gibAlleKanten(){
+        return null; //muss noch implementiert werden :)
+    }
+
+    public ArrayList<Knoten> gibAlleKnoten(){
+        return null; //muss noch implementiert werden :)
     }
 
     /**

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class mainGraph {
 
 
@@ -36,6 +38,7 @@ public class mainGraph {
         System.out.println(m.gewichtAuslesen(newKnot1,newKnot5));
         System.out.println(m.gewichtAuslesen(newKnot7,newKnot1));
  */
+        /*
         Knoten newKnot = new Knoten(0);
         Liste_V2 m = new Liste_V2(newKnot);
         Knoten newKnot1 = new Knoten(1);
@@ -66,5 +69,31 @@ public class mainGraph {
         System.out.println(m.gewichtAuslesen(newKnot3,newKnot7));
         System.out.println(m.gewichtAuslesen(newKnot1,newKnot5));
         System.out.println(m.gewichtAuslesen(newKnot7,newKnot1));
+
+         */
+
+        Graph testGraph = new Liste_V2(new Knoten(0));
+        for(int i = 1; i <= 6; i++)
+        {
+            testGraph.knotenEinfuegen(new Knoten(i));
+        }
+
+        ArrayList<Knoten> knoten = testGraph.gibAlleKnoten();
+
+        testGraph.kanteEinfuegen(knoten.get(0), knoten.get(1), 2);
+        testGraph.kanteEinfuegen(knoten.get(1), knoten.get(2), 6);
+        testGraph.kanteEinfuegen(knoten.get(1), knoten.get(3), 4);
+        testGraph.kanteEinfuegen(knoten.get(2), knoten.get(3), 2);
+        testGraph.kanteEinfuegen(knoten.get(2), knoten.get(4), 1);
+        testGraph.kanteEinfuegen(knoten.get(0), knoten.get(2), 15);
+        testGraph.kanteEinfuegen(knoten.get(0), knoten.get(5), 15);
+        testGraph.kanteEinfuegen(knoten.get(3), knoten.get(4), 4);
+        testGraph.kanteEinfuegen(knoten.get(4), knoten.get(5), 2);
+        testGraph.kanteEinfuegen(knoten.get(6), knoten.get(5), 1);
+        testGraph.kanteEinfuegen(knoten.get(6), knoten.get(2), 15);
+
+        //testGraph.graphMalen();
+
+        DijkstraAlgorithmus routenPlaner = new DijkstraAlgorithmus(testGraph);
     }
 }
