@@ -4,9 +4,9 @@ public interface Graph {
 
     /**
      *
-     * @param knoten
+     * @param knotenGraph
      */
-    public void knotenEinfuegen(Knoten knoten);
+    public void knotenEinfuegen(Knoten_Graph knotenGraph);
 
     /**
      *
@@ -14,14 +14,14 @@ public interface Graph {
      * @param ziel
      * @param gewichtung
      */
-    public void kanteEinfuegen(Knoten quelle, Knoten ziel, int gewichtung);
+    public void kanteEinfuegen(Knoten_Graph quelle, Knoten_Graph ziel, int gewichtung);
 
     /**
      *
-     * @param startKnoten
+     * @param startKnotenGraph
      * @return
      */
-    public void traversieren (Knoten startKnoten);
+    public void traversieren (Knoten_Graph startKnotenGraph);
 
     /**
      *
@@ -40,20 +40,20 @@ public interface Graph {
      * @param quelle
      * @param ziel
      */
-    public int gewichtAuslesen(Knoten quelle, Knoten ziel);
+    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel);
 
     /**
      *
      * @return
      */
-    public Knoten gibStartKnoten();
+    public Knoten_Graph gibStartKnoten();
 
 
     /**
      *
      * @return
      */
-    public Knoten gibEndKnoten();
+    public Knoten_Graph gibEndKnoten();
 
 
     /**
@@ -67,5 +67,5 @@ public interface Graph {
      */
     public ArrayList<Kante> gibAlleKanten();
 
-    public ArrayList<Knoten> gibAlleKnoten();
+    public ArrayList<Knoten_Graph> gibAlleKnoten();
 }

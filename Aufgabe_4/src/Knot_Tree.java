@@ -14,19 +14,19 @@
  *
  * @param <T>
  */
-public class Knot <T extends Comparable<T>> {
+public class Knot_Tree<T extends Comparable<T>> {
 
     private T data;
-    private Knot childLeft;
-    private Knot childRight;
-    private Knot parent;
+    private Knot_Tree childLeft;
+    private Knot_Tree childRight;
+    private Knot_Tree parent;
 
     /**
      * Konstruktor der Klasse Knot
      * @param data Vergleichbarer Wert der in den Knoten eingefügt wird.  Der Knoten wiederrum wird in den Baum eingefügt.
      * @param parent Vater-/Mutterknoten des aktuellen Knotens
      */
-    public Knot (T data, Knot parent) {
+    public Knot_Tree(T data, Knot_Tree parent) {
         this.data = data;
         this.parent = parent;
     }
@@ -44,7 +44,7 @@ public class Knot <T extends Comparable<T>> {
      * Der linke Kindknoten wird zurueckgegeben
      * @return Rueckgabe des linken Kindknotens
      */
-    public Knot getChildLeft () {
+    public Knot_Tree getChildLeft () {
         return childLeft;
     }
 
@@ -52,7 +52,7 @@ public class Knot <T extends Comparable<T>> {
      * Der rechte Kindknoten wird zurueckgegeben
      * @return Rueckgabe des rechten Kindknotens
      */
-    public Knot getChildRight () {
+    public Knot_Tree getChildRight () {
         return childRight;
     }
 
@@ -60,7 +60,7 @@ public class Knot <T extends Comparable<T>> {
      * Der Vater-/Mutterknoten wird zurueckgegeben
      * @return Rueckgabe des Vater-/Mutterknotens
      */
-    public Knot getParent () {
+    public Knot_Tree getParent () {
         return parent;
     }
 
@@ -68,7 +68,7 @@ public class Knot <T extends Comparable<T>> {
      * Setzen oder veraendern des linken Kindknotens.
      * @param childLeft Setzen des linken Kindknotens
      */
-    public void setChildLeft(Knot childLeft) {
+    public void setChildLeft(Knot_Tree childLeft) {
         this.childLeft = childLeft;
     }
 
@@ -76,7 +76,7 @@ public class Knot <T extends Comparable<T>> {
      * Setzen oder veraendern des rechten Kindknotens
      * @param childRight Setzen des rechten Kindknotens
      */
-    public void setChildRight(Knot childRight) {
+    public void setChildRight(Knot_Tree childRight) {
         this.childRight = childRight;
     }
 
@@ -84,7 +84,7 @@ public class Knot <T extends Comparable<T>> {
      * Setzen des Vater-/Mutterknotens
      * @param parent Setzen des Vater-Mutterknotens
      */
-    public void setParent(Knot parent) {
+    public void setParent(Knot_Tree parent) {
         this.parent = parent;
     }
 }

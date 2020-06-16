@@ -28,69 +28,86 @@ public class Adjazenzmatrix implements Graph {
     private int anzahlKnoten;
     private int anzahlKanten;
     private final int ARRAYSIZE;
-    private Knoten knotenArray [];
+    private Knoten_Graph knotenGraphArray[];
     private Kante [][] adjazenzmatrix;
 
     /**
      * Kontruktor der Klasse Adjazenzmatrix
-     * @param startKnoten Erster Knoten
+     * @param startKnotenGraph Erster Knoten
      */
-    public Adjazenzmatrix(Knoten startKnoten) {
-        pruefeNull(startKnoten);
+    public Adjazenzmatrix(Knoten_Graph startKnotenGraph) {
+        pruefeNull(startKnotenGraph);
         anzahlKnoten = 1;
         anzahlKanten = 0;
         ARRAYSIZE = 4;
-        knotenArray = new Knoten [ARRAYSIZE];
+        knotenGraphArray = new Knoten_Graph[ARRAYSIZE];
         adjazenzmatrix = new Kante [ARRAYSIZE][ARRAYSIZE];
-        knotenArray[0] = startKnoten;
+        knotenGraphArray[0] = startKnotenGraph;
+    }
+
+    /**
+     * Kontruktor der Klasse Adjazenzmatrix
+     * @param mengeKnoten anzahl der Knoten die erstellt werden sollen
+     */
+    public Adjazenzmatrix(int mengeKnoten) {
+        anzahlKnoten = 0;
+        anzahlKanten = 0;
+        ARRAYSIZE = 4;
+        knotenGraphArray = new Knoten_Graph[ARRAYSIZE];
+        adjazenzmatrix = new Kante [ARRAYSIZE][ARRAYSIZE];
+        /*
+        befuelleGraphZufaellig(anzahlKnoten);
+        resetVisited();
+        graphMalen();
+        */
     }
 
     /**
      * Fuegt einen weiteren Knoten ein.
-     * @param knoten Weiterer Knoten der eingefuegt wird
+     * @param knotenGraph Weiterer Knoten der eingefuegt wird
      */
     @Override
-    public void knotenEinfuegen(Knoten knoten) {
-        pruefeNull(knoten);
-        pruefeKnotenVorhanden(knoten);
+    public void knotenEinfuegen(Knoten_Graph knotenGraph) {
+        pruefeNull(knotenGraph);
+        pruefeKnotenVorhanden(knotenGraph);
         arrayErweitern();
-        knotenArray[anzahlKnoten] = knoten;
+        knotenGraphArray[anzahlKnoten] = knotenGraph;
         anzahlKnoten++;
     }
 
     /**
      * Einfuegen einer Kante zwischen zwei Knoten
-     * @param startKnoten Startknoten von dem die Kante ausgehend ist
-     * @param zielKnoten Zielknoten zu dem die Kante geht
+     * @param startKnotenGraph Startknoten von dem die Kante ausgehend ist
+     * @param zielKnotenGraph Zielknoten zu dem die Kante geht
      * @param gewichtung Gewichtung der Kante
      */
     @Override
-    public void kanteEinfuegen(Knoten startKnoten, Knoten zielKnoten, int gewichtung) {
-        pruefeNull(startKnoten);
-        pruefeNull(zielKnoten);
+    public void kanteEinfuegen(Knoten_Graph startKnotenGraph, Knoten_Graph zielKnotenGraph, int gewichtung) {
+        pruefeNull(startKnotenGraph);
+        pruefeNull(zielKnotenGraph);
         pruefeGewichtung(gewichtung);
-        if (adjazenzmatrix [startKnoten.getPosition()][zielKnoten.getPosition()] == null) {
-            adjazenzmatrix [startKnoten.getPosition()][zielKnoten.getPosition()] = new Kante(startKnoten, zielKnoten, gewichtung);
-            adjazenzmatrix [zielKnoten.getPosition()][startKnoten.getPosition()] = new Kante(zielKnoten, startKnoten, gewichtung);
+        if (adjazenzmatrix [startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()] == null) {
+            adjazenzmatrix [startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()] = new Kante(startKnotenGraph, zielKnotenGraph, gewichtung);
+            adjazenzmatrix [zielKnotenGraph.getPosition()][startKnotenGraph.getPosition()] = new Kante(zielKnotenGraph, startKnotenGraph, gewichtung);
             anzahlKanten += 2;
         }
     }
 
     /**
      * Durchlaufen jedes Knoten in dem Graphen. Jeder Knoten sollte dabei einmal durchlaufen werden.
-     * @param startKnoten Knoten von dem ausgegangen wird
+     * @param startKnotenGraph Knoten von dem ausgegangen wird
      */
-    public void traversieren(Knoten startKnoten) {
-        pruefeNull(startKnoten);
-        if (!startKnoten.getBereitsBesucht()) {
-            startKnoten.setBereitsBesucht(true);
+    public void traversieren(Knoten_Graph startKnotenGraph) {
+        pruefeNull(startKnotenGraph);
+        if (!startKnotenGraph.getBereitsBesucht()) {
+            startKnotenGraph.setBereitsBesucht(true);
             for (int i = 0; i < anzahlKnoten; i++){
-                if (adjazenzmatrix[startKnoten.getPosition()][i] != null) {
+                if (adjazenzmatrix[startKnotenGraph.getPosition()][i] != null) {
 
-                    traversieren(adjazenzmatrix[startKnoten.getPosition()][i].getZiel());
+                    traversieren(adjazenzmatrix[startKnotenGraph.getPosition()][i].getZiel());
                 }
             }
-            System.out.println(startKnoten.getPosition());
+            System.out.println(startKnotenGraph.getPosition());
         }
     }
 
@@ -113,11 +130,11 @@ public class Adjazenzmatrix implements Graph {
     }
 
     @Override
-    public int gewichtAuslesen(Knoten startKnoten, Knoten zielKnoten) {
-        pruefeNull(startKnoten);
-        pruefeNull(zielKnoten);
-        pruefeKanteVorhanden(startKnoten, zielKnoten);
-        return adjazenzmatrix [startKnoten.getPosition()][zielKnoten.getPosition()].getGewicht();
+    public int gewichtAuslesen(Knoten_Graph startKnotenGraph, Knoten_Graph zielKnotenGraph) {
+        pruefeNull(startKnotenGraph);
+        pruefeNull(zielKnotenGraph);
+        pruefeKanteVorhanden(startKnotenGraph, zielKnotenGraph);
+        return adjazenzmatrix [startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()].getGewicht();
     }
 
     /**
@@ -125,8 +142,8 @@ public class Adjazenzmatrix implements Graph {
      * @return Startknoten
      */
     @Override
-    public Knoten gibStartKnoten() {
-        return knotenArray[0];
+    public Knoten_Graph gibStartKnoten() {
+        return knotenGraphArray[0];
     }
 
     /**
@@ -134,8 +151,8 @@ public class Adjazenzmatrix implements Graph {
      * @return Endknoten
      */
     @Override
-    public Knoten gibEndKnoten() {
-        return knotenArray[anzahlKnoten - 1];
+    public Knoten_Graph gibEndKnoten() {
+        return knotenGraphArray[anzahlKnoten - 1];
     }
 
     /**
@@ -146,14 +163,14 @@ public class Adjazenzmatrix implements Graph {
         System.out.print("\t");
         for(int y = 0; y < anzahlKnoten; y++) //druckt die erste Zeile (alle Knoten in deren Reihenfolge)
         {
-            System.out.print(knotenArray[y].getPosition());
+            System.out.print(knotenGraphArray[y].getPosition());
             System.out.print(" | ");
         }
         for(int i = 0; i < anzahlKnoten; i++) //druckt die übrigen Zeilen untereinander
         {
             System.out.println(" ");
 
-            System.out.print(knotenArray[i].getPosition());
+            System.out.print(knotenGraphArray[i].getPosition());
             System.out.print(" |");
             for(int z = 0; z < anzahlKnoten; z++) //druckt die entsprechende Teile die die Gewichtungen von Knoten[i] anzeigt
             {
@@ -178,24 +195,46 @@ public class Adjazenzmatrix implements Graph {
     }
 
     public ArrayList<Kante> gibAlleKanten(){
-        return null; //muss noch implementiert werden :)
+        ArrayList<Kante> result = new ArrayList<Kante>();
+        for (int i = 0; i < anzahlKnoten; i++){
+            for (int y = 0; y < anzahlKnoten; y++) {
+                if (adjazenzmatrix[i][y] != null) {
+                    result.add(adjazenzmatrix[i][y]);
+                }
+            }
+        }
+        return result;
     }
 
-    public ArrayList<Knoten> gibAlleKnoten(){
-        return null; //muss noch implementiert werden :)
+    public ArrayList<Knoten_Graph> gibAlleKnoten(){
+        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
+        for (int i = 0; i < anzahlKnoten - 1; i++) {
+            result.add(knotenGraphArray[i]);
+        }
+        return result;
     }
+
+    protected Knoten_Graph [] getKnotenGraphArray () {
+        return knotenGraphArray;
+    }
+
+    protected Kante [][] getAdjazenzmatrix () {
+        return adjazenzmatrix;
+    }
+
+
 
     /**
      * Erweitert das Array individuell, sollten es zu voll sein.
      */
     private void arrayErweitern(){
-        if (knotenArray.length / 2 <= anzahlKnoten){
-            Knoten neuesKnotenArray[] = new Knoten[knotenArray.length * 2];
+        if (knotenGraphArray.length / 2 <= anzahlKnoten){
+            Knoten_Graph neuesKnotenGraphArray[] = new Knoten_Graph[knotenGraphArray.length * 2];
             for (int i = 0; i <= anzahlKnoten; i++){
-                neuesKnotenArray[i] = knotenArray [i];
+                neuesKnotenGraphArray[i] = knotenGraphArray[i];
             }
-            knotenArray = neuesKnotenArray;
-            Kante neueAdjazenzmatrix[][] = new Kante [knotenArray.length * 2][knotenArray.length * 2];
+            knotenGraphArray = neuesKnotenGraphArray;
+            Kante neueAdjazenzmatrix[][] = new Kante [knotenGraphArray.length * 2][knotenGraphArray.length * 2];
             for (int i = 0; i <= anzahlKnoten; i++){
                 for (int j = 0; j <= anzahlKnoten; j++){
                     neueAdjazenzmatrix[i][j] = adjazenzmatrix [i][j];
@@ -217,21 +256,21 @@ public class Adjazenzmatrix implements Graph {
 
     /**
      * Prueft ob der aktuelle Knoten nicht null ist.
-     * @param knoten ueberpruefenden Knoten
+     * @param knotenGraph ueberpruefenden Knoten
      */
-    private void pruefeNull (Knoten knoten) {
-        if (knoten == null) {
+    private void pruefeNull (Knoten_Graph knotenGraph) {
+        if (knotenGraph == null) {
             throw new IllegalArgumentException("Es muss ein Knoten uebergeben werden!");
         }
     }
 
     /**
      * Prueft ob der Knoten vorhanden ist.
-     * @param knoten knoten der ueberprueft wird.
+     * @param knotenGraph knoten der ueberprueft wird.
      */
-    private void pruefeKnotenVorhanden (Knoten knoten) {
-        for (int i = 0; i <= anzahlKnoten; i++) {
-            if (knoten.equals(knotenArray[i])) {
+    private void pruefeKnotenVorhanden (Knoten_Graph knotenGraph) {
+        for (int i = 0; i <= anzahlKnoten - 1; i++) {
+            if (knotenGraph.getPosition() ==  knotenGraphArray[i].getPosition()) {
                 throw new IllegalArgumentException("Der Knoten wurde bereits eingefuegt und doppelte Knoten sind verboten!");
             }
         }
@@ -239,11 +278,11 @@ public class Adjazenzmatrix implements Graph {
 
     /**
      * Prüft ob zwischen zwei Knoten eine Kante vorhanden ist.
-     * @param startKnoten Startknoten
-     * @param zielKnoten Zielknoten
+     * @param startKnotenGraph Startknoten
+     * @param zielKnotenGraph Zielknoten
      */
-    private void pruefeKanteVorhanden (Knoten startKnoten, Knoten zielKnoten) {
-        if (adjazenzmatrix[startKnoten.getPosition()][zielKnoten.getPosition()] == null) {
+    private void pruefeKanteVorhanden (Knoten_Graph startKnotenGraph, Knoten_Graph zielKnotenGraph) {
+        if (adjazenzmatrix[startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()] == null) {
             throw new IllegalArgumentException("Es ist keine Kante zwischen den beiden Knoten vorhanden!");
         }
     }
