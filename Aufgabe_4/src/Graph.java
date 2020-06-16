@@ -66,4 +66,6 @@ public interface Graph {
      * @return
      */
     public ArrayList<Kante> gibAlleKanten();
+
+    public ArrayList<Knoten> gibAlleKnoten();
 }

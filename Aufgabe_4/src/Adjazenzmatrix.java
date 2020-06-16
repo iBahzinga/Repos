@@ -181,6 +181,10 @@ public class Adjazenzmatrix implements Graph {
         return null; //muss noch implementiert werden :)
     }
 
+    public ArrayList<Knoten> gibAlleKnoten(){
+        return null; //muss noch implementiert werden :)
+    }
+
     /**
      * Erweitert das Array individuell, sollten es zu voll sein.
      */
