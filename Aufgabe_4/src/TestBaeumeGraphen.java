@@ -141,6 +141,7 @@ public class TestBaeumeGraphen <T> {
     /**
      * Testet das einfuegen von Knoten in die Matrix
      */
+    /*
     @org.junit.jupiter.api.Test
     public void testeEinfuegenMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -148,9 +149,12 @@ public class TestBaeumeGraphen <T> {
         Assertions.assertEquals(matrix.getAnzahlKnoten(), 20);
     }
 
+     */
+
     /**
      * Teste einfuegen der Kanten in die Matrix
      */
+    /*
     @org.junit.jupiter.api.Test
     public void testeKantenMatrix () {
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -169,9 +173,12 @@ public class TestBaeumeGraphen <T> {
         Assertions.assertEquals( matrix.traversieren(9), 5);
     }
 
+     */
+
     /**
      * printet die Matrix auf die Console für optische Pruefung
      */
+    /*
     @org.junit.jupiter.api.Test
     public void printMatrix(){
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -182,9 +189,12 @@ public class TestBaeumeGraphen <T> {
         matrix.allesAusgeben();
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der Knoten nicht erreichbar ist  oder nicht existiert.
      */
+    /*
     @org.junit.jupiter.api.Test
     public void negativtestMatrixKnotenerreichbarkeit(){
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -202,9 +212,12 @@ public class TestBaeumeGraphen <T> {
         assertTrue(excYesNo);
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der erste Knoten nicht erreichbar ist oder nicht existiert.
      */
+    /*
     @Test
     public void negativtestMatrixKantenerreichbarkeit1(){
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -222,9 +235,12 @@ public class TestBaeumeGraphen <T> {
         assertTrue(excYesNo);
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der zweite Knoten nicht erreichbar ist oder nicht existiert.
      */
+    /*
     @Test
     public void negativtestMatrixKantenerreichbarkeit2(){
         Adjazenzmatrix matrix = new Adjazenzmatrix();
@@ -242,21 +258,29 @@ public class TestBaeumeGraphen <T> {
         assertTrue(excYesNo);
     }
 
+     */
+
     /** ------------------------------------------------------ Adjazenzliste --------------------------------------------------- */
 
 
     /**
      * Testet das einfuegen von Knoten in die Liste
      */
+    /*
     @org.junit.jupiter.api.Test
     public void testEinfuegenListe(){
          Adjazenzliste liste = new Adjazenzliste();
          knotenEinfuegenListe(liste);
          Assertions.assertEquals(liste.getAnzahlKnoten(), 20);
     }
+
+     */
+
+
     /**
      * Testet das einfuegen von Kanten in die Liste
      */
+    /*
     @org.junit.jupiter.api.Test
     public void testKantenListe() {
           Adjazenzliste liste = new Adjazenzliste();
@@ -274,10 +298,13 @@ public class TestBaeumeGraphen <T> {
           Assertions.assertEquals( liste.traversieren(9), 5);
     }
 
+     */
+
 
     /**
      * Printet alles aus zur optischen Pruefung
      */
+    /*
     @org.junit.jupiter.api.Test
     public void printListe() {
         Adjazenzliste liste = new Adjazenzliste();
@@ -288,9 +315,12 @@ public class TestBaeumeGraphen <T> {
         liste.allesAusgeben();
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der Knoten nicht erreichbar ist  oder nicht existiert.
      */
+    /*
     @org.junit.jupiter.api.Test
     public void negativtestListeKnotenerreichbarkeit(){
         Adjazenzliste liste = new Adjazenzliste();
@@ -308,9 +338,12 @@ public class TestBaeumeGraphen <T> {
         assertTrue(excYesNo);
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der erste Knoten nicht erreichbar ist  oder nicht existiert.
      */
+    /*
     @org.junit.jupiter.api.Test
     public void negativtestListKantenerreichbarkeit1(){
         Adjazenzliste liste = new Adjazenzliste();
@@ -328,9 +361,12 @@ public class TestBaeumeGraphen <T> {
         assertTrue(excYesNo);
     }
 
+     */
+
     /**
      * Testet ob eine Exception geworfen wird wenn der zweite Knoten nicht erreichbar ist  oder nicht existiert.
      */
+    /*
     @org.junit.jupiter.api.Test
     public void negativtestListKantenerreichbarkeit2(){
         Adjazenzliste liste = new Adjazenzliste();
@@ -347,6 +383,8 @@ public class TestBaeumeGraphen <T> {
         }
         assertTrue(excYesNo);
     }
+
+     */
 
 
 
@@ -469,6 +507,7 @@ public class TestBaeumeGraphen <T> {
      * @param adjazenzmatrix Adjazenzmatrix in die die Knoten eingefuegt werden sollen
      * @return Adjazenxmatrix mit eingefuegten Knoten
      */
+    /*
     private Adjazenzmatrix knotenEinfuegenMatrix (Adjazenzmatrix adjazenzmatrix) {
         adjazenzmatrix.knotenEinfuegen(5);
         adjazenzmatrix.knotenEinfuegen(1);
@@ -493,12 +532,15 @@ public class TestBaeumeGraphen <T> {
         return adjazenzmatrix;
     }
 
+     */
+
 
     /**
      * Fuegt Kanten ein in die Adjazenzmatrix
      * @param adjazenzmatrix Adjazenzmatrix in die die Kanten eingefuegt werden sollen
      * @return
      */
+    /*
     private Adjazenzmatrix kanteEinfuegenMatrix (Adjazenzmatrix adjazenzmatrix) {
         adjazenzmatrix.kanteEinfuegen(0,2);
         adjazenzmatrix.kanteEinfuegen(0,3);
@@ -515,11 +557,14 @@ public class TestBaeumeGraphen <T> {
         return adjazenzmatrix;
     }
 
+     */
+
     /**
      * Einfuegen von Knoten in der Adjyzenzliste
      * @param adjazenzliste adjazenzliste in die die Knoten eingefuegt werden sollen
      * @return die Adjazenzliste in der die Knoten eingefuegt wurden.
      */
+    /*
     private Adjazenzliste knotenEinfuegenListe (Adjazenzliste adjazenzliste) {
         adjazenzliste.knotenEinfuegen(5);
         adjazenzliste.knotenEinfuegen(1);
@@ -543,12 +588,13 @@ public class TestBaeumeGraphen <T> {
         adjazenzliste.knotenEinfuegen(40);
         return adjazenzliste;
     }
-
+*/
     /**
      * Fuegt Kanten zwischen den Knoten ein in der Adjazenzliste.
      * @param adjazenzliste Adjazenzliste in der die Kanten eingefuegt wurden.
      * @return Adjazenzliste in der die Kanten eingefuegt wurden
      */
+    /*
     private Adjazenzliste kanteEinfuegenListe(Adjazenzliste adjazenzliste) {
         adjazenzliste.kanteEinfuegen(0,2);
         adjazenzliste.kanteEinfuegen(0,3);
@@ -564,5 +610,6 @@ public class TestBaeumeGraphen <T> {
         adjazenzliste.kanteEinfuegen(2,9);
         return adjazenzliste;
     }
+     */
 
 }
