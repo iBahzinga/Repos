@@ -81,15 +81,15 @@ public class Adjazenzmatrix implements Graph {
      */
     public void traversieren(Knoten startKnoten) {
         pruefeNull(startKnoten);
-        if (startKnoten.getBereitsBesucht()) {
-            return;
-        }
-        startKnoten.setBereitsBesucht(true);
-        for (int i = 0; i < anzahlKnoten; i++){
-            if (adjazenzmatrix[startKnoten.getPosition()][i] != null) {
-                System.out.println(startKnoten.getPosition());
-                traversieren(adjazenzmatrix[startKnoten.getPosition()][i].getZiel());
+        if (!startKnoten.getBereitsBesucht()) {
+            startKnoten.setBereitsBesucht(true);
+            for (int i = 0; i < anzahlKnoten; i++){
+                if (adjazenzmatrix[startKnoten.getPosition()][i] != null) {
+
+                    traversieren(adjazenzmatrix[startKnoten.getPosition()][i].getZiel());
+                }
             }
+            System.out.println(startKnoten.getPosition());
         }
     }
 

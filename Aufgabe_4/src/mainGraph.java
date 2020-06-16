@@ -28,6 +28,7 @@ public class mainGraph {
         m.kanteEinfuegen(newKnot, newKnot2, 4);
         m.kanteEinfuegen(newKnot3, newKnot7, 5);
         m.kanteEinfuegen(newKnot5, newKnot1, 6);
+        m.kanteEinfuegen(newKnot1, newKnot7, 6);
         //m.allesAusgeben();
         m.traversieren(newKnot);
 
