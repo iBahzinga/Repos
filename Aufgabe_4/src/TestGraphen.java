@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestGraphen {
@@ -222,7 +221,7 @@ public class TestGraphen {
     }
 
     /**
-     * Testtet und printet das Auslesen der Liste
+     * Testet und printet das Auslesen der Liste
      */
     @org.junit.jupiter.api.Test
     public void testeListeAuslesen() {
@@ -284,6 +283,9 @@ public class TestGraphen {
         }
         assertEquals(true, exc);
     }
+
+    /**------------------------------------------- Hilfsmethoden ------------------------------------------------*/
+
 
     /**
      * Erstellung einer Adjazenzliste

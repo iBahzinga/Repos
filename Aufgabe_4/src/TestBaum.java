@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 09.06.2020
  *
  */
-public class TestBaeumeGraphen <T> {
+public class TestBaum<T> {
     private final int ROOTVALUE = 100;
     private final int TESTWERT1 = 50;
     private final int TESTWERT2 = 200;

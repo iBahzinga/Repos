@@ -3,6 +3,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
+
+/**
+ * Klasse des Dijkstra Algorithmus.
+ * Es wird der kürzeste weg zum Besuchen aller knoten bestimmt
+ *
+ * @author Daniel Dichte
+ * @author Santa Rudevica
+ * @author Pascal Kießler
+ *
+ * @version 1.1
+ * @version 18.06.2020
+ *
+ */
 public class DijkstraAlgorithmus {
     private final List<Kante> _kanten;
     private Set<Knoten_Graph> _entschiedenKnotenGraph;
@@ -12,12 +25,20 @@ public class DijkstraAlgorithmus {
     private Map<Knoten_Graph, Integer> _entfernung;
     private int _anzahlKnoten;
 
+    /**
+     * Konstruktor der Klasse DijkstraAlgorithmus
+     * @param graph Graph mit Knoten
+     */
     public DijkstraAlgorithmus(Graph graph){
         _kanten = new ArrayList<>(graph.gibAlleKanten());
         _anzahlKnoten = graph.gibAnzahlKnoten();
         dijkstraAusfuehren(graph.gibStartKnoten());
     }
 
+    /**
+     * Fuehrt den Dijkstra Algorithmus aus.
+     * @param start Quellknoten des Graphen.
+     */
     public void dijkstraAusfuehren(Knoten_Graph start) {
         _entschiedenKnotenGraph = new HashSet<Knoten_Graph>();
         _entschiedenKanten = new HashSet<Kante>();
@@ -30,8 +51,7 @@ public class DijkstraAlgorithmus {
         int count = 0;
 
         while (_unentschieden.size() > 0) {
-            //Findet den vom aktuellen Knoten kürzesten Weg zum nächsten Knoten.
-            Knoten_Graph knotenGraph = minimum(_unentschieden);
+            Knoten_Graph knotenGraph = minimum(_unentschieden); //Sucht kuerzesten weg zum naechsten Knoten.
             _entschiedenKnotenGraph.add(knotenGraph);
 
             //Zur Ausgabe der Reihenfolge auf der Konsole.
@@ -52,6 +72,11 @@ public class DijkstraAlgorithmus {
         }
     }
 
+    /**
+     * Es wird die Kante mit dem geringsten Gewicht gesucht und der Knoten der an der Kante anliegt zurueckgeliefert.
+     * @param unentschieden unentschiedene Knoten
+     * @return Der Knoten, in dem die Kante die kleinste gewichtung hatte
+     */
     private Knoten_Graph minimum(Set<Knoten_Graph> unentschieden){
         Knoten_Graph min = null;
         for(Knoten_Graph knotenGraph : unentschieden){
@@ -68,6 +93,10 @@ public class DijkstraAlgorithmus {
         return min;
     }
 
+    /**
+     * Es wird die kleinste Distanz gefunden
+     * @param knotenGraph Knoten im Graphen
+     */
     private void findeMinimaleDistanz(Knoten_Graph knotenGraph)
     {
         List<Knoten_Graph> benachbarteKnotenGraph = gibNachbarn(knotenGraph);
@@ -90,6 +119,12 @@ public class DijkstraAlgorithmus {
         }
     }
 
+    /**
+     * Liefert die Gewichtung der Kante zurueck
+     * @param quelle Quellknoten
+     * @param ziel Zielknoten
+     * @return Gewichtung der Kante
+     */
     private int gebeDistanz(Knoten_Graph quelle, Knoten_Graph ziel)
     {
         int distanz = 0;
@@ -121,7 +156,11 @@ public class DijkstraAlgorithmus {
         return nachbarn;
     }
 
-
+    /**
+     * Liefert die minimalste Strecke zurueck
+     * @param ziel Zielknoten
+     * @return kleinste strecke
+     */
     private int gibMinimaleStrecke(Knoten_Graph ziel)
     {
         Integer d = _entfernung.get(ziel);
@@ -135,6 +174,11 @@ public class DijkstraAlgorithmus {
         }
     }
 
+    /**
+     * True wenn dies der gesuchte Endknoten ist
+     * @param knotenGraph Knoten im Graphen
+     * @return True, wenn dies der gesuchte Endknoten ist
+     */
     private boolean istEntschieden(Knoten_Graph knotenGraph)
     {
         return _entschiedenKnotenGraph.contains(knotenGraph);
