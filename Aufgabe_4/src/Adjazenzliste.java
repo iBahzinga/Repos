@@ -116,15 +116,19 @@ public class Adjazenzliste implements Graph{
     public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel) {
         pruefeNull(quelle);
         pruefeNull(ziel);
-
+        int ergebnis = -1;
         for (Kante k : _adjListe.get(quelle))
         {
             if (k.getZiel().equals(ziel))
             {
-                return k.getGewicht();
+                return ergebnis;
             }
         }
-        return 0; //falls nicht verbunden
+        if(ergebnis == -1)
+        {
+            throw new IllegalArgumentException("Es existiert keine Kante!");
+        }
+        return ergebnis; //falls nicht verbunden
     }
 
     @Override
@@ -218,10 +222,8 @@ public class Adjazenzliste implements Graph{
      */
     private void knotenBereitsEingefuegt(Knoten_Graph knotenGraph)
     {
-        for (Knoten_Graph k : _knotenGraph)
-        {
-            if (knotenGraph.equals(k))
-            {
+        for(Knoten_Graph k : _knotenGraph) {
+            if (k.getPosition() == knotenGraph.getPosition()){
                 throw new IllegalArgumentException("Knoten ist bereits eingefügt!"); //Duplikate nicht erlaubt
             }
         }
@@ -256,6 +258,11 @@ public class Adjazenzliste implements Graph{
             }
         }
         return kanten;
+    }
+
+
+    protected ArrayList<Knoten_Graph> getKnotenGraphArray () {
+        return _knotenGraph;
     }
 
 }

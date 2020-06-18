@@ -223,7 +223,6 @@ public class Adjazenzmatrix implements Graph {
     }
 
 
-
     /**
      * Erweitert das Array individuell, sollten es zu voll sein.
      */
@@ -286,4 +285,6 @@ public class Adjazenzmatrix implements Graph {
             throw new IllegalArgumentException("Es ist keine Kante zwischen den beiden Knoten vorhanden!");
         }
     }
+
+
 }

@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class DijkstraAlgorithmus {
@@ -12,9 +15,10 @@ public class DijkstraAlgorithmus {
     public DijkstraAlgorithmus(Graph graph){
         _kanten = new ArrayList<>(graph.gibAlleKanten());
         _anzahlKnoten = graph.gibAnzahlKnoten();
+        dijkstraAusfuehren(graph.gibStartKnoten());
     }
 
-    public void DijkstraAusfuehren(Knoten_Graph start) {
+    public void dijkstraAusfuehren(Knoten_Graph start) {
         _entschiedenKnotenGraph = new HashSet<Knoten_Graph>();
         _entschiedenKanten = new HashSet<Kante>();
         _unentschieden = new HashSet<Knoten_Graph>();
