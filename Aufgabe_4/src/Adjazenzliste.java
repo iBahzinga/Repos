@@ -23,6 +23,11 @@ public class Adjazenzliste implements Graph{
         anzahlKanten = 0;
     }
 
+    /**
+     * Einfuegen eines neuen Knotens in den Graphen
+     * @param knotenGraph Knoten der Eingefuegt wird
+     * @throws IllegalArgumentException sollte der Knoten null sein
+     */
     @Override
     public void knotenEinfuegen(Knoten_Graph knotenGraph) {
         pruefeNull(knotenGraph);
@@ -33,6 +38,16 @@ public class Adjazenzliste implements Graph{
         ++anzahlKnoten;
     }
 
+    /**
+     * Einfuegen einer neuen Kante zwischen zwei existierenden Knoten in dem Graphen
+     * @param start Quellknoten
+     * @param ziel Zielknoten
+     * @param gewichtung Gewichtung der Kante
+     *
+     * @throws IllegalArgumentException     Wenn der Quellknoten null sein sollte
+     *                                      Wenn der Zielknoten null sein sollte
+     *                                      Wenn die Gewichtung kleiner als Null sein sollte
+     */
     @Override
     public void kanteEinfuegen(Knoten_Graph start, Knoten_Graph ziel, int gewichtung) {
         pruefeNull(start);
@@ -45,6 +60,148 @@ public class Adjazenzliste implements Graph{
         start.setKnotenVerbunden(true);
         ziel.setKnotenVerbunden(true);
         anzahlKanten = anzahlKanten + 2;
+    }
+
+    /**
+     * Durchschreiten aller Knoten in dem gesamten Graphen.
+     * Tote Knoten (Knoten ohne Kanten) werden dabei nicht traversiert, da dies nicht moeglich ist
+     * @param startKnotenGraph Quellknoten von dem wir traversieren
+     */
+    @Override
+    public void traversieren(Knoten_Graph startKnotenGraph) {
+        pruefeNull(startKnotenGraph);
+        if (!startKnotenGraph.getBereitsBesucht()) {
+            startKnotenGraph.setBereitsBesucht(true);
+            for (Kante k : _adjListe.get(startKnotenGraph))
+            {
+                traversieren(k.getZiel());
+            }
+            System.out.println(startKnotenGraph.getPosition());
+        }
+    }
+
+    /**
+     * Liefert die Anzahl der Kanten in dem Graphen
+     * @return Anzahl der Kanten
+     */
+    @Override
+    public int gibAnzahlKanten() {
+        return anzahlKanten;
+    }
+
+    /**
+     * Liefert die Anzahl der Knoten in dem Graphen
+     * @return Anzahl der Knoten
+     */
+    @Override
+    public int gibAnzahlKnoten() {
+        return anzahlKnoten;
+    }
+
+    /**
+     * Auslesen der Gewichtung einer kante, die zwischen zwei Knoten liegt
+     * @param quelle Quellknoten
+     * @param ziel Zielknoten
+     * @return Gewichtung der Kante zwischen den Knoten
+     */
+    @Override
+    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel) {
+        pruefeNull(quelle);
+        pruefeNull(ziel);
+        int ergebnis = -1;
+        for (Kante k : _adjListe.get(quelle))
+        {
+            if (k.getZiel().equals(ziel))
+            {
+                return ergebnis;
+            }
+        }
+        if(ergebnis == -1)
+        {
+            throw new IllegalArgumentException("Es existiert keine Kante!");
+        }
+        return ergebnis; //falls nicht verbunden
+    }
+
+    /**
+     * Liefert den Startknoten in dem Graphen
+     * @return Startknoten
+     */
+    @Override
+    public Knoten_Graph gibStartKnoten() {
+        return _knotenGraph.get(0);
+    }
+
+    /**
+     * Liefert den Endknoten in dem Graphen
+     * @return Endknoten
+     */
+    @Override
+    public Knoten_Graph gibEndKnoten() {
+        return _knotenGraph.get(anzahlKnoten -1);
+    }
+
+    /**
+     * Ausgabe der Adiazenzmatrix/-liste auf der Konsole
+     */
+    @Override
+    public void allesAusgeben() {
+        ArrayList<Kante> kanten = new ArrayList<Kante>();
+        for(Knoten_Graph k : _knotenGraph)
+        {
+            System.out.println("Knoten -> " + k.getPosition());
+            if (k.getVerbunden())
+            {
+                for(Kante kante : _adjListe.get(k))
+                {
+                    System.out.println("\tKanten -> " + kante.getGewicht());
+                }
+            }
+        }
+    }
+
+    /**
+     * Liefert alle Kanten in einer ArrayList zurueck
+     * @return Alle Kanten in einer ArrayList
+     */
+    @Override
+    public ArrayList<Kante> gibAlleKanten()
+    {
+        ArrayList<Kante> kanten = new ArrayList<Kante>();
+        for(Knoten_Graph k : _knotenGraph)
+        {
+            if (k.getVerbunden())
+            {
+                for(Kante kante : _adjListe.get(k))
+                {
+                    kanten.add(kante);
+                }
+            }
+        }
+        return kanten;
+    }
+
+    /**
+     * Liefert alle Knoten in einer ArrayList
+     * @return Alle Knoten in einer ArrayList
+     */
+    @Override
+    public ArrayList<Knoten_Graph> gibAlleKnoten()
+    {
+        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
+        for(Knoten_Graph k : _knotenGraph)
+        {
+            result.add(k);
+        }
+        return result;
+    }
+
+    /**
+     * Liefert das gesamte Knotengraph Array wieder zurueck
+     * @return ArrayList der Knoten
+     */
+    protected ArrayList<Knoten_Graph> getKnotenGraphArray () {
+        return _knotenGraph;
     }
 
     /**
@@ -97,84 +254,6 @@ public class Adjazenzliste implements Graph{
         kantenListe.add(neueKante);
     }
 
-    @Override
-    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel) {
-        pruefeNull(quelle);
-        pruefeNull(ziel);
-        int ergebnis = -1;
-        for (Kante k : _adjListe.get(quelle))
-        {
-            if (k.getZiel().equals(ziel))
-            {
-                return ergebnis;
-            }
-        }
-        if(ergebnis == -1)
-        {
-            throw new IllegalArgumentException("Es existiert keine Kante!");
-        }
-        return ergebnis; //falls nicht verbunden
-    }
-
-    @Override
-    public void traversieren(Knoten_Graph startKnotenGraph) {
-        pruefeNull(startKnotenGraph);
-        if (!startKnotenGraph.getBereitsBesucht()) {
-            startKnotenGraph.setBereitsBesucht(true);
-            for (Kante k : _adjListe.get(startKnotenGraph))
-            {
-                traversieren(k.getZiel());
-            }
-            System.out.println(startKnotenGraph.getPosition());
-        }
-    }
-
-    @Override
-    public int gibAnzahlKanten() {
-        return anzahlKanten;
-    }
-
-    @Override
-    public int gibAnzahlKnoten() {
-        return anzahlKnoten;
-    }
-
-    @Override
-    public Knoten_Graph gibStartKnoten() {
-        return _knotenGraph.get(0);
-    }
-
-    @Override
-    public Knoten_Graph gibEndKnoten() {
-        return _knotenGraph.get(anzahlKnoten -1);
-    }
-
-    @Override
-    public void allesAusgeben() {
-        ArrayList<Kante> kanten = new ArrayList<Kante>();
-        for(Knoten_Graph k : _knotenGraph)
-        {
-            System.out.println("Knoten -> " + k.getPosition());
-            if (k.getVerbunden())
-            {
-                for(Kante kante : _adjListe.get(k))
-                {
-                    System.out.println("\tKanten -> " + kante.getGewicht());
-                }
-            }
-        }
-    }
-
-    public ArrayList<Knoten_Graph> gibAlleKnoten()
-    {
-        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
-        for(Knoten_Graph k : _knotenGraph)
-        {
-            result.add(k);
-        }
-        return result;
-    }
-
 
     /**
      * Prüft den übergebenen Knoten auf Null.
@@ -212,28 +291,6 @@ public class Adjazenzliste implements Graph{
                 throw new IllegalArgumentException("Knoten ist bereits eingefügt!"); //Duplikate nicht erlaubt
             }
         }
-    }
-
-    @Override
-    public ArrayList<Kante> gibAlleKanten()
-    {
-        ArrayList<Kante> kanten = new ArrayList<Kante>();
-        for(Knoten_Graph k : _knotenGraph)
-        {
-            if (k.getVerbunden())
-            {
-                for(Kante kante : _adjListe.get(k))
-                {
-                    kanten.add(kante);
-                }
-            }
-        }
-        return kanten;
-    }
-
-
-    protected ArrayList<Knoten_Graph> getKnotenGraphArray () {
-        return _knotenGraph;
     }
 
 }
