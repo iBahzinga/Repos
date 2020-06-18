@@ -5,7 +5,7 @@ public class DijkstraMain {
 
         //Komplexitätsuntersuchung
         //double k = 1; //k kann sein 1,2,3,4... Verändert exponentiell die Anzahl der Knoten
-        int komplex = 10000;
+        int komplex = 1000;
         /*Graph adjazenzGraph = new Adjazenzliste(new Knoten_Graph(0));
 
         for (int i = 1; i <= komplex; i++) {

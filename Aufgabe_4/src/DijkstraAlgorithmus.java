@@ -1,6 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 
@@ -53,22 +50,16 @@ public class DijkstraAlgorithmus {
         while (_unentschieden.size() > 0) {
             Knoten_Graph knotenGraph = minimum(_unentschieden); //Sucht kuerzesten weg zum naechsten Knoten.
             _entschiedenKnotenGraph.add(knotenGraph);
-
-            //Zur Ausgabe der Reihenfolge auf der Konsole.
-            if (count == 0) {
+            if (count == 0) {                                   // Reihenfolge auf der Konsole
                 System.out.println("---- Start ----");
             }
             System.out.println(knotenGraph.getPosition());
             if (_entschiedenKanten.size() == _anzahlKnoten) {
                 System.out.println("---- Ende ----");
             }
-
-            //Entferne den gerade bestimmten Knoten von den unentschiedenen Knoten.
-            _unentschieden.remove(knotenGraph);
-            //Findet die Minimale Distanz vom aktuellen Knoten zu seinen Nachbarknoten.
-            findeMinimaleDistanz(knotenGraph);
-            //Iterator für die Ausgabe auf der Konsole.
-            count++;
+            _unentschieden.remove(knotenGraph);     //Entferne den gerade bestimmten Knoten von den unentschiedenen Knoten.
+            findeMinimaleDistanz(knotenGraph);      //Findet die Minimale Distanz vom aktuellen Knoten zu seinen Nachbarknoten.
+            count++;                                //Iterator für die Ausgabe auf der Konsole.
         }
     }
 
@@ -102,19 +93,17 @@ public class DijkstraAlgorithmus {
         List<Knoten_Graph> benachbarteKnotenGraph = gibNachbarn(knotenGraph);
         for (Knoten_Graph ziel : benachbarteKnotenGraph)
         {
-            //Wenn der Weg vom Startknoten(erster Knoten) bis zum aktuell betrachteten Knoten größer ist,
-            //als die Summe von der Entfernung zum Elternknoten (vom Startknoten) + die Entfernung vom betrachteten Knoten
-            //bis zum Elternknoten, dann ist der Weg über diesen Knoten kürzer (ist ein Knoten noch nicht besucht worden, dann
-            //ist die Entfernung bis zu diesem unendlich(vom ersten Knoten aus gesehen))
+
+            /*
+             * Sollte der Weg des (Startknotens) ersten Knotens zum aktuellen groesser sein als die Summe von der Entfernung
+             * des Parents vom ersten knoten (Startknotens) und die Entfernung vom betrachteten Knoten bis zum Parent,
+             * dann ist der Weg ueber diesen Knoten kürzer
+             */
             if (gibKuerzesteEntfernung(ziel) > gibKuerzesteEntfernung(knotenGraph) + gebeDistanz(knotenGraph, ziel))
             {
-                //Vorgänger ist das Ziel <-> Nachfolger des Elternknoten ist der Knoten mit der geringsten Distanz
-                _vorgaenger.put(ziel, knotenGraph);
-                //Setzt die Entfernung neu zum aktuell betrachteten Knoten neu.
-                _entfernung.put(ziel, gibKuerzesteEntfernung(knotenGraph) + gebeDistanz(knotenGraph, ziel));
-                //nimmt den Knoten als ein Möglichkeit mit in das Set der unentschiedenen Knoten auf, denn ein Weg über einen anderen
-                //Knoten könnte immer noch kürzer sein.
-                _unentschieden.add(ziel);
+                _vorgaenger.put(ziel, knotenGraph); // Vorgaenger ist das Ziel, der Nachfolger des Parents ider der Knoten mit der kleinsten Distanz
+                _entfernung.put(ziel, gibKuerzesteEntfernung(knotenGraph) + gebeDistanz(knotenGraph, ziel)); //Setzt Entfernung zum aktuellen Knoten neu
+                _unentschieden.add(ziel); // Nimmt Knoten in Set der unterschiedlichen auf, da ein Weg ueber einen anderen Knoten kuerzer sein kann
             }
         }
     }
