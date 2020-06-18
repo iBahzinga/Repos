@@ -54,7 +54,7 @@ public class DijkstraAlgorithmus {
 
     private Knoten_Graph minimum(Set<Knoten_Graph> unentschieden){
         Knoten_Graph min = null;
-        for(Knoten_Graph knotenGraph : _unentschieden){
+        for(Knoten_Graph knotenGraph : unentschieden){
             if (min == null) {
                 min = knotenGraph;
             }

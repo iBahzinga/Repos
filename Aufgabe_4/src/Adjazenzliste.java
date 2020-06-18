@@ -8,21 +8,6 @@ public class Adjazenzliste implements Graph{
     private Map<Knoten_Graph, List<Kante>> _adjListe;
 
     /**
-     * Initialisiert einen Graphen mit einer Adjazenzliste mit einer vorgegebenen Anzahl an Knoten.
-     *
-     * @param anzahl Die Anzahl der Knoten.
-     */
-    public Adjazenzliste(int anzahl)
-    {
-        anzahlKnoten = 0;
-        anzahlKanten = 0;
-        _adjListe = new HashMap<Knoten_Graph, List<Kante>>();
-        _knotenGraph = new ArrayList<Knoten_Graph>();
-        //befuelleGraphZufaellig(anzahl);
-        resetVisited();
-        //graphMalen();
-    }
-    /**
      * Initialisiert einen Graphen mit einer Adjazenzliste.
      *
      * @param start Der StartKnoten für den Graphen.
@@ -225,20 +210,6 @@ public class Adjazenzliste implements Graph{
         for(Knoten_Graph k : _knotenGraph) {
             if (k.getPosition() == knotenGraph.getPosition()){
                 throw new IllegalArgumentException("Knoten ist bereits eingefügt!"); //Duplikate nicht erlaubt
-            }
-        }
-    }
-
-    /**
-     * Setzt alle besuchten Knoten wieder als unbesucht.
-     */
-    private void resetVisited()
-    {
-        for(Knoten_Graph k : _knotenGraph)
-        {
-            if(k != null)
-            {
-                k.setBereitsBesucht(false);
             }
         }
     }

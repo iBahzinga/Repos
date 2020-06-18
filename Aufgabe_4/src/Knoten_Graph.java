@@ -1,6 +1,5 @@
 public class Knoten_Graph {
 
-    private int distanz;
     private int position;      //position des Knotens
     private boolean bereitsBesucht;
     private boolean knotenVerbunden;
@@ -12,15 +11,6 @@ public class Knoten_Graph {
     public Knoten_Graph(int position) {
         this.position = position;
         knotenVerbunden = false;
-        distanz = (Integer.MAX_VALUE);
-    }
-
-    /**
-     * Setzt die neue Distanz in diesem Knoten
-     * @param distanz Distanz des Knotens
-     */
-    public void setDistanz (int distanz) {
-        this.distanz = distanz;
     }
 
     /**
@@ -55,13 +45,6 @@ public class Knoten_Graph {
         return bereitsBesucht;
     }
 
-    /**
-     * Liefert Distanz zurueck
-     * @return Distanz
-     */
-    public int getDistanz () {
-    return distanz;
-    }
 
     /**
      * Liefert zurueck ob der Knoten verbunden ist oder nicht.

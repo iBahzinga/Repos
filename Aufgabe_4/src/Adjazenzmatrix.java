@@ -46,23 +46,6 @@ public class Adjazenzmatrix implements Graph {
     }
 
     /**
-     * Kontruktor der Klasse Adjazenzmatrix
-     * @param mengeKnoten anzahl der Knoten die erstellt werden sollen
-     */
-    public Adjazenzmatrix(int mengeKnoten) {
-        anzahlKnoten = 0;
-        anzahlKanten = 0;
-        ARRAYSIZE = 4;
-        knotenGraphArray = new Knoten_Graph[ARRAYSIZE];
-        adjazenzmatrix = new Kante [ARRAYSIZE][ARRAYSIZE];
-        /*
-        befuelleGraphZufaellig(anzahlKnoten);
-        resetVisited();
-        graphMalen();
-        */
-    }
-
-    /**
      * Fuegt einen weiteren Knoten ein.
      * @param knotenGraph Weiterer Knoten der eingefuegt wird
      */
@@ -285,6 +268,4 @@ public class Adjazenzmatrix implements Graph {
             throw new IllegalArgumentException("Es ist keine Kante zwischen den beiden Knoten vorhanden!");
         }
     }
-
-
 }
