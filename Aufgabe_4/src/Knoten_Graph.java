@@ -1,7 +1,20 @@
+/**
+ * Objekt eines Knotens hat immer eine Position im Graphen.
+ * Diese Position wird bei dem erstellen des Knotens gesetzt und kann abgefragt werden
+ * Der Knoten weiss, ob dieser bereits von zum Beispiel des traversierens des Graphen schon einmal besucht wurde.
+ * Sollte eine Kante an einem Knoten anliegen, weiss der Knoten auch dies.
+ *
+ * @author Daniel Dichte
+ * @author Sante Rudevica
+ * @author Pascal Kießler
+ *
+ * @version 1.1
+ * @version 09.06.2020
+ *
+ */
 public class Knoten_Graph {
 
-    private int distanz;
-    private int position;      //position des Knotens
+    private int position;
     private boolean bereitsBesucht;
     private boolean knotenVerbunden;
 
@@ -12,15 +25,6 @@ public class Knoten_Graph {
     public Knoten_Graph(int position) {
         this.position = position;
         knotenVerbunden = false;
-        distanz = (Integer.MAX_VALUE);
-    }
-
-    /**
-     * Setzt die neue Distanz in diesem Knoten
-     * @param distanz Distanz des Knotens
-     */
-    public void setDistanz (int distanz) {
-        this.distanz = distanz;
     }
 
     /**
@@ -55,13 +59,6 @@ public class Knoten_Graph {
         return bereitsBesucht;
     }
 
-    /**
-     * Liefert Distanz zurueck
-     * @return Distanz
-     */
-    public int getDistanz () {
-    return distanz;
-    }
 
     /**
      * Liefert zurueck ob der Knoten verbunden ist oder nicht.

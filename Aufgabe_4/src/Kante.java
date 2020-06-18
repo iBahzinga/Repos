@@ -1,5 +1,8 @@
 /**
- * Eine Klasse, die Kanten eines Graphen modelliert.
+ * Eine Kante ist eine Verbindung zwischen zwei Knoten in einem Graphen.
+ * Die Kante hat immer eine Gewichtung.
+ * Die Kante muss immer zwischen zweiKnoten liegen.
+ * Start- sowie auch der Zielknoten lassen sich beiden feststellen.
  *
  * @author Daniel Dichte
  * @author Santa Rudevica
@@ -12,11 +15,8 @@
 
 public class Kante
 {
-    //Ursprung der Kante.
     private Knoten_Graph startKnotenGraph;
-    //Ziel der Kante.
     private Knoten_Graph zielKnotenGraph;
-    //Gewichtung der Kante
     private int gewicht;
 
     /**
