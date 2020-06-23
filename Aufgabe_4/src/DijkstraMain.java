@@ -1,19 +1,28 @@
 import java.util.ArrayList;
 
+/**
+ * Main um den Dijkstra aufzurufen
+ */
 public class DijkstraMain {
+
+    /**
+     * main
+     * @param args
+     */
     public static void main(String[] args){
 
         //Komplexitätsuntersuchung
         //double k = 1; //k kann sein 1,2,3,4... Verändert exponentiell die Anzahl der Knoten
-        int komplex = 1000;
-        /*Graph adjazenzGraph = new Adjazenzliste(new Knoten_Graph(0));
+        int komplex = 10000;
+
+        Graph adjazenzGraph = new Adjazenzliste(new Knoten_Graph(0));
 
         for (int i = 1; i <= komplex; i++) {
             adjazenzGraph.knotenEinfuegen(new Knoten_Graph(i));
         }
         ArrayList<Knoten_Graph> knoten = adjazenzGraph.gibAlleKnoten();
 
-        for(int j = 0; j <= komplex*3; j++) {
+        for(int j = 0; j <= komplex*5; j++) {
             try {
                 int knoten1 = (int) (Math.random() * (komplex));
                 int knoten2 = (int) (Math.random() * (komplex));
@@ -25,10 +34,30 @@ public class DijkstraMain {
         }
         long zeitVorher = System.currentTimeMillis();
         new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+
         long zeitNachher = System.currentTimeMillis();
-        double zeitGesamt = (double) (zeitNachher - zeitVorher);
+        double zeitGesamt = (double) (zeitNachher - zeitVorher) / 14;
         System.out.printf("Die Zeit für %d Knoten hat insgesamt %.1f Milisekunden betragen. \n",komplex, zeitGesamt);
-        */
+
+
+
+
+/*
+
+
 
         Graph adjazenzGraph = new Adjazenzmatrix(new Knoten_Graph(0));
 
@@ -37,7 +66,7 @@ public class DijkstraMain {
         }
         Knoten_Graph [] knoten = ((Adjazenzmatrix) adjazenzGraph).getKnotenGraphArray();
 
-        for(int j = 0; j <= komplex*3; j++) {
+        for(int j = 0; j <= komplex*5; j++) {
             try {
                 int knoten1 = (int) (Math.random() * (komplex));
                 int knoten2 = (int) (Math.random() * (komplex));
@@ -49,9 +78,27 @@ public class DijkstraMain {
         }
         long zeitVorher = System.currentTimeMillis();
         new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+        new DijkstraAlgorithmus(adjazenzGraph);
+
         long zeitNachher = System.currentTimeMillis();
-        double zeitGesamt = (double) (zeitNachher - zeitVorher);
+        double zeitGesamt = (double) (zeitNachher - zeitVorher) / 14;
         System.out.printf("Die Zeit für %d Knoten hat insgesamt %.1f Milisekunden betragen. \n",komplex, zeitGesamt);
+
+
+
+ */
 
     }
 

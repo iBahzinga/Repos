@@ -78,6 +78,8 @@ public class Adjazenzmatrix implements Graph {
         if (adjazenzmatrix [startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()] == null) {
             adjazenzmatrix [startKnotenGraph.getPosition()][zielKnotenGraph.getPosition()] = new Kante(startKnotenGraph, zielKnotenGraph, gewichtung);
             adjazenzmatrix [zielKnotenGraph.getPosition()][startKnotenGraph.getPosition()] = new Kante(zielKnotenGraph, startKnotenGraph, gewichtung);
+            startKnotenGraph.setKnotenVerbunden(true);
+            zielKnotenGraph.setKnotenVerbunden(true);
             anzahlKanten += 2;
         }
     }
@@ -216,6 +218,16 @@ public class Adjazenzmatrix implements Graph {
         ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
         for (int i = 0; i < anzahlKnoten - 1; i++) {
             result.add(knotenGraphArray[i]);
+        }
+        return result;
+    }
+
+    public ArrayList<Knoten_Graph> getNachbar (Knoten_Graph knoten) {
+        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
+        for (int i = 0; i <= anzahlKnoten; i++) {
+            if (adjazenzmatrix[knoten.getPosition()][i] != null) {
+                result.add(adjazenzmatrix[knoten.getPosition()][i].getZiel());
+            }
         }
         return result;
     }

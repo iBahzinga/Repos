@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.BrokenBarrierException;
 
 
 /**
@@ -21,12 +22,14 @@ public class DijkstraAlgorithmus {
     private Map<Knoten_Graph, Knoten_Graph> _vorgaenger;
     private Map<Knoten_Graph, Integer> _entfernung;
     private int _anzahlKnoten;
+    private Graph g;
 
     /**
      * Konstruktor der Klasse DijkstraAlgorithmus
      * @param graph Graph mit Knoten
      */
     public DijkstraAlgorithmus(Graph graph){
+        this.g = graph;
         _kanten = new ArrayList<>(graph.gibAlleKanten());
         _anzahlKnoten = graph.gibAnzahlKnoten();
         dijkstraAusfuehren(graph.gibStartKnoten());
@@ -134,7 +137,9 @@ public class DijkstraAlgorithmus {
      */
     private List<Knoten_Graph> gibNachbarn(Knoten_Graph knotenGraph)
     {
-        List<Knoten_Graph> nachbarn = new ArrayList<Knoten_Graph>();
+        //ArrayList<Knoten_Graph> test;
+        return g.getNachbar(knotenGraph);
+        /*List<Knoten_Graph> nachbarn = new ArrayList<Knoten_Graph>();
         for (Kante kante : _kanten)
         {
             if (kante.getQuelle().equals(knotenGraph) && !istEntschieden(kante.getZiel()))
@@ -143,6 +148,8 @@ public class DijkstraAlgorithmus {
             }
         }
         return nachbarn;
+
+         */
     }
 
     /**

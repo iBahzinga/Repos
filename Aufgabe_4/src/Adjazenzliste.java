@@ -109,6 +109,7 @@ public class Adjazenzliste implements Graph{
         pruefeNull(quelle);
         pruefeNull(ziel);
         int ergebnis = -1;
+      //  ergebnis = _adjListe.get(quelle)
         for (Kante k : _adjListe.get(quelle))
         {
             if (k.getZiel().equals(ziel))
@@ -116,6 +117,8 @@ public class Adjazenzliste implements Graph{
                 return ergebnis;
             }
         }
+
+
         if(ergebnis == -1)
         {
             throw new IllegalArgumentException("Es existiert keine Kante!");
@@ -174,7 +177,10 @@ public class Adjazenzliste implements Graph{
             {
                 for(Kante kante : _adjListe.get(k))
                 {
-                    kanten.add(kante);
+                    if (!kante.getGoennung()) {
+                        kanten.add(kante);
+                        kante.setGoennung(true);
+                    }
                 }
             }
         }
@@ -195,6 +201,22 @@ public class Adjazenzliste implements Graph{
         }
         return result;
     }
+
+    /**
+     * int ist falsch
+     * @return
+     */
+    public ArrayList<Knoten_Graph> getNachbar (Knoten_Graph knoten) {
+        ArrayList<Knoten_Graph> result = new ArrayList<Knoten_Graph>();
+        for (Kante k : _adjListe.get(knoten))
+        {
+            result.add(k.getZiel());
+        }
+
+        return result;
+    }
+
+
 
     /**
      * Liefert das gesamte Knotengraph Array wieder zurueck
