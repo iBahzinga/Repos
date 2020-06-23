@@ -66,7 +66,7 @@ public interface Graph {
      * @param ziel Zielknoten
      * @return Gewichtung der Kante zwischen den Knoten
      */
-    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel);
+    public int gewichtAuslesen(Knoten_Graph quelle, Knoten_Graph ziel) throws InterruptedException;
 
     /**
      * Liefert den Startknoten in dem Graphen
@@ -98,4 +98,6 @@ public interface Graph {
      * @return Alle Knoten in einer ArrayList
      */
     public ArrayList<Knoten_Graph> gibAlleKnoten();
+
+    public ArrayList<Knoten_Graph> getNachbar (Knoten_Graph knoten);
 }

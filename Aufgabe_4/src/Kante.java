@@ -18,6 +18,7 @@ public class Kante
     private Knoten_Graph startKnotenGraph;
     private Knoten_Graph zielKnotenGraph;
     private int gewicht;
+    private boolean goennung;
 
     /**
      * Initialisiert eine neue Kante und bindet sie zwischen zwei Knoten
@@ -29,6 +30,7 @@ public class Kante
         this.startKnotenGraph = startKnotenGraph;
         this.zielKnotenGraph = zielKnotenGraph;
         this.gewicht = gewicht;
+        goennung = false;
     }
 
     /**
@@ -54,4 +56,13 @@ public class Kante
     public int getGewicht() {
         return gewicht;
     }
+
+    public boolean getGoennung () {
+        return goennung;
+    }
+
+    public void setGoennung (boolean goennung) {
+        this.goennung = goennung;
+    }
+
 }
